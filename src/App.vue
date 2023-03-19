@@ -1,9 +1,11 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import LayoutHandler from './layouts/TheLayoutHandler.vue';
+</script>
 
 <template>
-  <div>
+  <LayoutHandler>
     <RouterView />
-  </div>
+  </LayoutHandler>
 </template>
 
 <style scoped></style>
