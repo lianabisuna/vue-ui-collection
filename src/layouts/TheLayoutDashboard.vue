@@ -1,20 +1,18 @@
 <script lang="ts" setup>
-// import Header from '../components/TheHeader.vue';
-import Navigation from '../components/TheNavigation.vue';
+import Header from '@/components/TheHeader.vue';
+import Sidebar from '../components/TheSidebar.vue';
 </script>
 
 <template>
-  <div class="flex flex-col bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-200 h-screen overflow-hidden select-none">
-    <!-- <Header /> -->
-    <main class="flex">
-      <Navigation/>
-      <div>
+  <div class="flex flex-col bg-gray-100 dark:bg-gray-700 relative h-screen overflow-hidden select-none">
+    <main class="flex flex-1 relative max-w-screen">
+      <Sidebar />
+      <div class="h-full flex-1">
+        <Header />
         <slot></slot>
       </div>
     </main>
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

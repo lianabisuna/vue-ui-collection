@@ -1,13 +1,9 @@
-<script lang="ts" setup>
-
-</script>
+<script lang="ts" setup></script>
 
 <template>
-  <nav>
+  <header>
     <h1>Header</h1>
-  </nav>
+  </header>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
