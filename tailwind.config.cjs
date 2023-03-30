@@ -8,7 +8,7 @@ module.exports = {
     content: ["./public/**/*.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
     safelist: [
       {
-        pattern: /(bg|text|border|outline)-(blue)-(500)/,
+        pattern: /(bg|text|border|outline)-(blue|amber|pink|green|sky|rose|emerald|fuchsia|lime|purple)-(500)/,
         variants: ['hover', 'focus', 'disabled', 'active'],
       },
     ],

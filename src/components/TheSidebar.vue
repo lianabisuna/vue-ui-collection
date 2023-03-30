@@ -45,7 +45,7 @@ const isDark = useDark()
 
     <!-- Profile -->
     <div class="h-20 flex px-3 items-center gap-3 border-t border-gray-200 border-">
-      <div class="flex h-12 w-12 rounded bg-pink-500">
+      <div class="flex h-12 w-12 rounded bg-gray-400">
       </div>
       <div class="flex flex-1 flex-col">
         <p>Kim Sejeong</p>

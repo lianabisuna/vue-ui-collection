@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 const components = [
-  { name: 'Button', to: '/' },
-  { name: 'Dropdown', to: '/dropdown' },
-  { name: 'Form', to: '/form' },
-  { name: 'Input', to: '/input' },
-  { name: 'Modal', to: '/modal' },
-  { name: 'Pagination', to: '/pagination' },
-  { name: 'Select', to: '/select' },
-  { name: 'Table', to: '/table' },
-  { name: 'Tooltip', to: '/tooltip' },
-  { name: 'Upload', to: '/upload' },
+  { name: 'Button', to: '/', color: 'blue-500' },
+  { name: 'Dropdown', to: '/dropdown', color: 'amber-500' },
+  { name: 'Form', to: '/form', color: 'pink-500' },
+  { name: 'Input', to: '/input', color: 'green-500' },
+  { name: 'Modal', to: '/modal', color: 'sky-500' },
+  { name: 'Pagination', to: '/pagination', color: 'rose-500' },
+  { name: 'Select', to: '/select', color: 'emerald-500' },
+  { name: 'Table', to: '/table', color: 'fuchsia-500' },
+  { name: 'Tooltip', to: '/tooltip', color: 'lime-500' },
+  { name: 'Upload', to: '/upload', color: 'purple-500' },
 ]
 </script>
 
@@ -24,7 +24,10 @@ const components = [
         active-class="font-bold bg-gray-200"
         :to="component.to"
       >
-        <div class="h-2 w-2 bg-purple-400 flex justify-center items-center rounded-full mr-3 text-[8px] font-normal"></div>
+        <div
+          class="h-2 w-2 flex justify-center items-center rounded-full mr-3 text-[8px] font-normal"
+          :class="`bg-${component.color}`"
+        ></div>
         {{ component.name }}
         <span class="ml-auto text-[12px] h-5 w-5 bg-gray-300 flex justify-center items-center rounded font-normal">2</span>
       </router-link>
