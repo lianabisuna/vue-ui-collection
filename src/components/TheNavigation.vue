@@ -29,7 +29,6 @@ const components = [
           :class="`bg-${component.color}`"
         ></div>
         {{ component.name }}
-        <span class="ml-auto text-[12px] h-5 w-5 bg-gray-300 flex justify-center items-center rounded font-normal">2</span>
       </router-link>
     </ul>
   </nav>

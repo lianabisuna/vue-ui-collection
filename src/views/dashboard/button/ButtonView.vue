@@ -5,7 +5,6 @@ import { EnvelopeIcon } from '@heroicons/vue/24/outline'
 
 <template>
   <div class="flex flex-col gap-3 p-3">
-    <div class="text-xl font-semibold text-center">Button</div>
     <!-- Button Size -->
     <div class="[&>*]:mr-3 flex items-center justify-center">
       <AppButton size="xs">Extra Small</AppButton>

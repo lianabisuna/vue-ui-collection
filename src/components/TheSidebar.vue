@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import Navigation from './TheNavigation.vue';
-import { AppInputField } from '@/components/app/index';
+import { AppFormInput } from '@/components/app/index';
 import { MoonIcon, ArrowLeftOnRectangleIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
 import { useDark } from '@vueuse/core';
 
@@ -9,7 +9,7 @@ const isDark = useDark()
 
 <template>
   <aside class="flex flex-col overflow-hidden bg-gray-100 dark:bg-gray-800 xs:w-[320px] xs:border-r w-full shrink-0 md:static">
-    <div class="relative flex h-16 shrink-0 items-center px-3 justify-between">
+    <div class="relative flex h-16 shrink-0 items-center p-3 justify-between border-b border-gray-200">
       <!-- Logo -->
       <div class="flex gap-1">
         <span class="h-4 w-4 rounded-full bg-green-500"></span>
@@ -26,8 +26,8 @@ const isDark = useDark()
     </div>
     
     <!-- Search Components -->
-    <div class="relative flex h-16 shrink-0 items-center bg-gray-100 px-3">
-      <AppInputField
+    <div class="relative flex h-16 shrink-0 items-center bg-gray-100 dark:bg-gray-800 px-3">
+      <AppFormInput
         rounded
         block
         :dark="false"
@@ -37,7 +37,7 @@ const isDark = useDark()
         <template #prepend>
           <MagnifyingGlassIcon class="h-5 w-5 text-[#9ca3af]" />
         </template>
-      </AppInputField>
+      </AppFormInput>
     </div>
     
     <!-- Component Navigation -->
@@ -51,7 +51,6 @@ const isDark = useDark()
         <p>Kim Sejeong</p>
         <p class="text-sm text-gray-500">Guest</p>
       </div>
-      <!-- Logout -->
       <div class="flex">
         <div class="h-10 w-10 rounded border border-gray-400 peer peer-checked:border-none peer-checked:bg-gray-800 flex items-center justify-center peer-checked:text-gray-100">
           <ArrowLeftOnRectangleIcon class="h-5 w-5" />

@@ -1,8 +1,8 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div>
-    <h1>Pagination</h1>
+  <div class="p-3">
+    <h1>{{ $route.name }}</h1>
   </div>
 </template>
 

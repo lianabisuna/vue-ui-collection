@@ -13,7 +13,6 @@ interface Props {
   // messages?: string,
   // label?: string,
   placeholder?: string,
-  rounded?: boolean,
   type?: string,
   // height?: string,
 }
@@ -35,12 +34,11 @@ onClickOutside(inputWrapperRef, () => isFocus.value = false)
     <div
       ref="inputWrapperRef"
       :class="[{
-        'rounded': rounded,
         'opacity-75': disabled,
         'bg-gray-800 text-gray-100 border-gray-600 focus-within:border-gray-100': dark,
         'bg-gray-100 text-gray-800 border-gray-400 focus-within:border-gray-800': !dark,
       }]"
-      class="flex py-2 px-3 border cursor-text justify-between w-full"
+      class="flex py-2 px-3 border cursor-text justify-between rounded w-full"
       @click="inputRef.focus()"
     >
       <slot name="prepend"></slot>
