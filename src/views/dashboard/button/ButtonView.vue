@@ -4,8 +4,32 @@ import { EnvelopeIcon } from '@heroicons/vue/24/outline'
 </script>
 
 <template>
-  <div class="flex flex-col gap-3 p-3">
-    <!-- Button Size -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 p-3 gap-3">
+    <div class="flex items-center justify-center border border-gray-300 bg-gray-200 aspect-square p-3">
+      <AppButton>Default</AppButton>
+    </div>
+    <div class="flex items-center justify-center border border-gray-300 bg-gray-200 aspect-square p-3">
+      <AppButton variant="outlined">Outlined</AppButton>
+    </div>
+    <div class="flex items-center justify-center border border-gray-300 bg-gray-200 aspect-square p-3">
+      <AppButton variant="text">Text</AppButton>
+    </div>
+    <div class="flex items-center justify-center border border-gray-300 bg-gray-200 aspect-square p-3">
+      <AppButton disabled>Disabled</AppButton>
+    </div>
+    <div class="flex items-center justify-center border border-gray-300 bg-gray-200 aspect-square p-3">
+      <AppButton icon>
+        <EnvelopeIcon class="h-5 w-5" />
+      </AppButton>
+    </div>
+    <div class="flex items-center justify-center border border-gray-300 bg-gray-200 aspect-square p-3">
+      <AppButton>
+        <EnvelopeIcon class="h-5 w-5 mr-2" />
+        Prepend Icon
+      </AppButton>
+    </div>
+  </div>
+  <!-- <div class="flex flex-col gap-3 p-3">
     <div class="[&>*]:mr-3 flex items-center justify-center">
       <AppButton size="xs">Extra Small</AppButton>
       <AppButton size="sm">Small</AppButton>
@@ -13,13 +37,11 @@ import { EnvelopeIcon } from '@heroicons/vue/24/outline'
       <AppButton size="lg">Large</AppButton>
       <AppButton size="xl">Extra Large</AppButton>
     </div>
-    <!-- Button Type -->
     <div class="[&>*]:mr-3 flex items-center justify-center">
       <AppButton variant="outlined">Outlined</AppButton>
       <AppButton variant="text">Text</AppButton>
       <AppButton disabled>Disabled</AppButton>
     </div>
-    <!-- Icon Size -->
     <div class="[&>*]:mr-3 flex items-center justify-center">
       <AppButton icon size="xs">
         <EnvelopeIcon class="h-3 w-3" />
@@ -37,7 +59,6 @@ import { EnvelopeIcon } from '@heroicons/vue/24/outline'
         <EnvelopeIcon class="h-7 w-7" />
       </AppButton>
     </div>
-    <!-- Icon Type -->
     <div class="[&>*]:mr-3 flex items-center justify-center">
       <AppButton icon variant="outlined">
         <EnvelopeIcon class="h-5 w-5" />
@@ -49,7 +70,6 @@ import { EnvelopeIcon } from '@heroicons/vue/24/outline'
         <EnvelopeIcon class="h-5 w-5" />
       </AppButton>
     </div>
-    <!-- With Icon -->
     <div class="[&>*]:mr-3 flex items-center justify-center">
       <AppButton>
         <EnvelopeIcon class="h-5 w-5 mr-2" />
@@ -60,7 +80,7 @@ import { EnvelopeIcon } from '@heroicons/vue/24/outline'
         <EnvelopeIcon class="h-5 w-5 ml-2" />
       </AppButton>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <style scoped></style>
