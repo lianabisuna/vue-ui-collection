@@ -72,7 +72,7 @@ const borderClass = computed(() => {
 <template>
   <component
     :is="to ? 'router-link' : 'button'"
-    class="inline-flex items-center justify-center text-center rounded-md font-medium active:shadow"
+    class="inline-flex items-center justify-center text-center rounded font-medium active:shadow"
     :class="[
       `outline-${color}/50`,
       { 'opacity-50 pointer-events-none': disabled },

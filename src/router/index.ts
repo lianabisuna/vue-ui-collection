@@ -15,9 +15,21 @@ const router = createRouter({
       meta: { layout: 'TheLayoutDashboard' },
     },
     {
+      path: '/dropdown',
+      name: 'Dropdown',
+      component: () => import(/* webpackChunkName: "button" */ '../views/dashboard/dropdown/DropdownView.vue'),
+      meta: { layout: 'TheLayoutDashboard' },
+    },
+    {
       path: '/form',
       name: 'Form',
       component: () => import(/* webpackChunkName: "form" */ '../views/dashboard/form/FormView.vue'),
+      meta: { layout: 'TheLayoutDashboard' },
+    },
+    {
+      path: '/input',
+      name: 'Input',
+      component: () => import(/* webpackChunkName: "input" */ '../views/dashboard/input/InputView.vue'),
       meta: { layout: 'TheLayoutDashboard' },
     },
     {
