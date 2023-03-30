@@ -1,8 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 
 const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require("tailwindcss/colors");
 
 module.exports = {
+  purge: {
+    content: ["./public/**/*.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+    safelist: [
+      {
+        pattern: /(bg|text|border|outline)-(blue)-(500)/,
+        variants: ['hover', 'focus', 'disabled', 'active'],
+      },
+    ],
+  },
   darkMode: 'class',
   content: [
     "./index.html",
@@ -15,15 +25,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        night: '#0F0F0F',
-        jet: '#2D2E2E',
-        snow: '#FBFBFB',
-      },
-      fontFamily: {
-        'narrow': 'Encode Sans Condensed, sans-serif',
-      },
-      backgroundImage: {
-        'profile': 'url(/src/assets/sejeong.jfif)',
+        primary: colors.blue,
       },
     },
   },

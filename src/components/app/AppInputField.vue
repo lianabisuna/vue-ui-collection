@@ -30,20 +30,17 @@ onClickOutside(inputWrapperRef, () => isFocus.value = false)
 
 <template>
   <div
-    class="relative"
-    :class="[{
-      'w-full h-10 flex items-center justify-center': block,
-    }]"
+    class="relative w-full flex items-center"
   >
     <div
       ref="inputWrapperRef"
       :class="[{
         'rounded-md': rounded,
         'opacity-75': disabled,
-        'bg-gray-700 text-gray-100 border-gray-600 focus-within:border-gray-100': dark,
-        'bg-gray-100 text-gray-700 border-gray-400 focus-within:border-gray-700': !dark,
+        'bg-gray-800 text-gray-100 border-gray-600 focus-within:border-gray-100': dark,
+        'bg-gray-100 text-gray-800 border-gray-400 focus-within:border-gray-800': !dark,
       }]"
-      class="flex py-2 px-3 border cursor-text justify-between"
+      class="flex py-2 px-3 border cursor-text justify-between w-full"
       @click="inputRef.focus()"
     >
       <slot name="prepend"></slot>

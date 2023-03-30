@@ -8,7 +8,7 @@ const isDark = useDark()
 </script>
 
 <template>
-  <aside class="flex flex-col overflow-hidden bg-gray-100 dark:bg-gray-700 xs:w-[320px] xs:border-r w-full shrink-0 md:static">
+  <aside class="flex flex-col overflow-hidden bg-gray-100 dark:bg-gray-800 xs:w-[320px] xs:border-r w-full shrink-0 md:static">
     <div class="relative flex h-16 shrink-0 items-center px-3 justify-between">
       <!-- Logo -->
       <div class="flex gap-1">
@@ -19,7 +19,7 @@ const isDark = useDark()
       <!-- Toggle Color Scheme -->
       <label class="relative cursor-pointer">
         <input type="checkbox" v-model="isDark" class="sr-only peer">
-        <div class="h-10 w-10 rounded-md border border-gray-400 peer peer-checked:border-none peer-checked:bg-gray-700 flex items-center justify-center peer-checked:text-gray-100">
+        <div class="h-10 w-10 rounded-md border border-gray-400 peer peer-checked:border-none peer-checked:bg-gray-800 flex items-center justify-center peer-checked:text-gray-100">
           <MoonIcon class="h-5 w-5" />
         </div>
       </label>
@@ -48,7 +48,7 @@ const isDark = useDark()
 
     <!-- Profile -->
     <div class="h-20 flex px-3 items-center gap-3 border-t border-gray-200 border-">
-      <div class="flex h-12 w-12 rounded-md bg-profile bg-cover">
+      <div class="flex h-12 w-12 rounded-md bg-pink-500">
       </div>
       <div class="flex flex-1 flex-col">
         <p>Kim Sejeong</p>
@@ -56,7 +56,7 @@ const isDark = useDark()
       </div>
       <!-- Logout -->
       <div class="flex">
-        <div class="h-10 w-10 rounded-md border border-gray-400 peer peer-checked:border-none peer-checked:bg-gray-700 flex items-center justify-center peer-checked:text-gray-100">
+        <div class="h-10 w-10 rounded-md border border-gray-400 peer peer-checked:border-none peer-checked:bg-gray-800 flex items-center justify-center peer-checked:text-gray-100">
           <ArrowLeftOnRectangleIcon class="h-5 w-5" />
         </div>
       </div>
