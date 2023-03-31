@@ -20,8 +20,8 @@ const components = [
         v-for="(component, key) in components"
         :key="key"
         tag="li"
-        class="px-3 py-2 text-gray-800 dark:text-gray-100 rounded hover:bg-gray-200 cursor-pointer flex items-center h-10"
-        active-class="font-bold bg-gray-200"
+        class="px-3 py-2 text-gray-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-600 flex items-center h-10"
+        active-class="font-bold bg-gray-100 dark:bg-gray-600"
         :to="component.to"
       >
         <div

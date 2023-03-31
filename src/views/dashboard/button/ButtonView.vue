@@ -5,24 +5,24 @@ import { EnvelopeIcon } from '@heroicons/vue/24/outline'
 
 <template>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 p-3 gap-3">
-    <div class="flex items-center justify-center border border-gray-300 bg-gray-200 aspect-square p-3">
+    <div class="flex items-center justify-center border border-gray-300 bg-gray-100 aspect-square p-3">
       <AppButton>Default</AppButton>
     </div>
-    <div class="flex items-center justify-center border border-gray-300 bg-gray-200 aspect-square p-3">
+    <div class="flex items-center justify-center border border-gray-300 bg-gray-100 aspect-square p-3">
       <AppButton variant="outlined">Outlined</AppButton>
     </div>
-    <div class="flex items-center justify-center border border-gray-300 bg-gray-200 aspect-square p-3">
+    <div class="flex items-center justify-center border border-gray-300 bg-gray-100 aspect-square p-3">
       <AppButton variant="text">Text</AppButton>
     </div>
-    <div class="flex items-center justify-center border border-gray-300 bg-gray-200 aspect-square p-3">
+    <div class="flex items-center justify-center border border-gray-300 bg-gray-100 aspect-square p-3">
       <AppButton disabled>Disabled</AppButton>
     </div>
-    <div class="flex items-center justify-center border border-gray-300 bg-gray-200 aspect-square p-3">
+    <div class="flex items-center justify-center border border-gray-300 bg-gray-100 aspect-square p-3">
       <AppButton icon>
         <EnvelopeIcon class="h-5 w-5" />
       </AppButton>
     </div>
-    <div class="flex items-center justify-center border border-gray-300 bg-gray-200 aspect-square p-3">
+    <div class="flex items-center justify-center border border-gray-300 bg-gray-100 aspect-square p-3">
       <AppButton>
         <EnvelopeIcon class="h-5 w-5 mr-2" />
         Prepend Icon
