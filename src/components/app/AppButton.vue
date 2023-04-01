@@ -26,7 +26,7 @@ const props = defineProps({
 const sizeClass = computed(() => {
   if (props.icon) {
     switch (props.size) {
-      case 'xs': return ' p-2'
+      case 'xs': return 'aspect-square p-2'
       case 'sm': return 'aspect-square p-2.5'
       case 'lg': return 'aspect-square p-3.5'
       case 'xl': return 'aspect-square p-4'
@@ -81,6 +81,7 @@ const borderClass = computed(() => {
     ]"
     :type="type"
     :disabled="disabled"
+    v-bind="$attrs"
   >
     <slot></slot>
   </component>

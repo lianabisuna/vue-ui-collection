@@ -3,6 +3,7 @@ import { ref, useSlots } from 'vue'
 import { onClickOutside } from '@vueuse/core';
 
 interface Props {
+  modelValue?: string,
   autofocus?: boolean,
   // autocomplete?: boolean,
   block?: boolean,
@@ -25,6 +26,15 @@ let inputWrapperRef = ref<any>(null)
 let inputRef = ref<any>(null)
 
 onClickOutside(inputWrapperRef, () => isFocus.value = false)
+
+const emits = defineEmits(['update:modelValue'])
+
+const updateModelValue = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  if (target.value !== undefined) {
+    emits('update:modelValue', target.value)
+  }
+}
 </script>
 
 <template>
@@ -38,11 +48,13 @@ onClickOutside(inputWrapperRef, () => isFocus.value = false)
         'bg-gray-800 text-gray-100 border-gray-600 focus-within:border-gray-100': dark,
         'bg-white text-gray-800 border-gray-400 focus-within:border-gray-800': !dark,
       }]"
-      class="flex py-2 px-3 border cursor-text justify-between rounded w-full"
+      class="flex items-center py-2 px-3 border cursor-text justify-between rounded w-full"
       @click="inputRef.focus()"
     >
       <slot name="prepend"></slot>
       <input
+        :value="modelValue"
+        @input="updateModelValue"
         ref="inputRef"
         :name="name"
         :type="type"

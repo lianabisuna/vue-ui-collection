@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { AppButton } from '@/components/app/index';
+import { AppButton } from '@/components/app';
 import { EnvelopeIcon } from '@heroicons/vue/24/outline'
 </script>
 

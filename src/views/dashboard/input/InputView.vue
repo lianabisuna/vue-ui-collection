@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { AppFormInput } from '@/components/app/index';
+import { AppFormInput } from '@/components/app';
 </script>
 
 <template>

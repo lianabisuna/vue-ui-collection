@@ -1,6 +1,19 @@
 <script lang="ts" setup>
 import Header from '@/components/TheHeader.vue';
 import Sidebar from '../components/TheSidebar.vue';
+
+import { ref, provide, type Ref } from 'vue'
+
+export interface SidebarProvider {
+  isSidebarOpen: Ref<boolean>
+  toggleSidebar: CallableFunction
+}
+
+const isSidebarOpen = ref(false)
+const toggleSidebar = () => {
+  isSidebarOpen.value = !isSidebarOpen.value
+}
+provide('sidebar', { isSidebarOpen, toggleSidebar })
 </script>
 
 <template>
