@@ -5,18 +5,18 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 
 // console.log(route)
-const layoutName = ref('TheLayoutDefault')
+const layoutName = ref('Default')
 const metaLayout = computed(() => route.meta.layout as string)
 
 watch(metaLayout, () => {
   if (metaLayout.value !== layoutName.value) {
-    layoutName.value = metaLayout.value || 'TheLayoutDefault'
+    layoutName.value = metaLayout.value || 'Default'
   }
 })
 
 const layout = computed(() => {
   const _layoutName = layoutName.value
-  return defineAsyncComponent(() => import(`./src/layouts/${_layoutName}.vue`))
+  return defineAsyncComponent(() => import(`./TheLayout${_layoutName}.vue`))
 })
 </script>
 
