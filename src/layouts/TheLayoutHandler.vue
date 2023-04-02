@@ -16,7 +16,7 @@ watch(metaLayout, () => {
 
 const layout = computed(() => {
   const _layoutName = layoutName.value
-  return defineAsyncComponent(() => import(`./${_layoutName}.vue`))
+  return defineAsyncComponent(() => import(`./src/layouts/${_layoutName}.vue`))
 })
 </script>
 
