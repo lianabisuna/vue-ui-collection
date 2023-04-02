@@ -27,6 +27,15 @@ module.exports = {
       colors: {
         primary: colors.blue,
       },
+      keyframes: {
+        shake: {
+          '0%, 40%, 80%': { transform: 'translate(0,0)' },
+          '20%, 60%, 100%': { transform: 'translate(3px,0)' },
+        }
+      },
+      animation: {
+        shake: 'shake .25s ease',
+      },
     },
   },
   plugins: [],
