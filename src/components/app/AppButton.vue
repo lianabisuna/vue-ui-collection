@@ -3,7 +3,7 @@ import { PropType, computed } from 'vue'
 
 /** types */
 export type ThemeColor = 'primary'|'secondary'|'success'|'warning'|'danger'|'info'
-export type TailwindColor = `${string}-${number}`
+export type TailwindColor = `${string}-${number}`|'black'|'white'
 export type ComponentSize = 'xs'|'sm'|'lg'|'xl'
 export type ButtonVariant = 'outlined'|'text'|ThemeColor
 export type ButtonType = 'button'|'submit'|'reset'
@@ -19,7 +19,7 @@ const props = defineProps({
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
   icon: { type: Boolean as PropType<boolean>, default: false },
   variant: { type: String as PropType<ButtonVariant>, default: '' },
-  tone: { type: String as PropType<ColorTone>, default: 'light' },
+  tone: { type: String as PropType<ColorTone>, default: '' },
   // color: default, border, background, text + hover
 })
 
@@ -56,7 +56,11 @@ const textClass = computed(() => {
   switch (props.variant) {
     case 'outlined': return `text-${props.color} hover:text-gray-100`
     case 'text': return 'text-gray-800'
-    default: return 'text-gray-100'
+    default:
+      switch (props.tone) {
+        case 'light': return 'text-gray-800'
+        case 'dark': default: return 'text-gray-100'
+      }
   }
 })
 
