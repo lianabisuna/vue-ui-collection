@@ -58,7 +58,6 @@ const updateModelValue = (value: Boolean) => {
         { 'group-active:animate-shake': persistent },
         sizeClass
       ]"
-
     >
       <slot name="header"></slot>
       <slot></slot>

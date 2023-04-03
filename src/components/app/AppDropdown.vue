@@ -1,11 +1,13 @@
 <script lang="ts" setup>
-import { PropType, computed } from 'vue'
-import from '@vueuse/com'
+import { PropType, ref } from 'vue'
+import { vOnClickOutside } from '@vueuse/components'
 
 /** props */
-const props = defineProps({
-  modelValue: { type: Boolean as PropType<boolean>, default: false },
-})
+// defineProps({
+//   items: { type: Array as PropType<Array>, default: [] },
+// })
+
+const active = ref(false)
 
 // const bgClass = computed(() => {
 //   switch (props.modelValue) {
@@ -17,9 +19,18 @@ const props = defineProps({
 
 <template>
   <div
-    v-if="modelValue"
-    @click.self="updateModelValue(false)"
+    class="relative"
+    v-on-click-outside="() => active = false"
   >
+    <div @click="active = !active">
+      <slot name="trigger"></slot>
+    </div>
+    <div
+      v-if="active"
+      class="absolute top-full bg-white rounded shadow z-10 max-h-80 mt-2"
+    >
+      <slot></slot>
+    </div>
   </div>
 </template>
 
