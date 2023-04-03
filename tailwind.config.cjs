@@ -4,15 +4,12 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-  purge: {
-    content: ["./public/**/*.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
-    safelist: [
-      {
-        pattern: /(bg|text|border|outline)-(blue|gray|amber|pink|green|sky|rose|emerald|fuchsia|lime|purple)-(500|800)/,
-        variants: ['hover', 'focus', 'disabled', 'active'],
-      },
-    ],
-  },
+  safelist: [
+    {
+      pattern: /(bg|text|border|outline)-(blue|gray|amber|pink|green|sky|rose|emerald|fuchsia|lime|purple)-(500|800)/,
+      variants: ['hover', 'focus', 'disabled', 'active'],
+    },
+  ],
   darkMode: 'class',
   content: [
     "./index.html",
