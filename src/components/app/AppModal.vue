@@ -45,7 +45,7 @@ const updateModelValue = (value: Boolean) => {
 <template>
   <div
     v-if="modelValue"
-    class="absolute top-0 left-0 z-50 flex items-center justify-center w-full min-h-screen group"
+    class="fixed top-0 left-0 z-50 flex items-center justify-center w-full min-h-screen group"
     :class="[
       { 'bg-black bg-opacity-25': !hideBackdrop },
       backdropClass
