@@ -24,7 +24,11 @@ const showNotes = ref(true)
     <div v-if="showNotes" class="relative w-screen overflow-hidden whitespace-nowrap flex text-white">
       <div class="bg-emerald-600 font-bold flex items-center px-10 uppercase">Update</div>
       <div class="bg-emerald-400 flex justify-between py-1 h-8 w-full relative px-3">
-        <span>Add scroll on dashboard content. We hope you enjoy browsing, <span class="font-semibold">Ron & Leizl</span>!</span>
+        <ul class="flex">
+          <li class="after:content-['\2022'] after:px-3">NEW: Pagination</li>
+          <li class="after:content-['\2022'] after:px-3">UP NEXT: Tooltip</li>
+          <li><span>We hope you enjoy browsing, <span class="font-semibold">Ron & Leizl</span>!</span></li>
+        </ul>
         <span class="inline-flex ml-auto hover:underline cursor-pointer" @click="showNotes = false">Hide</span>
       </div>
     </div>
