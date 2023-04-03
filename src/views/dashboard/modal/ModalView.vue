@@ -6,9 +6,9 @@ const showModalDefault = ref(false)
 const showModalPersistent = ref(false)
 const showModalExtraSmall = ref(false)
 const showModalLarge = ref(false)
-const showModalFullscreen = ref(false)
-const showModalTop = ref(false)
-const showModalBottomRight = ref(false)
+// const showModalFullscreen = ref(false)
+// const showModalTop = ref(false)
+// const showModalBottomRight = ref(false)
 </script>
 
 <template>
@@ -25,7 +25,7 @@ const showModalBottomRight = ref(false)
     <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-square">
       <AppButton color="sky-500" @click="showModalLarge = !showModalLarge">Large</AppButton>
     </div>
-    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-square">
+    <!-- <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-square">
       <AppButton color="sky-500" @click="showModalFullscreen = !showModalFullscreen">Fullscreen</AppButton>
     </div>
     <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-square">
@@ -33,7 +33,7 @@ const showModalBottomRight = ref(false)
     </div>
     <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-square">
       <AppButton color="sky-500" @click="showModalBottomRight = !showModalBottomRight">Bottom Right</AppButton>
-    </div>
+    </div> -->
   </div>
 
   <AppModal

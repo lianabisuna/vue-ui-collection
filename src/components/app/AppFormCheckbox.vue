@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { PropType, defineEmits } from 'vue'
+import { PropType } from 'vue'
 
 defineProps({
   modelValue: { type: Boolean as PropType<boolean>, default: false },
