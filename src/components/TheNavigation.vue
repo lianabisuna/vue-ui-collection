@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { PropType } from 'vue'
+import { PropType, ref } from 'vue'
 import { RouteLocationRaw } from 'vue-router';
 
 type TailwindColor = `${string}-${number}`
@@ -8,15 +8,17 @@ interface Component {
   name: string
   to: RouteLocationRaw
   color: TailwindColor
+  items: number
 }
+
 defineProps({
-  items: { type: Array as PropType<Component[]>, default: [] }, // done
+  items: { type: Array as PropType<Component[]>, default: [] },
 })
 </script>
 
 <template>
-  <nav class="flex flex-1 flex-col hover:overflow-y-auto scrollbar text-gray-100">
-    <ul class="flex flex-col w-full px-3 gap-1.5 max-h-0">
+  <nav class="flex flex-1 flex-col overflow-hidden text-gray-100">
+    <ul class="flex flex-col w-full px-3 gap-1.5 overflow-y-auto scrollbar pb-1.5">
       <router-link
         v-for="(item, key) in items"
         :key="key"
@@ -30,6 +32,12 @@ defineProps({
           :class="`bg-${item.color}`"
         ></div>
         {{ item.name }}
+        <span
+          v-if="item.items"
+          class="ml-auto aspect-square w-6 font-normal bg-gray-300 flex items-center justify-center text-sm rounded"
+        >
+          {{ item.items }}
+        </span>
       </router-link>
     </ul>
   </nav>

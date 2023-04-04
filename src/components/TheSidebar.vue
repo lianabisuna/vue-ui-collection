@@ -13,6 +13,7 @@ interface Component {
   name: string
   to: RouteLocationRaw
   color: TailwindColor
+  items: number
 }
 
 /** sidebar */
@@ -25,16 +26,30 @@ const isSidebarOpen = toRef(sidebar, 'isSidebarOpen')
 
 /** components */
 const components: Component[] = [
-  { name: 'Button', to: '/', color: 'blue-500' },
-  { name: 'Dropdown', to: '/dropdown', color: 'amber-500' },
-  { name: 'Form', to: '/form', color: 'pink-500' },
-  { name: 'Input', to: '/input', color: 'green-500' },
-  { name: 'Modal', to: '/modal', color: 'sky-500' },
-  { name: 'Pagination', to: '/pagination', color: 'rose-500' },
-  { name: 'Select', to: '/select', color: 'emerald-500' },
-  { name: 'Table', to: '/table', color: 'fuchsia-500' },
-  { name: 'Tooltip', to: '/tooltip', color: 'lime-500' },
-  { name: 'Upload', to: '/upload', color: 'purple-500' },
+  { name: 'Accordion', to: '/', color: 'green-500', items: 0 },
+  { name: 'Breadcrumb', to: '/breadcrumb', color: 'indigo-500', items: 0 },
+  { name: 'Button', to: '/button', color: 'blue-500', items: 5 },
+  { name: 'Card', to: '/card', color: 'purple-500', items: 0 },
+  { name: 'Checkbox', to: '/checkbox', color: 'yellow-500', items: 0 },
+  { name: 'Chip', to: '/chip', color: 'rose-500', items: 0 },
+  { name: 'Datepicker', to: '/datepicker', color: 'amber-500', items: 0 },
+  { name: 'Dropdown', to: '/dropdown', color: 'red-500', items: 1 },
+  { name: 'Form', to: '/form', color: 'pink-500', items: 0 },
+  { name: 'Input', to: '/input', color: 'fuchsia-500', items: 3 },
+  { name: 'List Group', to: '/list-group', color: 'green-500', items: 0 },
+  { name: 'Modal', to: '/modal', color: 'sky-500', items: 4 },
+  { name: 'Pagination', to: '/pagination', color: 'violet-500', items: 2 },
+  { name: 'Progress', to: '/progress', color: 'lime-500', items: 0 },
+  { name: 'Radio', to: '/radio', color: 'rose-500', items: 0 },
+  { name: 'Select', to: '/select', color: 'indigo-500', items: 0 },
+  { name: 'Spinner', to: '/spinner', color: 'amber-500', items: 0 },
+  { name: 'Stepper', to: '/stepper', color: 'cyan-500', items: 0 },
+  { name: 'Switch', to: '/switch', color: 'teal-500', items: 0 },
+  { name: 'Table', to: '/table', color: 'emerald-500', items: 0 },
+  { name: 'Tab', to: '/tab', color: 'blue-500', items: 0 },
+  { name: 'Textarea', to: '/textarea', color: 'purple-500', items: 0 },
+  { name: 'Toast', to: '/toast', color: 'fuchsia-500', items: 0 },
+  { name: 'Tooltip', to: '/tooltip', color: 'lime-500', items: 0 },
 ]
 
 const searchKeyword = ref('')
@@ -49,7 +64,7 @@ const filteredComponents = computed(() => {
 
 <template>
   <aside
-    class="h-full flex flex-col overflow-hidden bg-white dark:bg-gray-800 xs:w-[320px] xs:border-r xs:border-gray-300 dark:xs:border-gray-600 absolute z-10 inset-y-0 left-0 w-full shrink-0 md:static"
+    class="h-screen flex flex-col overflow-hidden bg-white dark:bg-gray-800 xs:w-[320px] xs:border-r xs:border-gray-300 dark:xs:border-gray-600 absolute z-10 inset-y-0 left-0 w-full shrink-0 md:static"
     :class="[{
       'max-md:max-w-0': !isSidebarOpen
     }]"

@@ -6,7 +6,7 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   safelist: [
     {
-      pattern: /(bg|text|border|outline)-(blue|gray|amber|pink|green|sky|rose|emerald|fuchsia|lime|purple)-(500|800)/,
+      pattern: /(bg|text|border|outline)-(violet|yellow|cyan|teal|indigo|blue|gray|amber|pink|green|sky|rose|emerald|fuchsia|lime|purple)-(500|800)/,
       variants: ['hover', 'focus', 'disabled', 'active'],
     },
   ],
