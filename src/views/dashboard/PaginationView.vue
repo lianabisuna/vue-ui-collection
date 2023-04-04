@@ -12,6 +12,7 @@ const currentPage2 = ref(1)
       <AppPagination
         v-model="currentPage1"
         :length="5"
+        color="violet-500"
       >
       </AppPagination>
     </div>
@@ -19,6 +20,7 @@ const currentPage2 = ref(1)
       <AppPagination
         v-model="currentPage2"
         :length="3"
+        color="violet-500"
       >
         <template #previous>Previous</template>
         <template #next>Next</template>

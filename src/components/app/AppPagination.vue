@@ -8,7 +8,7 @@ export type TailwindColor = `${string}-${number}`
 defineProps({
   modelValue: { type: Number as PropType<number>, default: 1 },
   length: { type: Number as PropType<number>, default: 1 },
-  color: { type: String as PropType<TailwindColor>, default: 'rose-500' },
+  color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
 })
 
 const slots = useSlots()

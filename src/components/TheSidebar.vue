@@ -30,7 +30,7 @@ const components: Component[] = [
   { name: 'Breadcrumb', to: '/breadcrumb', color: 'indigo-500', items: 0 },
   { name: 'Button', to: '/button', color: 'blue-500', items: 5 },
   { name: 'Card', to: '/card', color: 'purple-500', items: 0 },
-  { name: 'Checkbox', to: '/checkbox', color: 'yellow-500', items: 0 },
+  { name: 'Checkbox', to: '/checkbox', color: 'yellow-500', items: 1 },
   { name: 'Chip', to: '/chip', color: 'rose-500', items: 0 },
   { name: 'Datepicker', to: '/datepicker', color: 'amber-500', items: 0 },
   { name: 'Dropdown', to: '/dropdown', color: 'red-500', items: 1 },

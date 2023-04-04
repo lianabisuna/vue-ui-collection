@@ -7,7 +7,7 @@ import { AppDropdown, AppButton } from '@/components/app';
     <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-square">
       <AppDropdown>
         <template #trigger>
-          <AppButton color="amber-500">Default</AppButton>
+          <AppButton color="red-500">Default</AppButton>
         </template>
         <ul class="py-3 w-32">
           <li class="block px-4 py-2 hover:bg-gray-200 cursor-pointer">Camera</li>
