@@ -44,7 +44,7 @@ const components: Component[] = [
   { name: 'Select', to: '/select', color: 'indigo-500', items: 0 },
   { name: 'Spinner', to: '/spinner', color: 'amber-500', items: 0 },
   { name: 'Stepper', to: '/stepper', color: 'cyan-500', items: 0 },
-  { name: 'Switch', to: '/switch', color: 'teal-500', items: 0 },
+  { name: 'Switch', to: '/switch', color: 'teal-500', items: 1 },
   { name: 'Table', to: '/table', color: 'emerald-500', items: 0 },
   { name: 'Tab', to: '/tab', color: 'blue-500', items: 0 },
   { name: 'Textarea', to: '/textarea', color: 'purple-500', items: 0 },
