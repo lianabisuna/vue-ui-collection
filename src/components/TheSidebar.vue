@@ -27,7 +27,7 @@ const isSidebarOpen = toRef(sidebar, 'isSidebarOpen')
 /** components */
 const components: Component[] = [
   { name: 'Accordion', to: '/', color: 'green-500', items: 0 },
-  { name: 'Breadcrumb', to: '/breadcrumb', color: 'indigo-500', items: 0 },
+  { name: 'Breadcrumb', to: '/breadcrumb', color: 'indigo-500', items: 2 },
   { name: 'Button', to: '/button', color: 'blue-500', items: 5 },
   { name: 'Card', to: '/card', color: 'purple-500', items: 0 },
   { name: 'Checkbox', to: '/checkbox', color: 'yellow-500', items: 1 },
