@@ -25,23 +25,25 @@ const updateModelValue = (event: Event) => {
 <template>
   <label class="flex cursor-pointer select-none items-center">
     <div class="relative">
-      <input
-        type="checkbox"
+      <input  
+        type="radio"
         :checked="modelValue"
         @change="updateModelValue"
         class="peer sr-only"
       >
       <slot>
         <div
-          class="bg-transparent flex h-5 w-5 items-center justify-center rounded border border-gray-400 [&_span]:opacity-0 peer-checked:[&_span]:opacity-100 peer-checked:text-white fill-white"
+          class="bg-transparent flex h-5 w-5 items-center justify-center rounded-full border border-gray-400 [&_span]:opacity-0 peer-checked:[&_span]:opacity-100 peer-checked:text-white fill-white"
           :class="[
-            `peer-checked:bg-${color} peer-checked:border-${color}`
+            `peer-checked:border-${color} p-1`
           ]"
         >
-          <span class="h-3 w-3">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/>
-            </svg>
+          <span>
+            <div
+              class="rounded-full h-3 w-3"
+              :class="[ `bg-${color}` ]"
+            >
+            </div>
           </span>
         </div>
       </slot>

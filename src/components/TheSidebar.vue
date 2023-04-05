@@ -40,7 +40,7 @@ const components: Component[] = [
   { name: 'Modal', to: '/modal', color: 'sky-500', items: 4 },
   { name: 'Pagination', to: '/pagination', color: 'violet-500', items: 2 },
   { name: 'Progress', to: '/progress', color: 'lime-500', items: 0 },
-  { name: 'Radio', to: '/radio', color: 'rose-500', items: 0 },
+  { name: 'Radio', to: '/radio', color: 'rose-500', items: 1 },
   { name: 'Select', to: '/select', color: 'indigo-500', items: 0 },
   { name: 'Spinner', to: '/spinner', color: 'amber-500', items: 0 },
   { name: 'Stepper', to: '/stepper', color: 'cyan-500', items: 0 },

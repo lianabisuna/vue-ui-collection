@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { AppFormCheckbox } from '@/components/app';
-import { HeartIcon } from '@heroicons/vue/24/solid';
 import { ref } from 'vue';
 
 const checkboxOne = ref(true)
