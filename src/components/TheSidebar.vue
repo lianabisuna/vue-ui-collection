@@ -49,7 +49,7 @@ const components: Component[] = [
   { name: 'Tab', to: '/tab', color: 'blue-500', items: 0 },
   { name: 'Textarea', to: '/textarea', color: 'purple-500', items: 0 },
   { name: 'Toast', to: '/toast', color: 'fuchsia-500', items: 0 },
-  { name: 'Tooltip', to: '/tooltip', color: 'lime-500', items: 0 },
+  { name: 'Tooltip', to: '/tooltip', color: 'lime-500', items: 4 },
 ]
 
 const searchKeyword = ref('')
