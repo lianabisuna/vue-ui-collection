@@ -9,6 +9,10 @@ module.exports = {
       pattern: /(bg|text|border|outline|accent)-(violet|yellow|cyan|teal|indigo|blue|gray|amber|pink|green|sky|rose|emerald|fuchsia|lime|purple)-(500|800)/,
       variants: ['hover', 'focus', 'disabled', 'active', 'peer-checked'],
     },
+    {
+      pattern: /(rounded)-(sm|md|lg|xl)/,
+      variants: [],
+    },
   ],
   darkMode: 'class',
   content: [

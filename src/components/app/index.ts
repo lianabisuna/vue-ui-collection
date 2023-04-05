@@ -1,5 +1,6 @@
 export { default as AppBreadcrumb } from './AppBreadcrumb.vue'
 export { default as AppButton } from './AppButton.vue'
+export { default as AppChip } from './AppChip.vue'
 export { default as AppDropdown } from './AppDropdown.vue'
 export { default as AppFormCheckbox } from './AppFormCheckbox.vue'
 export { default as AppFormInput } from './AppFormInput.vue'
