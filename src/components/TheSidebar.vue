@@ -36,7 +36,7 @@ const components: Component[] = [
   { name: 'Dropdown', to: '/dropdown', color: 'red-500', items: 1 },
   { name: 'Form', to: '/form', color: 'pink-500', items: 0 },
   { name: 'Input', to: '/input', color: 'fuchsia-500', items: 3 },
-  { name: 'List Group', to: '/list-group', color: 'green-500', items: 0 },
+  { name: 'List Group', to: '/list-group', color: 'green-500', items: 1 },
   { name: 'Modal', to: '/modal', color: 'sky-500', items: 4 },
   { name: 'Pagination', to: '/pagination', color: 'violet-500', items: 2 },
   { name: 'Progress', to: '/progress', color: 'lime-500', items: 0 },
