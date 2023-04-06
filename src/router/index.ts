@@ -15,9 +15,33 @@ const router = createRouter({
       meta: { layout: 'Dashboard' },
     },
     {
+      path: '/alert',
+      name: 'Alert',
+      component: () => import(/* webpackChunkName: "alert" */ '../views/dashboard/AlertView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
+      path: '/avatar',
+      name: 'Avatar',
+      component: () => import(/* webpackChunkName: "avatart" */ '../views/dashboard/AvatarView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
+      path: '/badge',
+      name: 'Badge',
+      component: () => import(/* webpackChunkName: "badge" */ '../views/dashboard/BadgeView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
       path: '/breadcrumb',
       name: 'Breadcrumb',
       component: () => import(/* webpackChunkName: "breadcrumb" */ '../views/dashboard/BreadcrumbView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
+      path: '/button-group',
+      name: 'ButtonGroup',
+      component: () => import(/* webpackChunkName: "button-group" */ '../views/dashboard/ButtonGroupView.vue'),
       meta: { layout: 'Dashboard' },
     },
     {
@@ -30,6 +54,12 @@ const router = createRouter({
       path: '/card',
       name: 'Card',
       component: () => import(/* webpackChunkName: "card" */ '../views/dashboard/CardView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
+      path: '/carousel',
+      name: 'Carousel',
+      component: () => import(/* webpackChunkName: "carousel" */ '../views/dashboard/CarouselView.vue'),
       meta: { layout: 'Dashboard' },
     },
     {
@@ -51,9 +81,21 @@ const router = createRouter({
       meta: { layout: 'Dashboard' },
     },
     {
+      path: '/drawer',
+      name: 'Drawer',
+      component: () => import(/* webpackChunkName: "drawer" */ '../views/dashboard/DrawerView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
       path: '/dropdown',
       name: 'Dropdown',
       component: () => import(/* webpackChunkName: "dropdown" */ '../views/dashboard/DropdownView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
+      path: '/file',
+      name: 'File',
+      component: () => import(/* webpackChunkName: "file" */ '../views/dashboard/FileView.vue'),
       meta: { layout: 'Dashboard' },
     },
     {
@@ -69,6 +111,12 @@ const router = createRouter({
       meta: { layout: 'Dashboard' },
     },
     {
+      path: '/file',
+      name: 'File',
+      component: () => import(/* webpackChunkName: "file" */ '../views/dashboard/FileView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
       path: '/list-group',
       name: 'ListGroup',
       component: () => import(/* webpackChunkName: "list-group" */ '../views/dashboard/ListGroupView.vue'),
@@ -81,9 +129,27 @@ const router = createRouter({
       meta: { layout: 'Dashboard' },
     },
     {
+      path: '/keyboard',
+      name: 'Keyboard',
+      component: () => import(/* webpackChunkName: "keyboard" */ '../views/dashboard/KeyboardView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
       path: '/pagination',
       name: 'Pagination',
       component: () => import(/* webpackChunkName: "pagination" */ '../views/dashboard/PaginationView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
+      path: '/otp',
+      name: 'Otp',
+      component: () => import(/* webpackChunkName: "otp" */ '../views/dashboard/OtpView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
+      path: '/popover',
+      name: 'Popover',
+      component: () => import(/* webpackChunkName: "popover" */ '../views/dashboard/PopoverView.vue'),
       meta: { layout: 'Dashboard' },
     },
     {
@@ -99,9 +165,33 @@ const router = createRouter({
       meta: { layout: 'Dashboard' },
     },
     {
+      path: '/range',
+      name: 'Range',
+      component: () => import(/* webpackChunkName: "range" */ '../views/dashboard/RangeView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
+      path: '/rating',
+      name: 'Rating',
+      component: () => import(/* webpackChunkName: "rating" */ '../views/dashboard/RatingView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
       path: '/select',
       name: 'Select',
       component: () => import(/* webpackChunkName: "select" */ '../views/dashboard/SelectView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
+      path: '/skeleton',
+      name: 'Skeleton',
+      component: () => import(/* webpackChunkName: "skeleton" */ '../views/dashboard/SkeletonView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
+      path: '/speed-dial',
+      name: 'SpeedDial',
+      component: () => import(/* webpackChunkName: "speed-dial" */ '../views/dashboard/SpeedDialView.vue'),
       meta: { layout: 'Dashboard' },
     },
     {
@@ -138,6 +228,12 @@ const router = createRouter({
       path: '/textarea',
       name: 'Textarea',
       component: () => import(/* webpackChunkName: "textarea" */ '../views/dashboard/TextareaView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
+      path: '/timeline',
+      name: 'Timeline',
+      component: () => import(/* webpackChunkName: "timeline" */ '../views/dashboard/TimelineView.vue'),
       meta: { layout: 'Dashboard' },
     },
     {
