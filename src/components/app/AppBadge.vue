@@ -14,23 +14,22 @@ const props = defineProps({
   rounded: { type: [Boolean,String] as PropType<RoundedSize>, default: '' },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
   outlined: { type: Boolean as PropType<boolean>, default: false },
-  closable: { type: Boolean as PropType<boolean>, default: false },
   tone: { type: String as PropType<ColorTone>, default: '' },
 })
 
 const sizeClass = computed(() => {
   switch (props.size) {
-    case 'xs': return 'px-1.5 py-1 text-[10px]'
-    case 'sm': return 'px-2.5 py-1 text-sm'
-    case 'lg': return 'px-3 py-1 text-lg'
-    case 'xl': return 'px-3 py-1.5 text-xl'
-    default: return 'px-2.5 py-1 text-base'
+    case 'xs': return 'px-1 py-px text-[10px]'
+    case 'sm': return 'px-1.5 py-0.5 text-sm'
+    case 'lg': return 'px-2 py-0.5 text-lg'
+    case 'xl': return 'px-2.5 py-1 text-xl'
+    default: return 'px-2.5 py-0.5 text-base'
   }
 })
 
 const bgClass = computed(() => {
-  if (props.outlined) return `bg-transparent hover:bg-${props.color}/5`
-  else return `bg-${props.color} hover:bg-${props.color}/90`
+  if (props.outlined) return `bg-${props.color}/10`
+  else return `bg-${props.color}`
 })
 
 const textClass = computed(() => {
@@ -64,18 +63,6 @@ const borderClass = computed(() => {
     ]"
   >
     <slot></slot>
-    <button
-      v-if="closable"
-      type="button"
-      class="ml-1.5 rounded-full outline-none p-px flex items-center justify-center"
-      :class="[
-        outlined
-          ? `text-${color} hover:bg-${color}/20`
-          : `text-white hover:bg-black/10`
-      ]"
-    >
-      <XMarkIcon class="h-4 w-4" />
-    </button>
   </div>
 </template>
 

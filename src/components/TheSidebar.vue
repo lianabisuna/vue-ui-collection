@@ -29,7 +29,7 @@ const components: Component[] = [
   { name: 'Accordion', to: '/', color: 'green-500', items: 0 },
   { name: 'Alert', to: '/alert', color: 'cyan-500', items: 2 },
   { name: 'Avatar', to: '/avatar', color: 'pink-500', items: 4 },
-  { name: 'Badge', to: '/badge', color: 'teal-500', items: 0 },
+  { name: 'Badge', to: '/badge', color: 'teal-500', items: 4 },
   { name: 'Breadcrumb', to: '/breadcrumb', color: 'indigo-500', items: 2 },
   { name: 'Button Group', to: '/button-group', color: 'yellow-500', items: 0 },
   { name: 'Button', to: '/button', color: 'blue-500', items: 5 },
