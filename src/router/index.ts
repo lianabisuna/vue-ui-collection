@@ -129,6 +129,12 @@ const router = createRouter({
       meta: { layout: 'Dashboard' },
     },
     {
+      path: '/notification',
+      name: 'Notification',
+      component: () => import(/* webpackChunkName: "notification" */ '../views/dashboard/NotificationView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
       path: '/keyboard',
       name: 'Keyboard',
       component: () => import(/* webpackChunkName: "keyboard" */ '../views/dashboard/KeyboardView.vue'),
