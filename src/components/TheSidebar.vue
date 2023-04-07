@@ -50,7 +50,7 @@ const components: Component[] = [
   { name: 'OTP', to: '/otp', color: 'cyan-500', items: 0 },
   { name: 'Pagination', to: '/pagination', color: 'violet-500', items: 2 },
   { name: 'Popover', to: '/popover', color: 'pink-500', items: 0 },
-  { name: 'Progress', to: '/progress', color: 'lime-500', items: 0 },
+  { name: 'Progress', to: '/progress', color: 'lime-500', items: 2 },
   { name: 'Radio', to: '/radio', color: 'rose-500', items: 1 },
   { name: 'Range', to: '/range', color: 'yellow-500', items: 0 },
   { name: 'Rating', to: '/rating', color: 'fuchsia-500', items: 0 },
