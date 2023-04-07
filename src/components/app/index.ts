@@ -1,3 +1,4 @@
+export { default as AppAlert } from './AppAlert.vue'
 export { default as AppBreadcrumb } from './AppBreadcrumb.vue'
 export { default as AppButton } from './AppButton.vue'
 export { default as AppChip } from './AppChip.vue'
