@@ -12,7 +12,7 @@ interface ListGroupProp {
 defineProps({
   items: { type: Array as PropType<ListGroupProp[]>, default: [] },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
-    containerClass: { type: String as PropType<string>, default: '' },
+  containerClass: { type: String as PropType<string>, default: '' },
 })
 </script>
 
