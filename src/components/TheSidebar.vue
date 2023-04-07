@@ -62,7 +62,7 @@ const components: Component[] = [
   { name: 'Switch', to: '/switch', color: 'teal-500', items: 1 },
   { name: 'Table', to: '/table', color: 'emerald-500', items: 0 },
   { name: 'Tab', to: '/tab', color: 'blue-500', items: 0 },
-  { name: 'Textarea', to: '/textarea', color: 'purple-500', items: 0 },
+  { name: 'Textarea', to: '/textarea', color: 'purple-500', items: 2 },
   { name: 'Timeline', to: '/timeline', color: 'violet-500', items: 0 },
   { name: 'Toast', to: '/toast', color: 'fuchsia-500', items: 2 },
   { name: 'Tooltip', to: '/tooltip', color: 'lime-500', items: 4 },

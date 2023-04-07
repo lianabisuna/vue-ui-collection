@@ -31,7 +31,7 @@ watch(() => props.modelValue, () => {
 <template>
   <div
     v-if="modelValue"
-    class="fixed bottom-0 left-1/2 mb-3 -translate-x-1/2 z-50 rounded py-2 px-3 font-semibold text-white flex items-center gap-5"
+    class="fixed bottom-0 left-1/2 mb-3 -translate-x-1/2 z-50 rounded py-2 px-3 font-semibold text-white flex items-center gap-5 shadow"
     :class="[
       `bg-${color}`
     ]"
