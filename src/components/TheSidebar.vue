@@ -47,7 +47,7 @@ const components: Component[] = [
   { name: 'List Group', to: '/list-group', color: 'green-500', items: 1 },
   { name: 'Modal', to: '/modal', color: 'sky-500', items: 4 },
   { name: 'Notification', to: '/notification', color: 'purple-500', items: 0 },
-  { name: 'OTP', to: '/otp', color: 'cyan-500', items: 0 },
+  { name: 'OTP', to: '/otp', color: 'cyan-500', items: 4 },
   { name: 'Pagination', to: '/pagination', color: 'violet-500', items: 2 },
   { name: 'Popover', to: '/popover', color: 'pink-500', items: 0 },
   { name: 'Progress', to: '/progress', color: 'lime-500', items: 2 },
