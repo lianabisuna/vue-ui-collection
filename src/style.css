@@ -14,9 +14,14 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
 /* #app {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 } */
+
+.path-stroke-3 > path {
+  stroke-width: 3;
+}
