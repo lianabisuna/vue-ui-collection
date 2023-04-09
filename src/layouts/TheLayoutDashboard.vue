@@ -10,8 +10,8 @@ export interface SidebarProvider {
 }
 
 const isSidebarOpen = ref(false)
-const toggleSidebar = () => {
-  isSidebarOpen.value = !isSidebarOpen.value
+const toggleSidebar = (value: boolean|undefined = undefined) => {
+  isSidebarOpen.value = value !== undefined ? value : !isSidebarOpen.value
 }
 provide('sidebar', { isSidebarOpen, toggleSidebar })
 

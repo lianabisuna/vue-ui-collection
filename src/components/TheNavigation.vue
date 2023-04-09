@@ -26,6 +26,7 @@ defineProps({
         class="px-3 py-2 text-gray-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-600 flex items-center h-10"
         active-class="font-bold bg-gray-100 dark:bg-gray-600"
         :to="item.to"
+        @click="$emit('select')"
       >
         <div
           class="h-2 w-2 flex justify-center items-center rounded-full mr-3 text-[8px] font-normal"

@@ -5,6 +5,7 @@ import { computed, inject, ref, toRef } from 'vue'
 import { ArrowLeftOnRectangleIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 import type { SidebarProvider } from '@/layouts/TheLayoutDashboard.vue';
 import { RouteLocationRaw } from 'vue-router';
+import { vOnClickOutside } from '@vueuse/components';
 
 /** types */
 type TailwindColor = `${string}-${number}`
@@ -84,6 +85,7 @@ const filteredComponents = computed(() => {
     :class="[{
       'max-md:max-w-0': !isSidebarOpen
     }]"
+    v-on-click-outside="() => sidebar.toggleSidebar(false)"
   >
     <div class="relative flex h-16 shrink-0 items-center p-3 justify-between border-b border-gray-300 dark:border-gray-600">
       <AppLogo />
@@ -119,7 +121,10 @@ const filteredComponents = computed(() => {
       </AppFormInput>
     </div>
 
-    <Navigation :items="filteredComponents"></Navigation>
+    <Navigation
+      :items="filteredComponents"
+      @select="() => sidebar.toggleSidebar(false)"
+    ></Navigation>
 
     <div class="h-20 flex px-3 items-center gap-3 border-t border-gray-300 dark:border-gray-600">
       <!-- Profile -->
