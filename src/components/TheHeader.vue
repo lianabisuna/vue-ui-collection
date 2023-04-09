@@ -5,7 +5,12 @@ import { Bars4Icon, MoonIcon, SunIcon } from '@heroicons/vue/24/outline';
 import { inject, ref, toRef } from 'vue'
 import { useDark } from '@vueuse/core';
 
-const isDark = useDark()
+const isDark = useDark({
+  selector: 'body',
+  attribute: 'color-scheme',
+  valueDark: 'dark',
+  valueLight: 'light',
+})
 
 const sidebar = inject<SidebarProvider>('sidebar', {
   isSidebarOpen: ref(false),

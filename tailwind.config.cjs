@@ -14,7 +14,7 @@ module.exports = {
       variants: [],
     },
   ],
-  darkMode: 'class',
+  darkMode: ['class', '[color-scheme="dark"]'],
   content: [
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
