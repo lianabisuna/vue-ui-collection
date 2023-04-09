@@ -17,18 +17,19 @@ const breadcrumbItems1: BreadcrumbProp[] = [
 ]
 
 const breadcrumbItems2: BreadcrumbProp[] = [
-  { active: false, title: 'My Account', to: '/' },
-  { active: false, title: 'Billing', to: '/' },
-  { active: true, title: 'Invoices', to: '/' },
+  { active: false, title: 'Business', to: '/' },
+  { active: false, title: 'Our Offer', to: '/' },
+  { active: false, title: 'Restaurants & Cafes', to: '/' },
+  { active: true, title: 'Inspiration Gallery', to: '/' },
 ]
 </script>
 
 <template>
   <div class="grid grid-cols-1 gap-3 p-3">
-    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-[4/1]">
+    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-[4/2] lg:aspect-[4/1]">
       <AppBreadcrumb :items="breadcrumbItems1" color="indigo-500"></AppBreadcrumb>
     </div>
-    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-[4/1]">
+    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-[4/2] lg:aspect-[4/1]">
       <AppBreadcrumb :items="breadcrumbItems2" color="indigo-500">
         <template #divider>
           <ArrowLongRightIcon class="h-5 w-5" />

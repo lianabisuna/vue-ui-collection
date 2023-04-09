@@ -39,8 +39,8 @@ const accordionOne: AccordionProp[] = [
 
 <template>
   <div class="grid grid-cols-1 gap-3 p-3">
-    <div class="flex items-start justify-center p-3 bg-gray-100 border border-gray-300 aspect-[4/1]">
-      <div class="w-2/3">
+    <div class="flex items-start justify-center p-3 bg-gray-100 border border-gray-300 aspect-[4/2] lg:aspect-[4/1]">
+      <div class="w-full lg:w-2/3">
         <AppAccordion
           :items="accordionOne"
         >

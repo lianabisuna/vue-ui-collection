@@ -10,7 +10,7 @@ defineProps({
 
 <template>
   <div
-    class="w-full rounded py-2 px-3 font-semibold"
+    class="w-full rounded py-3 px-4 font-semibold"
     :class="[
       `bg-${color}/10 text-${color}/90`
     ]"

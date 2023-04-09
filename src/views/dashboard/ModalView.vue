@@ -13,16 +13,16 @@ const showModalLarge = ref(false)
 
 <template>
   <div class="grid grid-cols-1 gap-3 p-3 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-square">
+    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-[4/2] lg:aspect-square">
       <AppButton color="sky-500" @click="showModalDefault = !showModalDefault">Default</AppButton>
     </div>
-    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-square">
+    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-[4/2] lg:aspect-square">
       <AppButton color="sky-500" @click="showModalPersistent = !showModalPersistent">Persistent</AppButton>
     </div>
-    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-square">
+    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-[4/2] lg:aspect-square">
       <AppButton color="sky-500" @click="showModalExtraSmall = !showModalExtraSmall">Extra Small</AppButton>
     </div>
-    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-square">
+    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-[4/2] lg:aspect-square">
       <AppButton color="sky-500" @click="showModalLarge = !showModalLarge">Large</AppButton>
     </div>
     <!-- <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-square">

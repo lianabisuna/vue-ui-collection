@@ -18,11 +18,11 @@ defineProps({
 </script>
 
 <template>
-  <ol class="inline-flex">
+  <ol class="inline-flex flex-wrap">
     <li
       v-for="(item,key) in items"
       :key="key"
-      class="flex items-center"
+      class="flex items-start"
     >
       <router-link
         :to="item.to"

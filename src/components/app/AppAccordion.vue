@@ -34,7 +34,7 @@ const setActiveKey = (key: number) => {
         ]"
         @click="setActiveKey(key)"
       >
-        <span>{{ item.heading }}</span>
+        <span class="text-start">{{ item.heading }}</span>
         <ChevronDownIcon
           class="h-4 w-4 shrink-0 path-stroke-3 transition-transform duration-200 ease-in-out"
           :class="[

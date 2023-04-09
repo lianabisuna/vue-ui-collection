@@ -22,7 +22,7 @@ const updateModelValue = (value: number) => {
 </script>
 
 <template>
-  <div class="flex items-center gap-2">
+  <div class="flex flex-wrap items-center gap-2">
     <AppButton
       :icon="!slots.previous"
       color="white"
