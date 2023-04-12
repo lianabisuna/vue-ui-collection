@@ -5,6 +5,7 @@ export type TailwindColor = `${string}-${number}`|'black'|'white'
 
 defineProps({
   color: { type: String as PropType<TailwindColor>, default: 'black' },
+  dark: { type: Boolean as PropType<boolean>, default: false },
 })
 </script>
 
