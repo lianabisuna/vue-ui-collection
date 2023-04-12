@@ -21,6 +21,7 @@ const props = defineProps({
   variant: { type: String as PropType<ButtonVariant>, default: '' },
   tone: { type: String as PropType<ColorTone>, default: '' },
   // color: default, border, background, text + hover
+  dark: { type: Boolean as PropType<boolean>, default: false },
 })
 
 const sizeClass = computed(() => {

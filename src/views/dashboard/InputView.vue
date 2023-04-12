@@ -4,11 +4,10 @@ import { CardComponentPreview } from '@/components/cards';
 import { ref } from 'vue';
 
 const inputs: any = ref([])
-const inputViewRef = ref<any>(null)
 </script>
 
 <template>
-  <div ref="inputViewRef" class="grid grid-cols-1 gap-3 p-3">
+  <div class="grid grid-cols-1 gap-3 p-3">
     <CardComponentPreview
       v-model:dark="inputs[0]"
       class="aspect-[4/2] lg:aspect-[4/1]"
