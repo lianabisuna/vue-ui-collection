@@ -7,7 +7,7 @@ import { useDark } from '@vueuse/core';
 
 const isDark = useDark({
   selector: 'body',
-  attribute: 'color-scheme',
+  attribute: 'theme',
   valueDark: 'dark',
   valueLight: 'light',
 })

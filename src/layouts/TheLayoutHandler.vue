@@ -4,7 +4,6 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 
-// console.log(route)
 const layoutName = ref('Default')
 const metaLayout = computed(() => route.meta.layout as string)
 

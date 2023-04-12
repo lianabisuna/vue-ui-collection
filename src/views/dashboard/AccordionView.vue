@@ -46,8 +46,9 @@ const accordionOne: AccordionProp[] = [
     <CardComponentPreview
       v-model:dark="isAccordionDarkOne"
       class="aspect-[4/2] lg:aspect-[4/1]"
+      title="Default"
     >
-      <div class="w-full lg:w-2/3">
+      <div class="w-full lg:w-2/3 h-full">
         <AppAccordion
           :dark="isAccordionDarkOne"
           :items="accordionOne"

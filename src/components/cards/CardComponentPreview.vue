@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline';
-import { PropType } from 'vue';
+import { useDark } from '@vueuse/core';
+import { PropType, watch } from 'vue';
 
 defineProps({
   dark: { type: Boolean as PropType<boolean>, default: false },
+  title: { type: String as PropType<string>, default: '' },
 })
 
 const emits = defineEmits(['update:dark'])
@@ -11,10 +13,12 @@ const emits = defineEmits(['update:dark'])
 const updateDark = (event: Event) => {
   const target = event.target as HTMLInputElement
   if (target.value !== undefined) {
-    console.log('updatedark', target.checked)
     emits('update:dark', target.checked)
   }
 }
+
+const isDark = useDark();
+watch(isDark, () => emits('update:dark', isDark.value), { immediate: true });
 </script>
 
 <template>
@@ -22,17 +26,9 @@ const updateDark = (event: Event) => {
     class="flex flex-col border dark:bg-gray-700 dark:border-gray-500 bg-gray-100 border-gray-300"
     v-bind="$attrs"
   >
-    <!-- Body -->
-    <div
-      class="flex flex-1 items-center justify-center p-3"
-      :class="[
-        dark ? 'bg-gray-900' : 'bg-white'
-      ]"
-    >
-      <slot></slot>
-    </div>
-    <!-- Footer -->
-    <div class="border-t flex flex-shrink p-3 dark:border-gray-500 border-gray-300">
+    <!-- Header -->
+    <div class="flex items-center justify-between border-b flex-shrink p-3 dark:border-gray-500 border-gray-300">
+      <p class="text-gray-800 dark:text-white">{{ title }}</p>
       <!-- Light/Dark -->
       <label class="relative cursor-pointer">
         <input
@@ -48,6 +44,15 @@ const updateDark = (event: Event) => {
           <MoonIcon v-else class="h-5 w-5" />
         </div>
       </label>
+    </div>
+    <!-- Body -->
+    <div
+      class="flex flex-1 items-center justify-center p-3"
+      :class="[
+        dark ? 'bg-gray-900' : 'bg-white'
+      ]"
+    >
+      <slot></slot>
     </div>
   </div>
 </template>

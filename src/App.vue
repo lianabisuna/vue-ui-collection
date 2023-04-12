@@ -9,7 +9,7 @@ import LayoutHandler from './layouts/TheLayoutHandler.vue';
 </template>
 
 <style lang="scss">
-[color-scheme="dark"] {
+[theme="dark"] {
   .scrollbar {
     &::-webkit-scrollbar {
       -webkit-appearance: none;
@@ -33,7 +33,7 @@ import LayoutHandler from './layouts/TheLayoutHandler.vue';
   }
 }
 
-[color-scheme="dark"] {
+[theme="dark"] {
   .scrollbar {
     &::-webkit-scrollbar-thumb {
       background-color: #374151;
