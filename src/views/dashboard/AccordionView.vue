@@ -55,9 +55,6 @@ const accordionOne: AccordionProp[] = [
         >
         </AppAccordion>
       </div>
-      <template #footer>
-        <div class=""></div>
-      </template>
     </CardComponentPreview>
   </div>
 </template>

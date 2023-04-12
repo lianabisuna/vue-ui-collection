@@ -6,6 +6,7 @@ import { ArrowLeftOnRectangleIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroi
 import type { SidebarProvider } from '@/layouts/TheLayoutDashboard.vue';
 import { RouteLocationRaw } from 'vue-router';
 import { vOnClickOutside } from '@vueuse/components';
+import { useDark } from '@vueuse/core';
 
 /** types */
 type TailwindColor = `${string}-${number}`
@@ -77,6 +78,8 @@ const filteredComponents = computed(() => {
   })
   return _filteredComponents
 })
+
+const isDark = useDark();
 </script>
 
 <template>
@@ -111,7 +114,7 @@ const filteredComponents = computed(() => {
         v-model="searchKeyword"
         rounded
         block
-        :dark="false"
+        :dark="isDark"
         placeholder="Search components"
         autofocus
       >

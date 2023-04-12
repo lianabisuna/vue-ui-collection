@@ -1,31 +1,27 @@
 <script lang="ts" setup>
-import { ref, useSlots } from 'vue'
-import { onClickOutside } from '@vueuse/core';
+import { PropType, ref, useSlots } from 'vue'
+import { vOnClickOutside } from '@vueuse/components';
 
-interface Props {
-  modelValue?: string,
-  autofocus?: boolean,
-  // autocomplete?: boolean,
-  block?: boolean,
-  dark?: boolean,
-  disabled?: boolean,
-  // error?: boolean,
-  name?: string,
-  // messages?: string,
-  // label?: string,
-  placeholder?: string,
-  type?: string,
-  // height?: string,
-}
+defineProps({
+  modelValue: { type: String as PropType<string>, default: '' },
+  autofocus: { type: Boolean as PropType<boolean>, default: false },
+  // autocomplete: { type: Boolean as PropType<boolean>, default: false },
+  block: { type: Boolean as PropType<boolean>, default: false },
+  dark: { type: Boolean as PropType<boolean>, default: false },
+  disabled: { type: Boolean as PropType<boolean>, default: false },
+  // error: { type: Boolean as PropType<boolean>, default: false },
+  name: { type: String as PropType<string>, default: '' },
+  // messages: { type: Boolean as PropType<boolean>, default: false },
+  // label: { type: Boolean as PropType<boolean>, default: false },
+  placeholder: { type: String as PropType<string>, default: '' },
+  type: { type: String as PropType<string>, default: '' },
+  // height: { type: Boolean as PropType<boolean>, default: false },
+})
 
-defineProps<Props>()
 const slots = useSlots()
 
-let isFocus = ref<boolean>(false)
-let inputWrapperRef = ref<any>(null)
+let isFocus = ref(false)
 let inputRef = ref<any>(null)
-
-onClickOutside(inputWrapperRef, () => isFocus.value = false)
 
 const emits = defineEmits(['update:modelValue'])
 
@@ -50,6 +46,7 @@ const updateModelValue = (event: Event) => {
       }]"
       class="flex items-center py-2 px-3 border cursor-text justify-between rounded w-full"
       @click="inputRef.focus()"
+      v-on-click-outside="() => isFocus = false"
     >
       <slot name="prepend"></slot>
       <input
