@@ -10,6 +10,7 @@ const props = defineProps({
   color: { type: String as PropType<TailwindColor>, default: 'black' },
   size: { type: String as PropType<ComponentSize>, default: '' },
   rounded: { type: [Boolean,String] as PropType<RoundedSize>, default: 'full' },
+  dark: { type: Boolean as PropType<boolean>, default: false },
 })
 
 const sizeClass = computed(() => {
