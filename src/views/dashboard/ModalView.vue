@@ -1,43 +1,42 @@
 <script lang="ts" setup>
-import { AppButton, AppModal } from '@/components/app'
+import { AppButton, AppModal } from '@/components/app';
+import { CardComponentPreview } from '@/components/cards';
 import { ref } from 'vue';
 
-const showModalDefault = ref(false)
-const showModalPersistent = ref(false)
-const showModalExtraSmall = ref(false)
-const showModalLarge = ref(false)
-// const showModalFullscreen = ref(false)
-// const showModalTop = ref(false)
-// const showModalBottomRight = ref(false)
+const components: any = ref([])
+const modals: any = ref([])
 </script>
 
 <template>
   <div class="grid grid-cols-1 gap-3 p-3 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-[4/2] lg:aspect-square">
-      <AppButton color="sky-500" @click="showModalDefault = !showModalDefault">Default</AppButton>
-    </div>
-    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-[4/2] lg:aspect-square">
-      <AppButton color="sky-500" @click="showModalPersistent = !showModalPersistent">Persistent</AppButton>
-    </div>
-    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-[4/2] lg:aspect-square">
-      <AppButton color="sky-500" @click="showModalExtraSmall = !showModalExtraSmall">Extra Small</AppButton>
-    </div>
-    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-[4/2] lg:aspect-square">
-      <AppButton color="sky-500" @click="showModalLarge = !showModalLarge">Large</AppButton>
-    </div>
-    <!-- <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-square">
-      <AppButton color="sky-500" @click="showModalFullscreen = !showModalFullscreen">Fullscreen</AppButton>
-    </div>
-    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-square">
-      <AppButton color="sky-500" @click="showModalTop = !showModalTop">Top</AppButton>
-    </div>
-    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-square">
-      <AppButton color="sky-500" @click="showModalBottomRight = !showModalBottomRight">Bottom Right</AppButton>
-    </div> -->
+    <CardComponentPreview
+      v-model:dark="components[0]"
+      class="aspect-[4/2] lg:aspect-square"
+    >
+      <AppButton color="sky-500" @click="() => modals[0] = !modals[0]">Default</AppButton>
+    </CardComponentPreview>
+    <CardComponentPreview
+      v-model:dark="components[1]"
+      class="aspect-[4/2] lg:aspect-square"
+    >
+      <AppButton color="sky-500" @click="() => modals[1] = !modals[1]">Persistent</AppButton>
+    </CardComponentPreview>
+    <CardComponentPreview
+      v-model:dark="components[2]"
+      class="aspect-[4/2] lg:aspect-square"
+    >
+      <AppButton color="sky-500" @click="() => modals[2] = !modals[2]">Extra Small</AppButton>
+    </CardComponentPreview>
+    <CardComponentPreview
+      v-model:dark="components[3]"
+      class="aspect-[4/2] lg:aspect-square"
+    >
+      <AppButton color="sky-500" @click="() => modals[3] = !modals[3]">Large</AppButton>
+    </CardComponentPreview>
   </div>
 
   <AppModal
-    v-model="showModalDefault"
+    v-model="modals[0]"
   >
   <div class="p-5 space-y-5">
     <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
@@ -48,9 +47,8 @@ const showModalLarge = ref(false)
     </p>
   </div>
   </AppModal>
-
   <AppModal
-    v-model="showModalPersistent"
+    v-model="modals[1]"
     persistent
   >
   <div class="p-5 space-y-5">
@@ -62,7 +60,7 @@ const showModalLarge = ref(false)
     </p>
     <div class="flex justify-end">
       <AppButton
-        @click="showModalPersistent = false"
+        @click="() => modals[1] = false"
         size="sm"
         variant="text"
       >
@@ -71,9 +69,8 @@ const showModalLarge = ref(false)
     </div>
   </div>
   </AppModal>
-
   <AppModal
-    v-model="showModalExtraSmall"
+    v-model="modals[2]"
     size="xs"
   >
   <div class="p-5 space-y-5">
@@ -85,9 +82,8 @@ const showModalLarge = ref(false)
     </p>
   </div>
   </AppModal>
-
   <AppModal
-    v-model="showModalLarge"
+    v-model="modals[3]"
     size="lg"
   >
   <div class="p-5 space-y-5">

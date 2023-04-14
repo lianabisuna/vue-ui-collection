@@ -1,16 +1,11 @@
 <script lang="ts" setup>
 import { AppAccordion } from '@/components/app';
 import { CardComponentPreview } from '@/components/cards';
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 
-interface AccordionProp {
-  heading: string
-  body: string|HTMLElement
-}
+const accordions: any = ref([])
 
-const isAccordionDarkOne = ref(false)
-
-const accordionOne: AccordionProp[] = [
+accordions.value[0] = [
   {
     heading: 'B (If I Should Have a Daughter)',
     body: `
@@ -39,19 +34,21 @@ const accordionOne: AccordionProp[] = [
     `
   },
 ]
+
+const components: any = ref([])
 </script>
 
 <template>
   <div class="grid grid-cols-1 gap-3 p-3">
     <CardComponentPreview
-      v-model:dark="isAccordionDarkOne"
+      v-model:dark="components[0]"
       class="aspect-[4/2] lg:aspect-[4/1]"
       title="Default"
     >
-      <div class="w-full lg:w-2/3 h-full">
+      <div class="h-full w-full lg:w-2/3">
         <AppAccordion
-          :dark="isAccordionDarkOne"
-          :items="accordionOne"
+          :dark="components[0]"
+          :items="accordions[0]"
         >
         </AppAccordion>
       </div>

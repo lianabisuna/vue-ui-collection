@@ -3,31 +3,31 @@ import { AppFormInput } from '@/components/app';
 import { CardComponentPreview } from '@/components/cards';
 import { ref } from 'vue';
 
-const inputs: any = ref([])
+const components: any = ref([])
 </script>
 
 <template>
   <div class="grid grid-cols-1 gap-3 p-3">
     <CardComponentPreview
-      v-model:dark="inputs[0]"
+      v-model:dark="components[0]"
       class="aspect-[4/2] lg:aspect-[4/1]"
       title="Default"
     >
       <AppFormInput
-        :dark="inputs[0]"
+        :dark="components[0]"
         placeholder="Default"
         class="xs:11/12 md:w-8/12 xl:w-5/12"
       >
       </AppFormInput>
     </CardComponentPreview>
     <CardComponentPreview
-      v-model:dark="inputs[1]"
+      v-model:dark="components[1]"
       class="aspect-[4/2] lg:aspect-[4/1]"
       title="Prefix and suffix"
     >
       <div class="flex flex-col gap-3 w-full flexx items-center justify-center">
         <AppFormInput
-          :dark="inputs[1]"
+          :dark="components[1]"
           class="xs:11/12 md:w-8/12 xl:w-5/12"
         >
           <template #append>
@@ -35,7 +35,7 @@ const inputs: any = ref([])
           </template>
         </AppFormInput>
         <AppFormInput
-          :dark="inputs[1]"
+          :dark="components[1]"
           class="xs:11/12 md:w-8/12 xl:w-5/12"
         >
           <template #prepend>
@@ -45,12 +45,12 @@ const inputs: any = ref([])
       </div>
     </CardComponentPreview>
     <CardComponentPreview
-      v-model:dark="inputs[2]"
+      v-model:dark="components[2]"
       class="aspect-[4/2] lg:aspect-[4/1]"
       title="Disabled"
     >
       <AppFormInput
-        :dark="inputs[2]"
+        :dark="components[2]"
         disabled
         placeholder="Disabled"
         class="xs:11/12 md:w-8/12 xl:w-5/12"
