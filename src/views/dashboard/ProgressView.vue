@@ -1,32 +1,39 @@
 <script lang="ts" setup>
 import { AppProgress } from '@/components/app';
+import { CardComponentPreview } from '@/components/cards';
 import { ref } from 'vue';
 
-const progressOne = ref(60)
-const progressTwo = ref(35)
+const components: any = ref([])
+const bars: any = ref([60,35])
 </script>
 
 <template>
   <div class="grid grid-cols-1 gap-3 p-3">
-    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-[4/2] lg:aspect-[4/1]">
+    <CardComponentPreview
+      v-model:dark="components[0]"
+      class="aspect-[4/2] lg:aspect-[4/1]"
+    >
       <div class="w-full lg:w-2/3">
         <AppProgress
-          v-model="progressOne"
+          v-model="bars[0]"
           color="lime-500"
         >
         </AppProgress>
       </div>
-    </div>
-    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-[4/2] lg:aspect-[4/1]">
+    </CardComponentPreview>
+    <CardComponentPreview
+      v-model:dark="components[1]"
+      class="aspect-[4/2] lg:aspect-[4/1]"
+    >
       <div class="w-full lg:w-2/3">
         <AppProgress
-          v-model="progressTwo"
+          v-model="bars[1]"
           color="lime-500"
         >
-          <span>{{ progressTwo }}%</span>
+          <span>{{ bars[1] }}%</span>
         </AppProgress>
       </div>
-    </div>
+    </CardComponentPreview>
   </div>
 </template>
 

@@ -1,32 +1,35 @@
 <script lang="ts" setup>
 import { AppTab } from '@/components/app';
+import { CardComponentPreview } from '@/components/cards';
+import { ref } from 'vue';
 
-export type TailwindColor = `${string}-${number}`|'black'|'white'
-interface TabProp {
-  active: boolean
-  title: string
-}
+const tabs: any = ref([])
 
-const tabOne: TabProp[] = [
+tabs.value[0] = [
   { active: true, title: 'Code' },
   { active: false, title: 'Issues' },
   { active: false, title: 'Actions' },
   { active: false, title: 'Security' },
   { active: false, title: 'Insights' },
 ]
+
+const components: any = ref([])
 </script>
 
 <template>
   <div class="grid grid-cols-1 gap-3 p-3">
-    <div class="flex items-center justify-center p-3 bg-gray-100 border border-gray-300 aspect-[4/2] lg:aspect-[4/1]">
+    <CardComponentPreview
+      v-model:dark="components[0]"
+      class="aspect-[4/2] lg:aspect-[4/1]"
+    >
       <div class="w-full lg:w-2/3">
         <AppTab
-          :items="tabOne"
+          :items="tabs[0]"
           color="blue-500"
         >
         </AppTab>
       </div>
-    </div>
+    </CardComponentPreview>
   </div>
 </template>
 
