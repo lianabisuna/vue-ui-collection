@@ -134,9 +134,14 @@ const isDark = useDark();
 
     <div class="h-20 flex px-3 items-center gap-3 border-t border-gray-300 dark:border-gray-600">
       <!-- Profile -->
-      <div class="flex h-12 w-12 rounded bg-gray-400"></div>
+      <div class="flex h-12 w-12 rounded bg-gray-400">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl4RTHNFhkIobc7_5kOzKng4letn6hEWE6EQ&usqp=CAU"
+          class="rounded"
+        />
+      </div>
       <div class="flex flex-1 flex-col">
-        <p class="text-gray-800 dark:text-gray-300">Kim Sejeong</p>
+        <p class="text-gray-800 dark:text-gray-300">Elli Robinson</p>
         <p class="text-sm text-gray-500 dark:text-gray-400">Guest</p>
       </div>
       <!-- Logout -->
