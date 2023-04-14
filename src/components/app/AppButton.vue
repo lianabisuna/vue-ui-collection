@@ -11,16 +11,14 @@ export type ColorTone = 'dark'|'light'
 
 /** props */
 const props = defineProps({
-  disabled: { type: Boolean as PropType<boolean>, default: false }, // done
-  size: { type: String as PropType<ComponentSize>, default: '' }, // done
-  to: { type: [String,Object] as PropType<string|object>, default: '' }, // done
-  type: { type: String as PropType<ButtonType>, default: 'button' }, // done
-  // for clarification
+  disabled: { type: Boolean as PropType<boolean>, default: false },
+  size: { type: String as PropType<ComponentSize>, default: '' },
+  to: { type: [String,Object] as PropType<string|object>, default: '' },
+  type: { type: String as PropType<ButtonType>, default: 'button' },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
   icon: { type: Boolean as PropType<boolean>, default: false },
   variant: { type: String as PropType<ButtonVariant>, default: '' },
   tone: { type: String as PropType<ColorTone>, default: '' },
-  // color: default, border, background, text + hover
   dark: { type: Boolean as PropType<boolean>, default: false },
 })
 

@@ -99,11 +99,14 @@ const isDark = useDark();
           icon
           size="sm"
           variant="text"
-          color="gray-400"
+          :color="isDark ? 'gray-500' : 'gray-400'"
           class="md:hidden"
-          @click="sidebar.toggleSidebar()"
+          @click="() => sidebar.toggleSidebar()"
         >
-          <XMarkIcon class="h- w-5" />
+          <XMarkIcon
+            class="h- w-5"
+            :class="[ isDark ? 'text-gray-100' : 'text-gray-800' ]"
+          />
         </AppButton>
       </div>
     </div>
@@ -138,9 +141,17 @@ const isDark = useDark();
       </div>
       <!-- Logout -->
       <div class="flex">
-        <div class="aspect-square p-2 rounded border border-gray-400 peer peer-checked:border-none peer-checked:bg-gray-800 flex items-center justify-center peer-checked:text-gray-100">
-          <ArrowLeftOnRectangleIcon class="h-5 w-5" />
-        </div>
+        <AppButton
+          icon
+          size="sm"
+          variant="outlined"
+          :color="isDark ? 'gray-500' : 'gray-400'"
+        >
+          <ArrowLeftOnRectangleIcon
+            class="h-5 w-5"
+            :class="[ isDark ? 'text-gray-100' : 'text-gray-800' ]"
+          />
+        </AppButton>
       </div>
     </div>
   </aside>

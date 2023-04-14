@@ -28,16 +28,25 @@ const isSidebarOpen = toRef(sidebar, 'isSidebarOpen')
         icon
         size="xs"
         variant="text"
-        color="gray-800"
+        :color="isDark ? 'gray-500' : 'gray-400'"
         class="md:hidden"
         @click="sidebar.toggleSidebar()"
       >
-        <Bars4Icon class="h-5 w-5" />
+        <Bars4Icon
+          class="h-5 w-5"
+          :class="[ isDark ? 'text-gray-100' : 'text-gray-800' ]"
+        />
       </AppButton>
       <p class="text-lg font-semibold text-gray-800 dark:text-white">{{ $route.name }}</p>
     </div>
     <div class="flex items-center gap-3">
-      <AppButton size="sm" color="gray-800">Sandbox</AppButton>
+      <AppButton
+        size="sm"
+        :tone="isDark ? 'light' : 'dark'"
+        :color="isDark ? 'gray-100' : 'gray-800'"
+      >
+        Sandbox
+      </AppButton>
       <!-- Light/Dark -->
       <label class="relative cursor-pointer">
         <input type="checkbox" v-model="isDark" class="sr-only peer">
