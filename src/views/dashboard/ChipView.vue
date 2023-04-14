@@ -16,37 +16,37 @@ const components: any = ref([])
       <AppChip color="rose-500">Default</AppChip>
     </CardComponentPreview>
     <CardComponentPreview
-      v-model:dark="components[0]"
+      v-model:dark="components[1]"
       class="aspect-[4/2] lg:aspect-square"
     >
       <AppChip color="rose-500" size="xs">Extra Small</AppChip>
     </CardComponentPreview>
     <CardComponentPreview
-      v-model:dark="components[0]"
+      v-model:dark="components[2]"
       class="aspect-[4/2] lg:aspect-square"
     >
       <AppChip color="rose-500" size="lg">Large</AppChip>
     </CardComponentPreview>
     <CardComponentPreview
-      v-model:dark="components[0]"
+      v-model:dark="components[3]"
       class="aspect-[4/2] lg:aspect-square"
     >
       <AppChip color="rose-500" closable>Closable</AppChip>
     </CardComponentPreview>
     <CardComponentPreview
-      v-model:dark="components[0]"
+      v-model:dark="components[4]"
       class="aspect-[4/2] lg:aspect-square"
     >
       <AppChip color="rose-500" outlined closable>Outlined</AppChip>
     </CardComponentPreview>
     <CardComponentPreview
-      v-model:dark="components[0]"
+      v-model:dark="components[5]"
       class="aspect-[4/2] lg:aspect-square"
     >
       <AppChip color="rose-500" rounded="full">Rounded</AppChip>
     </CardComponentPreview>
     <CardComponentPreview
-      v-model:dark="components[0]"
+      v-model:dark="components[6]"
       class="aspect-[4/2] lg:aspect-square"
     >
       <AppChip color="rose-500">

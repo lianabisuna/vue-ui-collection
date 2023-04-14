@@ -21,7 +21,7 @@ const pages: any = ref([1,1])
       </AppPagination>
     </CardComponentPreview>
     <CardComponentPreview
-      v-model:dark="components[0]"
+      v-model:dark="components[1]"
       class="aspect-[4/2] lg:aspect-[4/1]"
     >
       <AppPagination
