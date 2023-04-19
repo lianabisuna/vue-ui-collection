@@ -1,8 +1,22 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { AppSkeleton } from '@/components/app';
+import { CardComponentPreview } from '@/components/cards';
+import { ref } from 'vue';
+
+const components: any = ref([])
+</script>
 
 <template>
-  <div class="p-3">
-    <h1>{{ $route.name }}</h1>
+  <div class="grid grid-cols-1 gap-3 p-3 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+    <CardComponentPreview
+      v-model:dark="components[0]"
+      class="aspect-[4/2] lg:aspect-square"
+    >
+      <AppSkeleton
+        :dark="components[0]"
+      >
+      </AppSkeleton>
+    </CardComponentPreview>
   </div>
 </template>
 

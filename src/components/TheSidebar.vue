@@ -57,7 +57,7 @@ const components: Component[] = [
   { name: 'Range', to: '/range', color: 'yellow-500', items: 0 },
   { name: 'Rating', to: '/rating', color: 'fuchsia-500', items: 0 },
   { name: 'Select', to: '/select', color: 'indigo-500', items: 0 },
-  { name: 'Skeleton', to: '/skeleton', color: 'green-500', items: 0 },
+  { name: 'Skeleton', to: '/skeleton', color: 'green-500', items: 1 },
   { name: 'Speed Dial', to: '/speed-dial', color: 'blue-500', items: 0 },
   { name: 'Spinner', to: '/spinner', color: 'amber-500', items: 2 },
   { name: 'Stepper', to: '/stepper', color: 'cyan-500', items: 0 },
