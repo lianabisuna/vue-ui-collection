@@ -35,7 +35,7 @@ const components: Component[] = [
   { name: 'Breadcrumb', to: '/breadcrumb', color: 'indigo-500', items: 2 },
   { name: 'Button Group', to: '/button-group', color: 'yellow-500', items: 0 },
   { name: 'Button', to: '/button', color: 'blue-500', items: 5 },
-  { name: 'Card', to: '/card', color: 'purple-500', items: 0 },
+  { name: 'Card', to: '/card', color: 'purple-500', items: 1 },
   { name: 'Carousel', to: '/carousel', color: 'lime-500', items: 0 },
   { name: 'Checkbox', to: '/checkbox', color: 'yellow-500', items: 1 },
   { name: 'Chip', to: '/chip', color: 'rose-500', items: 7 },
