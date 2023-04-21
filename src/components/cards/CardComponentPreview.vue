@@ -23,7 +23,7 @@ watch(isDark, () => emits('update:dark', isDark.value), { immediate: true });
 
 <template>
   <div
-    class="flex flex-col border dark:bg-gray-700 dark:border-gray-500 bg-gray-100 border-gray-300"
+    class="flex flex-col border dark:bg-gray-700 dark:border-gray-500 bg-gray-100 border-gray-300 max-w-full"
     v-bind="$attrs"
   >
     <!-- Header -->
