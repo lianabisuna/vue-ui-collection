@@ -55,7 +55,7 @@ const components: Component[] = [
   { name: 'Progress', to: '/progress', color: 'lime-500', items: 2 },
   { name: 'Radio', to: '/radio', color: 'rose-500', items: 1 },
   { name: 'Range', to: '/range', color: 'yellow-500', items: 0 },
-  { name: 'Rating', to: '/rating', color: 'fuchsia-500', items: 0 },
+  { name: 'Rating', to: '/rating', color: 'fuchsia-500', items: 2 },
   { name: 'Select', to: '/select', color: 'indigo-500', items: 0 },
   { name: 'Skeleton', to: '/skeleton', color: 'green-500', items: 1 },
   { name: 'Speed Dial', to: '/speed-dial', color: 'blue-500', items: 0 },
