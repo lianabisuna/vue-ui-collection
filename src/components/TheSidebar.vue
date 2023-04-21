@@ -60,7 +60,7 @@ const components: Component[] = [
   { name: 'Skeleton', to: '/skeleton', color: 'green-500', items: 1 },
   { name: 'Speed Dial', to: '/speed-dial', color: 'blue-500', items: 0 },
   { name: 'Spinner', to: '/spinner', color: 'amber-500', items: 2 },
-  { name: 'Stepper', to: '/stepper', color: 'cyan-500', items: 0 },
+  { name: 'Stepper', to: '/stepper', color: 'cyan-500', items: 1 },
   { name: 'Switch', to: '/switch', color: 'teal-500', items: 1 },
   { name: 'Table', to: '/table', color: 'emerald-500', items: 0 },
   { name: 'Tab', to: '/tab', color: 'blue-500', items: 1 },
