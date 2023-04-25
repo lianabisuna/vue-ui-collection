@@ -56,7 +56,7 @@ const components: Component[] = [
   { name: 'Radio', to: '/radio', color: 'rose-500', items: 1 },
   { name: 'Range', to: '/range', color: 'yellow-500', items: 0 },
   { name: 'Rating', to: '/rating', color: 'fuchsia-500', items: 2 },
-  { name: 'Select', to: '/select', color: 'indigo-500', items: 0 },
+  { name: 'Select', to: '/select', color: 'indigo-500', items: 5 },
   { name: 'Skeleton', to: '/skeleton', color: 'green-500', items: 1 },
   { name: 'Speed Dial', to: '/speed-dial', color: 'blue-500', items: 0 },
   { name: 'Spinner', to: '/spinner', color: 'amber-500', items: 2 },
@@ -84,7 +84,7 @@ const isDark = useDark();
 
 <template>
   <aside
-    class="h-screen flex flex-col overflow-hidden bg-white dark:bg-gray-800 xs:w-[320px] xs:border-r xs:border-gray-300 dark:xs:border-gray-600 absolute z-10 inset-y-0 left-0 w-full shrink-0 md:static"
+    class="h-screen flex flex-col overflow-hidden bg-white dark:bg-gray-800 xs:w-[320px] xs:border-r xs:border-gray-300 dark:xs:border-gray-600 absolute z-40 inset-y-0 left-0 w-full shrink-0 md:static"
     :class="[{
       'max-md:max-w-0': !isSidebarOpen
     }]"

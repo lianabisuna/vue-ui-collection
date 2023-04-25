@@ -26,7 +26,7 @@ defineProps({
       <div class="flex items-center justify-center relative w-full">
         <!-- Number -->
         <div
-          class="h-10 w-10 rounded-full flex items-center justify-center z-50"
+          class="h-10 w-10 rounded-full flex items-center justify-center z-10"
           :class="[
             item.active || item.completed ? `bg-${color}` : 'bg-gray-600'
           ]"
