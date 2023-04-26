@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { PropType, ref, useSlots } from 'vue'
-import { vOnClickOutside } from '@vueuse/components';
+import AppFormContainer from './AppFormContainer.vue';
+
+export type TailwindColor = `${string}-${number}`|'black'|'white'
 
 defineProps({
   modelValue: { type: String as PropType<string>, default: '' },
@@ -16,12 +18,15 @@ defineProps({
   placeholder: { type: String as PropType<string>, default: '' },
   type: { type: String as PropType<string>, default: '' },
   // height: { type: Boolean as PropType<boolean>, default: false },
+  color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
+  error: { type: Boolean as PropType<boolean>, default: false },
+  success: { type: Boolean as PropType<boolean>, default: false },
+  label: { type: String as PropType<string>, default: '' },
+  required: { type: Boolean as PropType<boolean>, default: false },
+  message: { type: String as PropType<string>, default: '' },
 })
 
 const slots = useSlots()
-
-let isFocus = ref(false)
-let inputRef = ref<any>(null)
 
 const emits = defineEmits(['update:modelValue'])
 
@@ -34,41 +39,33 @@ const updateModelValue = (event: Event) => {
 </script>
 
 <template>
-  <div
-    class="relative w-full flex items-center"
+  <AppFormContainer
+    :label="label"
+    :required="required"
+    :color="color"
+    :error="error"
+    :success="success"
+    :message="message"
+    :disabled="disabled"
+    :dark="dark"
   >
-    <div
-      ref="inputWrapperRef"
+    <slot name="prepend"></slot>
+    <input
+      :value="modelValue"
+      @input="updateModelValue"
+      :name="name"
+      :type="type"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :autofocus="autofocus"
       :class="[{
-        'opacity-75': disabled,
-        'bg-gray-800 text-gray-100 border-gray-600 focus-within:border-gray-100': dark,
-        'bg-white text-gray-800 border-gray-400 focus-within:border-gray-800': !dark,
+        'ml-2': slots.prepend,
+        'mr-2': slots.append,
       }]"
-      class="flex items-center py-2 px-3 border cursor-text justify-between rounded w-full"
-      @click="inputRef.focus()"
-      v-on-click-outside="() => isFocus = false"
-    >
-      <slot name="prepend"></slot>
-      <input
-        :value="modelValue"
-        @input="updateModelValue"
-        ref="inputRef"
-        :name="name"
-        :type="type"
-        :placeholder="placeholder"
-        :disabled="disabled"
-        :autofocus="autofocus"
-        :class="[{
-          'ml-2': slots.prepend,
-          'mr-2': slots.append,
-        }]"
-        class="bg-transparent outline-none w-auto flex flex-1"
-        @focus="isFocus = true"
-        @blur="isFocus = false"
-      />
-      <slot name="append"></slot>
-    </div>
-  </div>
+      class="bg-transparent outline-none w-auto flex flex-1"
+    />
+    <slot name="append"></slot>
+  </AppFormContainer>
 </template>
 
 <style scoped></style>

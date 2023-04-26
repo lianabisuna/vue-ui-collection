@@ -1,14 +1,78 @@
 <script lang="ts" setup>
-import { PropType } from 'vue';
+import { PropType, computed } from 'vue';
+import AppFormLabel from './AppFormLabel.vue';
+import AppFormMessage from './AppFormMessage.vue';
 
-/** props */
+// export const formContainerProps = {
+
+// }
+
+export type TailwindColor = `${string}-${number}`|'black'|'white'
+
 const props = defineProps({
-  placeholder: { type: String as PropType<string>, default: '' },
+  color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
+  error: { type: Boolean as PropType<boolean>, default: false },
+  success: { type: Boolean as PropType<boolean>, default: false },
+  label: { type: String as PropType<string>, default: '' },
+  required: { type: Boolean as PropType<boolean>, default: false },
+  message: { type: String as PropType<string>, default: '' },
+  disabled: { type: Boolean as PropType<boolean>, default: false },
+  dark: { type: Boolean as PropType<boolean>, default: false },
+})
+
+const bgClass = computed(() => {
+  if (props.dark) return 'bg-gray-800 text-gray-100'
+  else return 'bg-white text-gray-800'
+})
+
+const borderClass = computed(() => {
+  if (props.error) return 'border-red-500'
+  else if (props.success) return 'border-green-500'
+  else return props.dark
+    ? 'border-gray-600 focus-within:border-gray-100'
+    : 'border-gray-400 focus-within:border-gray-800'
+})
+
+const groupFocusClass = computed(() => {
+  if (props.error) return 'group-focus-within:border-red-500'
+  else if (props.success) return 'group-focus-within:border-green-500'
+  else return `group-focus-within:border-${props.color}`
 })
 </script>
 
 <template>
-  
+  <div class="group flex flex-col w-full">
+    <!-- Label -->
+    <AppFormLabel
+      v-if="label"
+      :required="required"
+      :color="color"
+      :error="error"
+      :success="success"
+      :dark="dark"
+    >
+      {{ label }}
+    </AppFormLabel>
+    <!-- Input Container -->
+    <div
+      :class="[
+        bgClass, groupFocusClass, borderClass,
+        { 'opacity-75 pointer-events-none': disabled },
+      ]"
+      class="flex items-center py-2 px-3 border cursor-text justify-between rounded w-full"
+    >
+      <slot></slot>
+    </div>
+    <!-- Message -->
+    <AppFormMessage
+      v-if="message"
+      :error="error"
+      :success="success"
+      :dark="dark"
+    >
+      {{ message }}
+    </AppFormMessage>
+  </div>
 </template>
 
 <style scoped></style>

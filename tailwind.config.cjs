@@ -7,7 +7,7 @@ module.exports = {
   safelist: [
     {
       pattern: /(bg|text|border|outline|accent|fill)-(red|violet|yellow|cyan|teal|indigo|blue|gray|amber|pink|green|sky|rose|emerald|fuchsia|lime|purple)-(500|800)/,
-      variants: ['hover', 'focus', 'disabled', 'active', 'peer-checked'],
+      variants: ['hover', 'focus', 'disabled', 'active', 'peer-checked', 'group-focus-within'],
     },
     {
       pattern: /(rounded)-(sm|md|lg|xl)/,
