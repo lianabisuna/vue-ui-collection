@@ -1,55 +1,76 @@
 <script lang="ts" setup>
-import { PropType, ref, useSlots } from 'vue'
+/** Imports */
+import { PropType, useSlots, computed } from 'vue'
 import AppFormContainer from './AppFormContainer.vue';
 
+/** Types */
 export type TailwindColor = `${string}-${number}`|'black'|'white'
+export type HTMLInputType = 'email'|'number'|'password'|'reset'|'search'|'submit'|'tel'|'text'|'url'
+export type ComponentSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'
 
-defineProps({
+/** Props */
+const props = defineProps({
   modelValue: { type: String as PropType<string>, default: '' },
   autofocus: { type: Boolean as PropType<boolean>, default: false },
-  // autocomplete: { type: Boolean as PropType<boolean>, default: false },
   block: { type: Boolean as PropType<boolean>, default: false },
-  dark: { type: Boolean as PropType<boolean>, default: false },
-  disabled: { type: Boolean as PropType<boolean>, default: false },
-  // error: { type: Boolean as PropType<boolean>, default: false },
+  readonly: { type: Boolean as PropType<boolean>, default: false },
   name: { type: String as PropType<string>, default: '' },
-  // messages: { type: Boolean as PropType<boolean>, default: false },
-  // label: { type: Boolean as PropType<boolean>, default: false },
   placeholder: { type: String as PropType<string>, default: '' },
-  type: { type: String as PropType<string>, default: '' },
-  // height: { type: Boolean as PropType<boolean>, default: false },
+  type: { type: String as PropType<HTMLInputType>, default: 'text' },
+  /** Form container */
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
   error: { type: Boolean as PropType<boolean>, default: false },
   success: { type: Boolean as PropType<boolean>, default: false },
   label: { type: String as PropType<string>, default: '' },
   required: { type: Boolean as PropType<boolean>, default: false },
   message: { type: String as PropType<string>, default: '' },
+  disabled: { type: Boolean as PropType<boolean>, default: false },
+  dark: { type: Boolean as PropType<boolean>, default: false },
+  size: { type: String as PropType<ComponentSize>, default: '' },
 })
 
+/** Slots */
 const slots = useSlots()
 
+/** Emits */
 const emits = defineEmits(['update:modelValue'])
 
+/** Update model value */
 const updateModelValue = (event: Event) => {
   const target = event.target as HTMLInputElement
   if (target.value !== undefined) {
     emits('update:modelValue', target.value)
   }
 }
+
+/** Size class */
+const sizeClass = computed(() => {
+  switch (props.size) {
+    case 'xs': return 'text-xs'
+    case 'sm': return 'text-sm'
+    case 'lg': return 'text-lg'
+    case 'xl': return 'text-xl'
+    default: return 'text-base'
+  }
+})
 </script>
 
 <template>
+  <!-- Container -->
   <AppFormContainer
-    :label="label"
-    :required="required"
     :color="color"
     :error="error"
     :success="success"
+    :label="label"
+    :required="required"
     :message="message"
     :disabled="disabled"
     :dark="dark"
+    :size="size"
   >
+    <!-- Prepend -->
     <slot name="prepend"></slot>
+    <!-- Input -->
     <input
       :value="modelValue"
       @input="updateModelValue"
@@ -58,12 +79,18 @@ const updateModelValue = (event: Event) => {
       :placeholder="placeholder"
       :disabled="disabled"
       :autofocus="autofocus"
-      :class="[{
-        'ml-2': slots.prepend,
-        'mr-2': slots.append,
-      }]"
-      class="bg-transparent outline-none w-auto flex flex-1"
+      :readonly="readonly"
+      :class="[
+        sizeClass,
+        {
+          'ml-2': slots.prepend,
+          'mr-2': slots.append
+        }
+      ]"
+      class="flex flex-1 bg-transparent outline-none w-auto"
+      v-bind="$attrs"
     />
+    <!-- Append -->
     <slot name="append"></slot>
   </AppFormContainer>
 </template>

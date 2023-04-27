@@ -31,7 +31,7 @@ const textClass = computed(() => {
     <slot></slot>
     <span
       v-if="required"
-      class="ml-px"
+      class="ml-px text-red-500"
     >
       *
     </span>

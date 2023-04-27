@@ -42,4 +42,15 @@ import LayoutHandler from './layouts/TheLayoutHandler.vue';
     }
   }
 }
+
+/** Remove arrows/spinners on input */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
 </style>

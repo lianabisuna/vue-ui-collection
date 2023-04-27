@@ -8,6 +8,7 @@ import AppFormMessage from './AppFormMessage.vue';
 // }
 
 export type TailwindColor = `${string}-${number}`|'black'|'white'
+export type ComponentSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'
 
 const props = defineProps({
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
@@ -18,6 +19,7 @@ const props = defineProps({
   message: { type: String as PropType<string>, default: '' },
   disabled: { type: Boolean as PropType<boolean>, default: false },
   dark: { type: Boolean as PropType<boolean>, default: false },
+  size: { type: String as PropType<ComponentSize>, default: '' },
 })
 
 const bgClass = computed(() => {
@@ -38,6 +40,16 @@ const groupFocusClass = computed(() => {
   else if (props.success) return 'group-focus-within:border-green-500'
   else return `group-focus-within:border-${props.color}`
 })
+
+const sizeClass = computed(() => {
+  switch (props.size) {
+    case 'xs': return 'py-1 px-2'
+    case 'sm': return 'py-1.5 px-2.5'
+    case 'lg': return 'py-2.5 px-3.5'
+    case 'xl': return 'py-3 px-4'
+    default: return 'py-2 px-3'
+  }
+})
 </script>
 
 <template>
@@ -56,10 +68,10 @@ const groupFocusClass = computed(() => {
     <!-- Input Container -->
     <div
       :class="[
-        bgClass, groupFocusClass, borderClass,
+        bgClass, groupFocusClass, borderClass, sizeClass,
         { 'opacity-75 pointer-events-none': disabled },
       ]"
-      class="flex items-center py-2 px-3 border cursor-text justify-between rounded w-full"
+      class="flex items-center border cursor-text justify-between rounded w-full"
     >
       <slot></slot>
     </div>
