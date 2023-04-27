@@ -43,6 +43,7 @@ const components: Component[] = [
   { name: 'Drawer', to: '/drawer', color: 'teal-500', items: 0 },
   { name: 'Dropdown', to: '/dropdown', color: 'red-500', items: 1 },
   { name: 'File', to: '/file', color: 'amber-500', items: 0 },
+  { name: 'Floating Label', to: '/floating-label', color: 'yellow-500', items: 4 },
   { name: 'Form', to: '/form', color: 'pink-500', items: 0 },
   { name: 'Input', to: '/input', color: 'fuchsia-500', items: 16 },
   { name: 'Keyboard', to: '/keyboard', color: 'indigo-500', items: 0 },

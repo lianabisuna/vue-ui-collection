@@ -99,6 +99,12 @@ const router = createRouter({
       meta: { layout: 'Dashboard' },
     },
     {
+      path: '/floating-label',
+      name: 'FloatingLabel',
+      component: () => import(/* webpackChunkName: "floating-label" */ '../views/dashboard/FloatingLabelView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
       path: '/form',
       name: 'Form',
       component: () => import(/* webpackChunkName: "form" */ '../views/dashboard/FormView.vue'),

@@ -7,6 +7,7 @@ import AppFormContainer from './AppFormContainer.vue';
 export type TailwindColor = `${string}-${number}`|'black'|'white'
 export type HTMLInputType = 'email'|'number'|'password'|'reset'|'search'|'submit'|'tel'|'text'|'url'
 export type ComponentSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'
+export type InputVariant = 'outlined'|'filled'|'underlined'
 
 /** Props */
 const props = defineProps({
@@ -27,6 +28,8 @@ const props = defineProps({
   disabled: { type: Boolean as PropType<boolean>, default: false },
   dark: { type: Boolean as PropType<boolean>, default: false },
   size: { type: String as PropType<ComponentSize>, default: '' },
+  variant: { type: String as PropType<InputVariant>, default: '' },
+  floatingLabel: { type: Boolean as PropType<boolean>, default: false },
 })
 
 /** Slots */
@@ -53,6 +56,26 @@ const sizeClass = computed(() => {
     default: return 'text-base'
   }
 })
+
+/** Variant class */
+const variantClass = computed(() => {
+  switch (props.variant) {
+    case 'outlined': return ''
+    case 'filled': return ''
+    case 'underlined': return ''
+    default: return ''
+  }
+})
+
+/** Floating label class */
+const floatingLabelClass = computed(() => {
+  switch (props.variant) {
+    case 'outlined': return ''
+    case 'filled': return ''
+    case 'underlined': return ''
+    default: return ''
+  }
+})
 </script>
 
 <template>
@@ -67,6 +90,8 @@ const sizeClass = computed(() => {
     :disabled="disabled"
     :dark="dark"
     :size="size"
+    :variant="variant"
+    :floating-label="floatingLabel"
   >
     <!-- Prepend -->
     <slot name="prepend"></slot>
@@ -81,13 +106,13 @@ const sizeClass = computed(() => {
       :autofocus="autofocus"
       :readonly="readonly"
       :class="[
-        sizeClass,
+        sizeClass, variantClass,
         {
           'ml-2': slots.prepend,
           'mr-2': slots.append
         }
       ]"
-      class="flex flex-1 bg-transparent outline-none w-auto"
+      class="peer flex flex-1 bg-transparent outline-none w-auto"
       v-bind="$attrs"
     />
     <!-- Append -->
