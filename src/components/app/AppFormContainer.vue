@@ -22,7 +22,7 @@ const props = defineProps({
   dark: { type: Boolean as PropType<boolean>, default: false },
   size: { type: String as PropType<ComponentSize>, default: '' },
   variant: { type: String as PropType<InputVariant>, default: '' },
-  floatingLabel: { type: Boolean as PropType<boolean>, default: false },
+  float: { type: Boolean as PropType<boolean>, default: false },
 })
 
 const bgClass = computed(() => {
@@ -57,12 +57,41 @@ const groupFocusClass = computed(() => {
 })
 
 const paddingYClass = computed(() => {
-  switch (props.size) {
-    case 'xs': return 'py-1'
-    case 'sm': return 'py-1.5'
-    case 'lg': return 'py-2.5'
-    case 'xl': return 'py-3'
-    default: return 'py-2'
+  if (props.float) {
+    switch (props.variant) {
+      case 'filled':
+        switch (props.size) {
+          case 'xs': return 'pt-6 pb-1'
+          case 'sm': return 'pt-6 pb-1.5'
+          case 'lg': return 'pt-6 pb-2.5'
+          case 'xl': return 'pt-6 pb-3'
+          default: return 'pt-6 pb-2'
+        }
+      case 'underlined':
+        switch (props.size) {
+          case 'xs': return 'pt-6 pb-1'
+          case 'sm': return 'pt-6 pb-1.5'
+          case 'lg': return 'pt-6 pb-2.5'
+          case 'xl': return 'pt-6 pb-3'
+          default: return 'pt-6 pb-1'
+        }
+      case 'outlined': default:
+        switch (props.size) {
+          case 'xs': return 'py-1'
+          case 'sm': return 'py-1.5'
+          case 'lg': return 'py-2.5'
+          case 'xl': return 'py-3'
+          default: return 'py-4'
+        }
+    }
+  } else {
+    switch (props.size) {
+      case 'xs': return 'py-1'
+      case 'sm': return 'py-1.5'
+      case 'lg': return 'py-2.5'
+      case 'xl': return 'py-3'
+      default: return 'py-2'
+    }
   }
 })
 
@@ -78,41 +107,19 @@ const paddingXClass = computed(() => {
     }
   }
 })
-
-/** Variant class */
-const variantClass = computed(() => {
-  switch (props.variant) {
-    case 'outlined': return ''
-    case 'filled': return ''
-    case 'underlined': return ''
-    default: return ''
-  }
-})
-
-/** Floating label class */
-const floatingLabelClass = computed(() => {
-  switch (props.variant) {
-    case 'outlined': return ''
-    case 'filled': return ''
-    case 'underlined': return ''
-    default: return ''
-  }
-})
 </script>
 
 <template>
   <div class="group flex flex-col w-full">
     <!-- Label -->
     <AppFormLabel
-      v-if="label"
+      v-if="label && !float"
       :required="required"
       :color="color"
       :error="error"
       :success="success"
       :dark="dark"
-      :class="[
-        floatingLabelClass
-      ]"
+      :size="size"
     >
       {{ label }}
     </AppFormLabel>
@@ -124,14 +131,27 @@ const floatingLabelClass = computed(() => {
         borderClass,
         paddingXClass,
         paddingYClass,
-        variantClass,
         textClass,
         { 'rounded': variant !== 'underlined' },
         { 'opacity-75 pointer-events-none': disabled },
       ]"
-      class="flex items-center cursor-text justify-between w-full"
+      class="relative flex items-center cursor-text justify-between w-full"
     >
       <slot></slot>
+      <!-- Floating Label -->
+      <AppFormLabel
+        v-if="float"
+        :required="required"
+        :color="color"
+        :error="error"
+        :success="success"
+        :dark="dark"
+        :size="size"
+        :float="float"
+        :variant="variant"
+      >
+        {{ label }}
+      </AppFormLabel>
     </div>
     <!-- Message -->
     <AppFormMessage

@@ -17,7 +17,7 @@ const components: any = ref([])
         :dark="components[0]"
         color="yellow-500"
         label="Default"
-        floating-label
+        float
       >
       </AppFormInput>
     </CardComponentPreview>
@@ -31,7 +31,7 @@ const components: any = ref([])
         color="yellow-500"
         variant="outlined"
         label="Outlined"
-        floating-label
+        float
       >
       </AppFormInput>
     </CardComponentPreview>
@@ -45,7 +45,7 @@ const components: any = ref([])
         color="yellow-500"
         variant="filled"
         label="Filled"
-        floating-label
+        float
       >
       </AppFormInput>
     </CardComponentPreview>
@@ -59,7 +59,7 @@ const components: any = ref([])
         color="yellow-500"
         variant="underlined"
         label="Underlined"
-        floating-label
+        float
       >
       </AppFormInput>
     </CardComponentPreview>

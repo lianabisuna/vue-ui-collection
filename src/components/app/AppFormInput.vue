@@ -29,7 +29,7 @@ const props = defineProps({
   dark: { type: Boolean as PropType<boolean>, default: false },
   size: { type: String as PropType<ComponentSize>, default: '' },
   variant: { type: String as PropType<InputVariant>, default: '' },
-  floatingLabel: { type: Boolean as PropType<boolean>, default: false },
+  float: { type: Boolean as PropType<boolean>, default: false },
 })
 
 /** Slots */
@@ -66,16 +66,6 @@ const variantClass = computed(() => {
     default: return ''
   }
 })
-
-/** Floating label class */
-const floatingLabelClass = computed(() => {
-  switch (props.variant) {
-    case 'outlined': return ''
-    case 'filled': return ''
-    case 'underlined': return ''
-    default: return ''
-  }
-})
 </script>
 
 <template>
@@ -91,7 +81,7 @@ const floatingLabelClass = computed(() => {
     :dark="dark"
     :size="size"
     :variant="variant"
-    :floating-label="floatingLabel"
+    :float="float"
   >
     <!-- Prepend -->
     <slot name="prepend"></slot>
@@ -101,7 +91,7 @@ const floatingLabelClass = computed(() => {
       @input="updateModelValue"
       :name="name"
       :type="type"
-      :placeholder="placeholder"
+      :placeholder="float ? ' ' : placeholder"
       :disabled="disabled"
       :autofocus="autofocus"
       :readonly="readonly"
@@ -109,7 +99,8 @@ const floatingLabelClass = computed(() => {
         sizeClass, variantClass,
         {
           'ml-2': slots.prepend,
-          'mr-2': slots.append
+          'mr-2': slots.append,
+          'placeholder-gray-400 placeholder-opacity-0': !float
         }
       ]"
       class="peer flex flex-1 bg-transparent outline-none w-auto"
