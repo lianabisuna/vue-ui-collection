@@ -117,7 +117,11 @@ const onClickContainer = () => {
 </script>
 
 <template>
-  <div ref="containerRef" class="group flex flex-col w-full" @click="onClickContainer">
+  <div
+    ref="containerRef"
+    class="group flex flex-col w-full"
+    @click="onClickContainer"
+  >
     <!-- Label -->
     <AppFormLabel
       v-if="label && !float"

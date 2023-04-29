@@ -3,10 +3,12 @@ import { ChevronDownIcon } from '@heroicons/vue/24/outline';
 import { vOnClickOutside } from '@vueuse/components';
 import { PropType, computed, ref } from 'vue'
 import { AppChip } from '@/components/app';
+import AppFormContainer from './AppFormContainer.vue';
 
 /** types */
 export type TailwindColor = `${string}-${number}`|'black'|'white'
-export type ComponentSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'|'full'
+export type ComponentSize = 'xs'|'sm'|'md'|'lg'|'xl'
+export type InputVariant = 'outlined'|'filled'|'underlined'
 
 interface ItemsProp {
   text: string
@@ -15,17 +17,24 @@ interface ItemsProp {
 
 /** props */
 const props = defineProps({
-  modelValue: { type: [String,Array] as PropType<string|string[]>, default: [] }, // DONE (SINGLE)
-  placeholder: { type: String as PropType<string>, default: '' }, // DONE (SINGLE)
+  modelValue: { type: [String,Array] as PropType<string|string[]>, default: [] },
+  placeholder: { type: String as PropType<string>, default: '' },
   items: { type: Array as PropType<ItemsProp[]>, default: [] },
   multiple: { type: Boolean as PropType<boolean>, default: false },
   chip: { type: Boolean as PropType<boolean>, default: false },
-  disabled: { type: Boolean as PropType<boolean>, default: false }, // DONE (SINGLE)
-  // size: { type: String as PropType<ComponentSize>, default: '' },
-  color: { type: String as PropType<TailwindColor>, default: 'blue-500' }, // DONE (SINGLE)
+  emptyText: { type: String as PropType<string>, default: 'No data available' },
+  /** Form container */
+  color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
+  error: { type: Boolean as PropType<boolean>, default: false },
+  success: { type: Boolean as PropType<boolean>, default: false },
+  label: { type: String as PropType<string>, default: '' },
+  required: { type: Boolean as PropType<boolean>, default: false },
+  message: { type: String as PropType<string>, default: '' },
+  disabled: { type: Boolean as PropType<boolean>, default: false },
   dark: { type: Boolean as PropType<boolean>, default: false },
-  // outlined: { type: Boolean as PropType<boolean>, default: false },
-  emptyText: { type: String as PropType<string>, default: 'No data available' }, // DONE (SINGLE)
+  size: { type: String as PropType<ComponentSize>, default: '' },
+  variant: { type: String as PropType<InputVariant>, default: '' },
+  float: { type: Boolean as PropType<boolean>, default: false },
 })
 
 const active = ref(false)
@@ -88,12 +97,19 @@ const filteredModelValue = computed(() => {
 </script>
 
 <template>
-  <div
-    class="relative flex flex-grow bg-white text-gray-800 border rounded outline-none w-full"
-    :class="[
-      { 'opacity-75 pointer-events-none': disabled },
-      active ? 'border-gray-800' : 'border-gray-400'
-    ]"
+  <!-- Container -->
+  <AppFormContainer
+    :color="color"
+    :error="error"
+    :success="success"
+    :label="label"
+    :required="required"
+    :message="message"
+    :disabled="disabled"
+    :dark="dark"
+    :size="size"
+    :variant="variant"
+    :float="float"
     v-on-click-outside="() => active = false"
     @click="() => active = !active"
   >
@@ -101,21 +117,26 @@ const filteredModelValue = computed(() => {
     <div class="flex-grow flex items-center">
       <!-- Chip -->
       <div v-if="chip">
+        <input
+          :value="filteredModelValue"
+          class="sr-only"
+        >
         <!-- Placeholder -->
         <div
           v-if="!filteredModelValue || !filteredModelValue?.length"
-          class="text-gray-400 pl-3"
+          class="text-gray-400"
         >
           {{ placeholder }}
         </div>
         <!-- Multiple -->
         <div
           v-else-if="Array.isArray(filteredModelValue)"
-          class="flex flex-wrap gap-1.5 p-1.5"
+          class="flex flex-wrap gap-1.5"
         >
           <AppChip
             v-for="(item,key) in filteredModelValue"
             :key="key"
+            size="xs"
           >
             {{ item }}
           </AppChip>
@@ -123,9 +144,8 @@ const filteredModelValue = computed(() => {
         <!-- Single -->
         <div
           v-else-if="!Array.isArray(filteredModelValue)"
-          class="p-1.5"
         >
-          <AppChip>
+          <AppChip size="xs">
             {{ filteredModelValue }}
           </AppChip>
         </div>
@@ -134,17 +154,14 @@ const filteredModelValue = computed(() => {
       <input
         v-else
         :value="filteredModelValue"
-        class="outline-none py-2 pl-3 bg-transparent w-full"
+        class="outline-none bg-transparent w-full"
         :placeholder="placeholder"
         readonly
       >
     </div>
     <!-- Arrow -->
     <div
-      class="flex-shrink p-3"
-      :class="[
-        active ? 'text-gray-800' : 'text-gray-400'
-      ]"
+      class="flex-shrink text-gray-400 pl-3"
     >
       <ChevronDownIcon
         class="h-5 w-5 transition-transform duration-200 ease-in-out self-start"
@@ -157,7 +174,10 @@ const filteredModelValue = computed(() => {
     <!-- Dropdown -->
     <div
       v-if="active"
-      class="bg-white rounded absolute top-full border border-gray-200 w-full shadow z-40 mt-1.5"
+      class="rounded absolute left-0 top-full border w-full z-40 mt-1.5"
+      :class="[
+        dark ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'
+      ]"
     >
       <ul
         v-if="items.length"
@@ -166,9 +186,11 @@ const filteredModelValue = computed(() => {
         <li
           v-for="(item,key) in items"
           :key="key"
-          class="px-3 py-2.5 text-base w-full text-start cursor-pointer"
+          class="px-3 py-2.5 text-base w-full text-start cursor-pointer border-transparent first:rounded-t last:rounded-b"
           :class="[
-            isSelected(item.value) ? `bg-${color}/50 hover:bg-${color}/60` : 'bg-white hover:bg-gray-100'
+            isSelected(item.value)
+              ? dark ? `bg-${color}/80 hover:bg-${color}/60` : `bg-${color}/40 hover:bg-${color}/60`
+              : dark ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-100'
           ]"
           @click="() => updateModelValue(item.value, key)"
         >
@@ -182,7 +204,7 @@ const filteredModelValue = computed(() => {
         {{ emptyText }}
       </div>
     </div>
-  </div>
+  </AppFormContainer>
 </template>
 
 <style scoped></style>
