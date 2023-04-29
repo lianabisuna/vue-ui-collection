@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { PropType, computed } from 'vue';
+import { PropType, computed, ref } from 'vue';
 import AppFormLabel from './AppFormLabel.vue';
 import AppFormMessage from './AppFormMessage.vue';
 
@@ -107,10 +107,17 @@ const paddingXClass = computed(() => {
     }
   }
 })
+
+/** Focus on input upon clicking container */
+const containerRef = ref<any>()
+
+const onClickContainer = () => {
+  containerRef.value.querySelector('input').focus()
+}
 </script>
 
 <template>
-  <div class="group flex flex-col w-full">
+  <div ref="containerRef" class="group flex flex-col w-full" @click="onClickContainer">
     <!-- Label -->
     <AppFormLabel
       v-if="label && !float"
