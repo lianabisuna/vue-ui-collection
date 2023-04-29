@@ -59,29 +59,29 @@ const groupFocusClass = computed(() => {
 const paddingYClass = computed(() => {
   if (props.float) {
     switch (props.variant) {
-      case 'filled':
+      case 'outlined':
         switch (props.size) {
-          case 'xs': return 'pt-6 pb-1'
-          case 'sm': return 'pt-6 pb-1.5'
-          case 'lg': return 'pt-6 pb-2.5'
-          case 'xl': return 'pt-6 pb-3'
-          default: return 'pt-6 pb-2'
+          case 'xs': return 'py-3'
+          case 'sm': return 'py-3.5'
+          case 'lg': return 'py-[1.125rem]'
+          case 'xl': return 'py-5'
+          default: return 'py-4'
         }
       case 'underlined':
         switch (props.size) {
-          case 'xs': return 'pt-6 pb-1'
-          case 'sm': return 'pt-6 pb-1.5'
-          case 'lg': return 'pt-6 pb-2.5'
-          case 'xl': return 'pt-6 pb-3'
+          case 'xs': return 'pt-4 pb-1'
+          case 'sm': return 'pt-5 pb-1'
+          case 'lg': return 'pt-7 pb-1'
+          case 'xl': return 'pt-8 pb-1'
           default: return 'pt-6 pb-1'
         }
-      case 'outlined': default:
+      case 'filled': default:
         switch (props.size) {
-          case 'xs': return 'py-1'
-          case 'sm': return 'py-1.5'
-          case 'lg': return 'py-2.5'
-          case 'xl': return 'py-3'
-          default: return 'py-4'
+          case 'xs': return 'pt-4 pb-1'
+          case 'sm': return 'pt-5 pb-1.5'
+          case 'lg': return 'pt-7 pb-2.5'
+          case 'xl': return 'pt-8 pb-3'
+          default: return 'pt-6 pb-2'
         }
     }
   } else {

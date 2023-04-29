@@ -40,9 +40,10 @@ const sizeClass = computed(() => {
 const positionClass = computed(() => {
   if (props.float) {
     switch (props.variant) {
-      case 'filled': return 'top-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-0 peer-focus:translate-y-0'
+      case 'outlined': return 'top-0 -translate-y-1/2 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-0 px-1.5 peer-placeholder-shown:px-0 peer-focus:px-1.5'
       case 'underlined': return 'bottom-full translate-y-full peer-placeholder-shown:bottom-1 peer-placeholder-shown:translate-y-0 peer-focus:bottom-full peer-focus:translate-y-full'
-      case 'outlined': default: return 'top-0 -translate-y-1/2 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-0 px-1.5 peer-placeholder-shown:px-0 peer-focus:px-1.5'
+      case 'filled': default: return 'top-0.5 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-0.5 peer-focus:translate-y-0'
+      
     }
   }
 })
@@ -50,8 +51,8 @@ const positionClass = computed(() => {
 const bgClass = computed(() => {
   if (props.float) {
     switch (props.variant) {
-      case 'filled': case 'underlined': return ''
-      case 'outlined': default: return props.dark ? 'bg-gray-900 peer-placeholder-shown:bg-transparent peer-focus:bg-gray-900' : 'bg-white peer-placeholder-shown:bg-transparent peer-focus:bg-white'
+      case 'outlined': return props.dark ? 'bg-gray-900 peer-placeholder-shown:bg-transparent peer-focus:bg-gray-900' : 'bg-white peer-placeholder-shown:bg-transparent peer-focus:bg-white'
+      case 'filled': case 'underlined': default: return ''
     }
   }
 })
