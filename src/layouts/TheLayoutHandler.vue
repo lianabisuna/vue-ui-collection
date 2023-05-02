@@ -1,8 +1,13 @@
 <script lang="ts" setup>
-import { ref, watch, computed, defineAsyncComponent, markRaw } from 'vue'
+// Imports
+import { ref, watch, computed, defineAsyncComponent } from 'vue'
 import { useRoute } from 'vue-router'
 
+// Route
 const route = useRoute()
+
+
+/** HANDLE LAYOUT CHANGE */
 
 const layoutName = ref('Default')
 const metaLayout = computed(() => route.meta.layout as string)

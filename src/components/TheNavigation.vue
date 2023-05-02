@@ -1,8 +1,10 @@
 <script lang="ts" setup>
-import { PropType, ref } from 'vue'
-import { RouteLocationRaw } from 'vue-router';
+// Imports
+import { PropType } from 'vue'
+import { RouteLocationRaw } from 'vue-router'
 
-type TailwindColor = `${string}-${number}`
+// Types
+export type TailwindColor = `${string}-${number}`|'black'|'white'
 
 interface Component {
   name: string
@@ -11,6 +13,7 @@ interface Component {
   items: number
 }
 
+// Props
 defineProps({
   items: { type: Array as PropType<Component[]>, default: [] },
 })

@@ -1,23 +1,28 @@
 <script lang="ts" setup>
-import { XMarkIcon } from '@heroicons/vue/24/outline';
-import { PropType, ref, watch } from 'vue';
+// Imports
+import { PropType, watch } from 'vue'
+import { XMarkIcon } from '@heroicons/vue/24/outline'
+import type { TailwindColor, DialogPosition } from './types'
 
-export type ToastPosition = 'center'|'top'|'right'|'bottom'|'left'|'top-left'|'top-right'|'bottom-right'|'bottom-left'
-export type TailwindColor = `${string}-${number}`|'black'|'white'
-
+// Props
 const props = defineProps({
   modelValue: { type: Boolean as PropType<boolean>, default: false },
-  position: { type: String as PropType<ToastPosition>, default: 'bottom' },
+  position: { type: String as PropType<DialogPosition>, default: 'bottom' },
   color: { type: String as PropType<TailwindColor>, default: 'black' },
   timeout: { type: [Number,String] as PropType<number|string>, default: 5000 },
 })
 
+// Emits
 const emits = defineEmits(['update:modelValue'])
 
+
+/** UPDATE MODEL VALUE */
 const updateModelValue = (value: Boolean) => {
   emits('update:modelValue', value)
 }
 
+
+/** CLOSE TOAST ON TIMEOUT */
 let timeoutId: ReturnType<typeof setTimeout>;
 watch(() => props.modelValue, () => {
     if (props.modelValue) {

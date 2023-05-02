@@ -1,24 +1,28 @@
 <script lang="ts" setup>
-import { PropType, useSlots } from 'vue';
-import AppButton from './AppButton.vue';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/outline';
+// Imports
+import { PropType, useSlots } from 'vue'
+import AppButton from './AppButton.vue'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/outline'
+import type { TailwindColor } from './types'
 
-export type TailwindColor = `${string}-${number}`
-
+// Props
 defineProps({
   modelValue: { type: Number as PropType<number>, default: 1 },
   length: { type: Number as PropType<number>, default: 1 },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
 })
 
+// Slots
 const slots = useSlots()
 
+// Emits
 const emits = defineEmits(['update:modelValue'])
 
+
+/** UPDATE MODEL VALUE */
 const updateModelValue = (value: number) => {
   emits('update:modelValue', value)
 }
-
 </script>
 
 <template>

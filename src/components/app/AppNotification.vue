@@ -1,26 +1,28 @@
 <script lang="ts" setup>
-import { Console } from 'console';
+// Imports
 import { PropType, computed, useSlots } from 'vue'
+import type { TailwindColor, DialogPosition } from './types'
 
-/** types */
-export type ModalPosition = 'center'|'top'|'right'|'bottom'|'left'|'top-left'|'top-right'|'bottom-right'|'bottom-left'
-export type TailwindColor = `${string}-${number}`|'black'|'white'
-export type ComponentSize = 'xs'|'sm'|'lg'|'xl'
+// Types
+export type NotificationSize = 'xs'|'sm'|'lg'|'xl'
 
-/** props */
+// Props
 const props = defineProps({
   modelValue: { type: Boolean as PropType<boolean>, default: false },
   icon: { type: Boolean as PropType<boolean>, default: false },
-  position: { type: String as PropType<ModalPosition>, default: 'top-right' },
+  position: { type: String as PropType<DialogPosition>, default: 'top-right' },
   content: { type: String as PropType<string>, default: '' },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
   bordered: { type: Boolean as PropType<boolean>, default: false },
-  size: { type: String as PropType<ComponentSize>, default: '' },
+  size: { type: String as PropType<NotificationSize>, default: '' },
 })
 
+// Slots
 const slots = useSlots()
 
-/** classes */
+
+/** CLASSES */
+
 const positionClass = computed(() => {
   switch (props.position) {
     case 'center': return 'top-1/2 left-1/2 -translate-y-1/2 -translate-x-2/4'

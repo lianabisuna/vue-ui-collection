@@ -1,14 +1,15 @@
 <script lang="ts" setup>
-import { XMarkIcon } from '@heroicons/vue/24/outline';
+// Imports
 import { PropType, computed } from 'vue'
+import { XMarkIcon } from '@heroicons/vue/24/outline'
 
-/** types */
+// Types
 export type TailwindColor = `${string}-${number}`|'black'|'white'
 export type ComponentSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'|'full'
 export type RoundedSize = 'sm'|'md'|'lg'|'xl'|'full'
 export type ColorTone = 'dark'|'light'
 
-/** props */
+// Props
 const props = defineProps({
   size: { type: String as PropType<ComponentSize>, default: '' },
   rounded: { type: [Boolean,String] as PropType<RoundedSize>, default: '' },
@@ -17,6 +18,9 @@ const props = defineProps({
   closable: { type: Boolean as PropType<boolean>, default: false },
   tone: { type: String as PropType<ColorTone>, default: '' },
 })
+
+
+/** CLASSES */
 
 const sizeClass = computed(() => {
   switch (props.size) {

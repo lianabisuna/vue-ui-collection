@@ -1,14 +1,20 @@
 <script lang="ts" setup>
-import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline';
-import { useDark } from '@vueuse/core';
-import { PropType, watch } from 'vue';
+// Imports
+import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline'
+import { useDark } from '@vueuse/core'
+import { PropType, watch } from 'vue'
 
+// Props
 defineProps({
   dark: { type: Boolean as PropType<boolean>, default: false },
   title: { type: String as PropType<string>, default: '' },
 })
 
+// Emits
 const emits = defineEmits(['update:dark'])
+
+
+/** TOGGLE DARK MODE */
 
 const updateDark = (event: Event) => {
   const target = event.target as HTMLInputElement
@@ -17,7 +23,8 @@ const updateDark = (event: Event) => {
   }
 }
 
-const isDark = useDark();
+const isDark = useDark()
+
 watch(isDark, () => emits('update:dark', isDark.value), { immediate: true });
 </script>
 

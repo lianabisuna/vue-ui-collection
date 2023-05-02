@@ -1,21 +1,21 @@
 <script lang="ts" setup>
-import { ChevronDownIcon } from '@heroicons/vue/24/outline';
-import { vOnClickOutside } from '@vueuse/components';
+// Imports
 import { PropType, computed, ref } from 'vue'
-import { AppChip } from '@/components/app';
-import AppFormContainer from './AppFormContainer.vue';
+import { ChevronDownIcon } from '@heroicons/vue/24/outline'
+import { vOnClickOutside } from '@vueuse/components'
+import { AppChip } from '@/components/app'
+import AppFormContainer from './AppFormContainer.vue'
+import type { TailwindColor, InputVariant } from './types'
 
-/** types */
-export type TailwindColor = `${string}-${number}`|'black'|'white'
-export type ComponentSize = 'xs'|'sm'|'md'|'lg'|'xl'
-export type InputVariant = 'outlined'|'filled'|'underlined'
+// Types
+export type SelectSize = 'xs'|'sm'|'md'|'lg'|'xl'
 
 interface ItemsProp {
   text: string
   value: any
 }
 
-/** props */
+// Props
 const props = defineProps({
   modelValue: { type: [String,Array] as PropType<string|string[]>, default: [] },
   placeholder: { type: String as PropType<string>, default: '' },
@@ -23,7 +23,7 @@ const props = defineProps({
   multiple: { type: Boolean as PropType<boolean>, default: false },
   chip: { type: Boolean as PropType<boolean>, default: false },
   emptyText: { type: String as PropType<string>, default: 'No data available' },
-  /** Form container */
+  /** Form Container */
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
   error: { type: Boolean as PropType<boolean>, default: false },
   success: { type: Boolean as PropType<boolean>, default: false },
@@ -32,14 +32,40 @@ const props = defineProps({
   message: { type: String as PropType<string>, default: '' },
   disabled: { type: Boolean as PropType<boolean>, default: false },
   dark: { type: Boolean as PropType<boolean>, default: false },
-  size: { type: String as PropType<ComponentSize>, default: '' },
+  size: { type: String as PropType<SelectSize>, default: '' },
   variant: { type: String as PropType<InputVariant>, default: '' },
   float: { type: Boolean as PropType<boolean>, default: false },
 })
 
-const active = ref(false)
-
+// Emits
 const emits = defineEmits(['update:modelValue'])
+
+
+/** FILTER MODEL VALUE */
+
+const filteredModelValue = computed(() => {
+  if (!props.modelValue) return ''
+  if (!props.multiple) {
+    var index = props.items.findIndex(e => e.value === props.modelValue);
+    if (index >= 0) {
+      return props.items[index].text
+    }
+  }
+  else {
+    if (Array.isArray(props.modelValue)) {
+      let modelValueArr: string[] = []
+      props.items.map((e) => {
+        if (props.modelValue.includes(e.value)) {
+          modelValueArr.push(e.text)
+        }
+      })
+      return props.chip ? modelValueArr : modelValueArr.join(', ')
+    }
+  }
+})
+
+
+/** UPDATE MODEL VALUE */
 
 const updateModelValue = (value: string, index: number) => {
   if (!props.multiple) {
@@ -63,6 +89,9 @@ const updateModelValue = (value: string, index: number) => {
   }
 }
 
+
+/** CHECK SELECTED ITEM */
+
 const isSelected = (value: string) => {
   if (!props.multiple) {
     return props.modelValue === value
@@ -74,26 +103,7 @@ const isSelected = (value: string) => {
   }
 }
 
-const filteredModelValue = computed(() => {
-  if (!props.modelValue) return ''
-  if (!props.multiple) {
-    var index = props.items.findIndex(e => e.value === props.modelValue);
-    if (index >= 0) {
-      return props.items[index].text
-    }
-  }
-  else {
-    if (Array.isArray(props.modelValue)) {
-      let modelValueArr: string[] = []
-      props.items.map((e) => {
-        if (props.modelValue.includes(e.value)) {
-          modelValueArr.push(e.text)
-        }
-      })
-      return props.chip ? modelValueArr : modelValueArr.join(', ')
-    }
-  }
-})
+const active = ref(false)
 </script>
 
 <template>

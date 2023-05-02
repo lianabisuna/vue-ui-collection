@@ -1,21 +1,26 @@
 <script lang="ts" setup>
-import { XMarkIcon } from '@heroicons/vue/24/outline';
+// Imports
 import { PropType, computed } from 'vue'
+import type {
+  TailwindColor,
+  RoundedSize,
+  ColorTone
+} from './types'
 
-/** types */
-export type TailwindColor = `${string}-${number}`|'black'|'white'
-export type ComponentSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'|'full'
-export type RoundedSize = 'sm'|'md'|'lg'|'xl'|'full'
-export type ColorTone = 'dark'|'light'
+// Types
+export type BadgeSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'|'full'
 
-/** props */
+// Props
 const props = defineProps({
-  size: { type: String as PropType<ComponentSize>, default: '' },
+  size: { type: String as PropType<BadgeSize>, default: '' },
   rounded: { type: [Boolean,String] as PropType<RoundedSize>, default: '' },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
   outlined: { type: Boolean as PropType<boolean>, default: false },
   tone: { type: String as PropType<ColorTone>, default: '' },
 })
+
+
+/** CLASSES */
 
 const sizeClass = computed(() => {
   switch (props.size) {
@@ -58,8 +63,12 @@ const borderClass = computed(() => {
   <div
     class="inline-flex items-center justify-center text-center rounded font-medium"
     :class="[
+      sizeClass,
+      bgClass,
+      textClass,
+      borderClass,
+      roundedClass,
       `outline-${color}/50`,
-      sizeClass, bgClass, textClass, borderClass, roundedClass
     ]"
   >
     <slot></slot>

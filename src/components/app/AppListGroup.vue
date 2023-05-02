@@ -1,14 +1,15 @@
 <script lang="ts" setup>
+// Imports
 import { PropType } from 'vue'
+import type { TailwindColor } from './types'
 
-/** types */
-export type TailwindColor = `${string}-${number}`|'black'|'white'
+// Types
 interface ListGroupProp {
   active: boolean
   title: string
 }
 
-/** props */
+// Props
 defineProps({
   items: { type: Array as PropType<ListGroupProp[]>, default: [] },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },

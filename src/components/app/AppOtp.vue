@@ -1,6 +1,8 @@
 <script lang="ts" setup>
-import { PropType, ref } from 'vue';
+// Imports
+import { PropType, ref } from 'vue'
 
+// Props
 const props = defineProps({
   modelValue: { type: Boolean as PropType<boolean>, default: false },
   length: { type: [Number,String] as PropType<number|string>, default: 6 },
@@ -8,7 +10,11 @@ const props = defineProps({
   type: { type: String as PropType<string>, default: 'text' },
 })
 
+// Emits
 const emits = defineEmits(['update:modelValue'])
+
+
+/** UPDATE MODEL VALUE */
 
 // const updateModelValue = (event: Event) => {
 //   const target = event.target as HTMLInputElement
@@ -17,16 +23,15 @@ const emits = defineEmits(['update:modelValue'])
 //   }
 // }
 
+
+/** HANDLE OTP EVENTS */
+
+// Data
 const digits: any = ref([])
 const otpRef = ref<any>(null)
 
-/**
- * Listens for OTP input's keypress event which activates only when user clicks allowed keys
- * Included keys are as follows: 0-9, Tab, Arrow Right, Arrow Left and Space
- * TO DO: Add function when clicking Arrow Right, Arrow Left and Space
- * @param event keyboard click event
- * @param index OTP digit index
- */
+// Functions
+
 const handleKeypress = (event: KeyboardEvent, index: number) => {
   // pressed number keys
   if (new RegExp('^([0-9])$').test(event.key)) {
@@ -49,12 +54,6 @@ const handleKeypress = (event: KeyboardEvent, index: number) => {
   }
 }
 
-/**
- * Listens for OTP input's keydown event which activates only when user clicks "Backspace"
- * Source: https://stackoverflow.com/questions/4843472/javascript-listener-keypress-doesnt-detect-backspace
- * @param event keyboard click event
- * @param index OTP digit index
- */
 const handleKeydown = (event: KeyboardEvent, index: number) => {
   // pressed backspace key
   if (event.key === 'Backspace') {

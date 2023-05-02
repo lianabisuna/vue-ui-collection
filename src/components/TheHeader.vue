@@ -1,9 +1,13 @@
 <script lang="ts" setup>
-import { AppButton } from '@/components/app';
-import type { SidebarProvider } from '@/layouts/TheLayoutDashboard.vue';
-import { Bars4Icon, MoonIcon, SunIcon } from '@heroicons/vue/24/outline';
+// Imports
+import { AppButton } from '@/components/app'
+import type { SidebarProvider } from '@/layouts/TheLayoutDashboard.vue'
+import { Bars4Icon, MoonIcon, SunIcon } from '@heroicons/vue/24/outline'
 import { inject, ref, toRef } from 'vue'
-import { useDark } from '@vueuse/core';
+import { useDark } from '@vueuse/core'
+
+
+/** TOGGLE DARK MODE */
 
 const isDark = useDark({
   selector: 'body',
@@ -12,6 +16,8 @@ const isDark = useDark({
   valueLight: 'light',
 })
 
+
+/** TOGGLE SIDEBAR */
 const sidebar = inject<SidebarProvider>('sidebar', {
   isSidebarOpen: ref(false),
   toggleSidebar: ()=>{}

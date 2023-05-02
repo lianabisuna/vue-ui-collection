@@ -1,31 +1,30 @@
 <script lang="ts" setup>
-import { XMarkIcon } from '@heroicons/vue/24/outline';
+// Imports
 import { PropType, computed } from 'vue'
-import { AppButton } from '@/components/app';
+import { XMarkIcon } from '@heroicons/vue/24/outline'
+import { AppButton } from '@/components/app'
+import type { DialogPosition } from './types'
 
-/** types */
-export type ModalPosition = 'center'|'top'|'right'|'bottom'|'left'|'top-left'|'top-right'|'bottom-right'|'bottom-left'
+// Types
 export type ModalSize = 'xs'|'sm'|'md'|'lg'|'xl'
 
-/** props */
+// Props
 const props = defineProps({
   modelValue: { type: Boolean as PropType<boolean>, default: false },
   persistent: { type: Boolean as PropType<boolean>, default: false },
   hideBackdrop: { type: Boolean as PropType<boolean>, default: false },
-  backdropClass: { type: String as PropType<string>, default: '' }, // backdrop-blur-sm
+  backdropClass: { type: String as PropType<string>, default: '' },
   size: { type: String as PropType<ModalSize>, default: '' },
-  position: { type: String as PropType<ModalPosition>, default: '' },
+  position: { type: String as PropType<DialogPosition>, default: '' },
   closeIcon: { type: Boolean as PropType<boolean>, default: false },
   fullscreen: { type: Boolean as PropType<boolean>, default: false },
-  // image - only in content
-  // header, body, footer - another component
-    // modal action - cancel/confirm
-    // modal alert - ok
-    // modal form
-  // scrollable
 })
 
+// Emits
 const emits = defineEmits(['update:modelValue'])
+
+
+/** CLASSES */
 
 const sizeClass = computed(() => {
   switch (props.size) {
@@ -37,6 +36,8 @@ const sizeClass = computed(() => {
   }
 })
 
+
+/** UPDATE MODEL VALUE */
 const updateModelValue = (value: Boolean) => {
   if (!props.persistent) emits('update:modelValue', value)
 }

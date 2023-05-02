@@ -1,15 +1,14 @@
 <script lang="ts" setup>
-/** Imports */
+// Imports
 import { PropType, useSlots, computed } from 'vue'
 import AppFormContainer from './AppFormContainer.vue';
+import type { TailwindColor, InputVariant } from './types'
 
-/** Types */
-export type TailwindColor = `${string}-${number}`|'black'|'white'
+// Types
 export type HTMLInputType = 'email'|'number'|'password'|'reset'|'search'|'submit'|'tel'|'text'|'url'
-export type ComponentSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'
-export type InputVariant = 'outlined'|'filled'|'underlined'
+export type InputSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'
 
-/** Props */
+// Props
 const props = defineProps({
   modelValue: { type: String as PropType<string>, default: '' },
   autofocus: { type: Boolean as PropType<boolean>, default: false },
@@ -18,7 +17,7 @@ const props = defineProps({
   name: { type: String as PropType<string>, default: '' },
   placeholder: { type: String as PropType<string>, default: '' },
   type: { type: String as PropType<HTMLInputType>, default: 'text' },
-  /** Form container */
+  /** Form Container */
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
   error: { type: Boolean as PropType<boolean>, default: false },
   success: { type: Boolean as PropType<boolean>, default: false },
@@ -27,18 +26,20 @@ const props = defineProps({
   message: { type: String as PropType<string>, default: '' },
   disabled: { type: Boolean as PropType<boolean>, default: false },
   dark: { type: Boolean as PropType<boolean>, default: false },
-  size: { type: String as PropType<ComponentSize>, default: '' },
+  size: { type: String as PropType<InputSize>, default: '' },
   variant: { type: String as PropType<InputVariant>, default: '' },
   float: { type: Boolean as PropType<boolean>, default: false },
 })
 
-/** Slots */
+// Slots
 const slots = useSlots()
 
-/** Emits */
+// Emits
 const emits = defineEmits(['update:modelValue'])
 
-/** Update model value */
+
+/** UPDATE MODEL VALUE */
+
 const updateModelValue = (event: Event) => {
   const target = event.target as HTMLInputElement
   if (target.value !== undefined) {
@@ -46,7 +47,7 @@ const updateModelValue = (event: Event) => {
   }
 }
 
-/** Size class */
+// Size
 const sizeClass = computed(() => {
   switch (props.size) {
     case 'xs': return 'text-xs'
@@ -57,7 +58,7 @@ const sizeClass = computed(() => {
   }
 })
 
-/** Variant class */
+// Variant
 const variantClass = computed(() => {
   switch (props.variant) {
     case 'outlined': return ''

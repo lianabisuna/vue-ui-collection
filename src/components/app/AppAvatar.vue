@@ -1,17 +1,22 @@
 <script lang="ts" setup>
-import { PropType, computed } from 'vue';
+// Imports
+import { PropType, computed } from 'vue'
+import type { TailwindColor, RoundedSize } from './types'
 
-export type TailwindColor = `${string}-${number}`|'black'|'white'
-export type ComponentSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'|'full'
-export type RoundedSize = 'none'|'sm'|'md'|'lg'|'xl'|'full'
+// Types
+export type AvatarSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'|'full'
 
+// Props
 const props = defineProps({
   src: { type: String as PropType<string>, default: '' },
   color: { type: String as PropType<TailwindColor>, default: 'black' },
-  size: { type: String as PropType<ComponentSize>, default: '' },
+  size: { type: String as PropType<AvatarSize>, default: '' },
   rounded: { type: [Boolean,String] as PropType<RoundedSize>, default: 'full' },
   dark: { type: Boolean as PropType<boolean>, default: false },
 })
+
+
+/** CLASSES */
 
 const sizeClass = computed(() => {
   switch (props.size) {

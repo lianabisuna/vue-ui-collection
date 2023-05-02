@@ -1,16 +1,20 @@
 <script lang="ts" setup>
+// Imports
 import { PropType, computed } from 'vue'
+import type { TailwindColor } from './types'
 
-/** types */
-export type TailwindColor = `${string}-${number}`|'black'|'white'
-export type ComponentSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'|'full'
+// Types
+export type RatingSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'|'full'
 
-/** props */
+// Props
 const props = defineProps({
   modelValue: { type: [Number,String] as PropType<number|string>, default: 0 },
-  size: { type: String as PropType<ComponentSize>, default: '' },
+  size: { type: String as PropType<RatingSize>, default: '' },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
 })
+
+
+/** CLASSES */
 
 const sizeClass = computed(() => {
   switch (props.size) {

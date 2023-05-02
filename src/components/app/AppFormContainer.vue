@@ -1,16 +1,17 @@
 <script lang="ts" setup>
-import { PropType, computed, ref } from 'vue';
-import AppFormLabel from './AppFormLabel.vue';
-import AppFormMessage from './AppFormMessage.vue';
+// Imports
+import { PropType, computed, ref } from 'vue'
+import AppFormLabel from './AppFormLabel.vue'
+import AppFormMessage from './AppFormMessage.vue'
+import type { TailwindColor, InputVariant } from './types'
 
+// Types
+export type ContainerSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'
+
+// Props
 // export const formContainerProps = {
-
+//   // TO DO
 // }
-
-export type TailwindColor = `${string}-${number}`|'black'|'white'
-export type ComponentSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'
-export type InputVariant = 'outlined'|'filled'|'underlined'
-
 const props = defineProps({
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
   error: { type: Boolean as PropType<boolean>, default: false },
@@ -20,10 +21,13 @@ const props = defineProps({
   message: { type: String as PropType<string>, default: '' },
   disabled: { type: Boolean as PropType<boolean>, default: false },
   dark: { type: Boolean as PropType<boolean>, default: false },
-  size: { type: String as PropType<ComponentSize>, default: '' },
+  size: { type: String as PropType<ContainerSize>, default: '' },
   variant: { type: String as PropType<InputVariant>, default: '' },
   float: { type: Boolean as PropType<boolean>, default: false },
 })
+
+
+/** CLASSES */
 
 const bgClass = computed(() => {
   switch (props.variant) {
@@ -108,9 +112,13 @@ const paddingXClass = computed(() => {
   }
 })
 
-/** Focus on input upon clicking container */
+
+/** FOCUS ON INPUT UPON CLICKING CONTAINER */
+
+// Data
 const containerRef = ref<any>()
 
+// Function
 const onClickContainer = () => {
   containerRef.value.querySelector('input').focus()
 }

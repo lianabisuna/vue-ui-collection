@@ -1,6 +1,8 @@
 <script lang="ts" setup>
+// Imports
 import { PropType } from 'vue';
 
+// Props
 defineProps({
   modelValue: { type: [String,Number], default: 0 },
   dark: { type: Boolean as PropType<boolean>, default: false },

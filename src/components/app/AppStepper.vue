@@ -1,15 +1,16 @@
 <script lang="ts" setup>
+// Imports
 import { PropType } from 'vue'
+import type { TailwindColor } from './types'
 
-export type ComponentSize = 'xs'|'sm'|'lg'|'xl'
-export type TailwindColor = `${string}-${number}`|'black'|'white'
-
+// Types
 interface BreadcrumbProp {
   completed: boolean
   active: boolean
   title: string
 }
 
+// Props
 defineProps({
   items: { type: Array as PropType<BreadcrumbProp[]>, default: [] },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },

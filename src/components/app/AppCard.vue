@@ -1,19 +1,20 @@
 <script lang="ts" setup>
+// Imports
 import { PropType, computed } from 'vue'
 
-/** types */
-export type TailwindColor = `${string}-${number}`|'black'|'white'
-
-/** props */
+// Props
 const props = defineProps({
   containerClass: { type: String as PropType<String>, default: '' },
   rounded: { type: String as PropType<String>, default: '' },
   shadow: { type: String as PropType<String>, default: '' },
   disabled: { type: Boolean as PropType<boolean>, default: false },
-  loading: { type: Boolean as PropType<boolean>, default: false }, // pending
+  loading: { type: Boolean as PropType<boolean>, default: false }, // TO DO
   to: { type: [String,Object] as PropType<string|object>, default: '' },
   dark: { type: Boolean as PropType<boolean>, default: false },
 })
+
+
+/** CLASSES */
 
 const roundedClass = computed(() => {
   return props.rounded ? `rounded-${props.rounded}` : 'rounded'

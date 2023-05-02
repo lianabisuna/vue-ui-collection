@@ -1,16 +1,20 @@
 <script lang="ts" setup>
+// Imports
 import { PropType, computed } from 'vue'
+import type { TailwindColor } from './types'
 
-/** types */
+// Types
 export type TooltipPosition = 'top'|'right'|'bottom'|'left'
-export type TailwindColor = `${string}-${number}`|'black'|'white'
 
-/** props */
+// Props
 const props = defineProps({
   position: { type: String as PropType<TooltipPosition>, default: 'top' },
   color: { type: String as PropType<TailwindColor>, default: 'gray-500' },
   hideArrow: { type: Boolean as PropType<boolean>, default: false },
 })
+
+
+/** CLASSES */
 
 const positionClass = computed(() => {
   switch (props.position) {

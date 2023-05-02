@@ -1,21 +1,28 @@
 <script lang="ts" setup>
-import Header from '@/components/TheHeader.vue';
-import Sidebar from '../components/TheSidebar.vue';
-
+// Imports
 import { ref, provide, type Ref } from 'vue'
+import Header from '@/components/TheHeader.vue'
+import Sidebar from '../components/TheSidebar.vue'
 
+// Types
 export interface SidebarProvider {
   isSidebarOpen: Ref<boolean>
   toggleSidebar: CallableFunction
 }
 
+
+/** TOGGLE SIDEBAR */
+
+// Data
 const isSidebarOpen = ref(false)
+
+// Function
 const toggleSidebar = (value: boolean|undefined = undefined) => {
   isSidebarOpen.value = value !== undefined ? value : !isSidebarOpen.value
 }
-provide('sidebar', { isSidebarOpen, toggleSidebar })
 
-const showNotes = ref(true)
+// Provide
+provide('sidebar', { isSidebarOpen, toggleSidebar })
 </script>
 
 <template>

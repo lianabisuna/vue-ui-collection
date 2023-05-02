@@ -1,18 +1,21 @@
 <script lang="ts" setup>
+// Imports
 import { PropType, computed } from 'vue'
+import type {
+  TailwindColor,
+  ThemeColor,
+  ColorTone
+} from './types'
 
-/** types */
-export type ThemeColor = 'primary'|'secondary'|'success'|'warning'|'danger'|'info'
-export type TailwindColor = `${string}-${number}`|'black'|'white'
-export type ComponentSize = 'xs'|'sm'|'lg'|'xl'
+// Types
+export type ButtonSize = 'xs'|'sm'|'lg'|'xl'
 export type ButtonVariant = 'outlined'|'text'|ThemeColor
 export type ButtonType = 'button'|'submit'|'reset'
-export type ColorTone = 'dark'|'light'
 
-/** props */
+// Props
 const props = defineProps({
   disabled: { type: Boolean as PropType<boolean>, default: false },
-  size: { type: String as PropType<ComponentSize>, default: '' },
+  size: { type: String as PropType<ButtonSize>, default: '' },
   to: { type: [String,Object] as PropType<string|object>, default: '' },
   type: { type: String as PropType<ButtonType>, default: 'button' },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
@@ -21,6 +24,9 @@ const props = defineProps({
   tone: { type: String as PropType<ColorTone>, default: '' },
   dark: { type: Boolean as PropType<boolean>, default: false },
 })
+
+
+/** CLASSES */
 
 const sizeClass = computed(() => {
   if (props.icon) {

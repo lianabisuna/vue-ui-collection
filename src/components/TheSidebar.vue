@@ -1,15 +1,16 @@
 <script lang="ts" setup>
-import Navigation from './TheNavigation.vue';
-import { AppLogo, AppFormInput, AppButton } from '@/components/app';
+// Imports
+import Navigation from './TheNavigation.vue'
+import { AppLogo, AppFormInput, AppButton } from '@/components/app'
 import { computed, inject, ref, toRef } from 'vue'
 import { ArrowLeftOnRectangleIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/vue/24/outline'
-import type { SidebarProvider } from '@/layouts/TheLayoutDashboard.vue';
-import { RouteLocationRaw } from 'vue-router';
-import { vOnClickOutside } from '@vueuse/components';
-import { useDark } from '@vueuse/core';
+import type { SidebarProvider } from '@/layouts/TheLayoutDashboard.vue'
+import { RouteLocationRaw } from 'vue-router'
+import { vOnClickOutside } from '@vueuse/components'
+import { useDark } from '@vueuse/core'
 
-/** types */
-type TailwindColor = `${string}-${number}`
+// Types
+export type TailwindColor = `${string}-${number}`|'black'|'white'
 
 interface Component {
   name: string
@@ -18,7 +19,12 @@ interface Component {
   items: number
 }
 
-/** sidebar */
+// Dark Mode
+const isDark = useDark();
+
+
+/** TOGGLE SIDEBAR */
+
 const sidebar = inject<SidebarProvider>('sidebar', {
   isSidebarOpen: ref(false),
   toggleSidebar: ()=>{}
@@ -26,7 +32,10 @@ const sidebar = inject<SidebarProvider>('sidebar', {
 
 const isSidebarOpen = toRef(sidebar, 'isSidebarOpen')
 
-/** components */
+
+/** FILTER COMPONENTS */
+
+const searchKeyword = ref('')
 const components: Component[] = [
   { name: 'Accordion', to: '/', color: 'green-500', items: 1 },
   { name: 'Alert', to: '/alert', color: 'cyan-500', items: 2 },
@@ -71,16 +80,12 @@ const components: Component[] = [
   { name: 'Tooltip', to: '/tooltip', color: 'lime-500', items: 4 },
 ]
 
-const searchKeyword = ref('')
-
 const filteredComponents = computed(() => {
   const _filteredComponents = components.filter((c) => {
     return c.name.toLowerCase().includes(searchKeyword.value.toLowerCase())
   })
   return _filteredComponents
 })
-
-const isDark = useDark();
 </script>
 
 <template>

@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { PropType } from 'vue';
+// Imports
+import { PropType } from 'vue'
+import type { TailwindColor } from './types'
 
-export type TailwindColor = `${string}-${number}`|'black'|'white'
-
+// Props
 defineProps({
   modelValue: { type: [String,Number], default: 0 },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },

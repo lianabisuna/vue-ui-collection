@@ -1,20 +1,25 @@
 <script lang="ts" setup>
-import { PropType, computed } from 'vue';
+// Imports
+import { PropType, computed } from 'vue'
+import type { TailwindColor, InputVariant } from './types'
 
-export type TailwindColor = `${string}-${number}`|'black'|'white'
-export type ComponentSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'
-export type InputVariant = 'outlined'|'filled'|'underlined'
+// Types
+export type LabelSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'
 
+// Props
 const props = defineProps({
   required: { type: Boolean as PropType<boolean>, default: false },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
   error: { type: Boolean as PropType<boolean>, default: false },
   success: { type: Boolean as PropType<boolean>, default: false },
   dark: { type: Boolean as PropType<boolean>, default: false },
-  size: { type: String as PropType<ComponentSize>, default: '' },
+  size: { type: String as PropType<LabelSize>, default: '' },
   variant: { type: String as PropType<InputVariant>, default: '' },
   float: { type: Boolean as PropType<boolean>, default: false },
 })
+
+
+/** CLASSES */
 
 const textClass = computed(() => {
   if (props.error) return 'text-red-500 group-focus-within:text-red-500'
@@ -25,7 +30,6 @@ const textClass = computed(() => {
   }
 })
 
-/** Size class */
 const sizeClass = computed(() => {
   switch (props.size) {
     case 'xs': return 'text-xs'
@@ -36,7 +40,6 @@ const sizeClass = computed(() => {
   }
 })
 
-/** Variant class */
 const positionClass = computed(() => {
   if (props.float) {
     switch (props.variant) {

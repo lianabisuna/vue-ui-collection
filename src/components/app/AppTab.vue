@@ -1,14 +1,15 @@
 <script lang="ts" setup>
-import { PropType } from 'vue';
+// Imports
+import { PropType } from 'vue'
+import type { TailwindColor } from './types'
 
-/** types */
-export type TailwindColor = `${string}-${number}`|'black'|'white'
+// Types
 interface TabProp {
   active: boolean
   title: string
 }
 
-/** props */
+// Props
 defineProps({
   items: { type: Array as PropType<TabProp[]>, default: [] },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
