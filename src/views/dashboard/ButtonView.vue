@@ -72,6 +72,17 @@ const components: any = ref([])
         Prepend Icon
       </AppButton>
     </CardComponentPreview>
+    <CardComponentPreview
+      v-model:dark="components[6]"
+      class="aspect-[4/2] lg:aspect-square"
+    >
+      <AppButton 
+        :dark="components[6]"
+        loading
+      >
+        Loading
+      </AppButton>
+    </CardComponentPreview>
   </div>
 </template>
 

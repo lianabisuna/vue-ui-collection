@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 // Imports
 import { PropType, computed } from 'vue'
+import AppSpinner from './AppSpinner.vue'
 import type {
   TailwindColor,
   ThemeColor,
@@ -23,6 +24,7 @@ const props = defineProps({
   variant: { type: String as PropType<ButtonVariant>, default: '' },
   tone: { type: String as PropType<ColorTone>, default: '' },
   dark: { type: Boolean as PropType<boolean>, default: false },
+  loading: { type: Boolean as PropType<boolean>, default: false },
 })
 
 
@@ -84,7 +86,7 @@ const borderClass = computed(() => {
     class="inline-flex items-center justify-center text-center rounded font-medium active:shadow"
     :class="[
       `outline-${color}/50`,
-      { 'opacity-50 pointer-events-none': disabled },
+      { 'opacity-50 pointer-events-none': disabled || loading },
       { 'aspect-square': icon },
       sizeClass, bgClass, textClass, borderClass,
     ]"
@@ -92,6 +94,14 @@ const borderClass = computed(() => {
     :disabled="disabled"
     v-bind="$attrs"
   >
+    <AppSpinner
+      v-if="loading"
+      :value="true"
+      size="sm"
+      class="mr-2"
+      :color="color"
+    >
+  </AppSpinner>
     <slot></slot>
   </component>
 </template>

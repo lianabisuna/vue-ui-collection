@@ -19,11 +19,11 @@ const props = defineProps({
 
 const sizeClass = computed(() => {
   switch (props.size) {
-    case 'xs': return 'border-[3px] h-4 w-4'
-    case 'sm': return 'border-[4px] h-6 w-6'
-    case 'lg': return 'border-[6px] h-10 w-10'
-    case 'xl': return 'border-[7px] h-12 w-12'
-    default: return 'border-[5px] h-8 w-8'
+    case 'xs': return 'border-[3px] h-3 w-3'
+    case 'sm': return 'border-[4px] h-4 w-4'
+    case 'lg': return 'border-[6px] h-6 w-6'
+    case 'xl': return 'border-[7px] h-7 w-7'
+    default: return 'border-[5px] h-5 w-5'
   }
 })
 </script>
@@ -36,6 +36,7 @@ const sizeClass = computed(() => {
       dark ? 'border-gray-600' : 'border-gray-300',
       `border-b-${color}`
     ]"
+    v-bind="$attrs"
   >
   </div>
 </template>
