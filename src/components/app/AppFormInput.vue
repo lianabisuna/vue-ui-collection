@@ -47,7 +47,8 @@ const updateModelValue = (event: Event) => {
   }
 }
 
-// Size
+/** CLASSES */
+
 const sizeClass = computed(() => {
   switch (props.size) {
     case 'xs': return 'text-xs'
@@ -58,7 +59,6 @@ const sizeClass = computed(() => {
   }
 })
 
-// Variant
 const variantClass = computed(() => {
   switch (props.variant) {
     case 'outlined': return ''
@@ -101,7 +101,7 @@ const variantClass = computed(() => {
         {
           'ml-2': slots.prepend,
           'mr-2': slots.append,
-          'placeholder-gray-400 placeholder-opacity-0': !float
+          'placeholder-gray-400 placeholder-opacity-0': float
         }
       ]"
       class="peer flex flex-1 bg-transparent outline-none w-auto"
