@@ -7,7 +7,7 @@ const components: any = ref([])
 </script>
 
 <template>
-  <div class="grid grid-cols-1 gap-3 p-3 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+  <div class="grid grid-cols-1 gap-3 p-3 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
     <CardComponentPreview
       v-model:dark="components[0]"
       class="aspect-[4/2] lg:aspect-square"
@@ -20,6 +20,18 @@ const components: any = ref([])
       </AppFormFile>
     </CardComponentPreview>
     <CardComponentPreview
+      v-model:dark="components[5]"
+      class="aspect-[4/2] lg:aspect-square"
+      title="Chip"
+    >
+      <AppFormFile
+        :dark="components[5]"
+        color="amber-500"
+        chip
+      >
+      </AppFormFile>
+    </CardComponentPreview>
+    <CardComponentPreview
       v-model:dark="components[1]"
       class="aspect-[4/2] lg:aspect-square"
       title="Multiple"
@@ -27,20 +39,20 @@ const components: any = ref([])
       <AppFormFile
         :dark="components[1]"
         color="amber-500"
-        placeholder="Attach one or more files"
         multiple
+        chip
       >
       </AppFormFile>
     </CardComponentPreview>
     <CardComponentPreview
       v-model:dark="components[2]"
       class="aspect-[4/2] lg:aspect-square"
-      title="Format"
+      title="Accept"
     >
       <AppFormFile
         :dark="components[2]"
         color="amber-500"
-        placeholder="Only image format is accepted"
+        placeholder="Image"
         accept="image/*"
       >
       </AppFormFile>
@@ -48,12 +60,14 @@ const components: any = ref([])
     <CardComponentPreview
       v-model:dark="components[3]"
       class="aspect-[4/2] lg:aspect-square"
-      title="Size"
+      title="Max Size"
     >
       <AppFormFile
         :dark="components[3]"
         color="amber-500"
-        placeholder="Allowed size is up to 3 MB"
+        placeholder="3 MB"
+        :max-size="3000000"
+        show-size
       >
       </AppFormFile>
     </CardComponentPreview>
@@ -65,21 +79,7 @@ const components: any = ref([])
       <AppFormFile
         :dark="components[4]"
         color="amber-500"
-        placeholder="Disabled"
         disabled
-      >
-      </AppFormFile>
-    </CardComponentPreview>
-    <CardComponentPreview
-      v-model:dark="components[5]"
-      class="aspect-[4/2] lg:aspect-square"
-      title="Chip"
-    >
-      <AppFormFile
-        :dark="components[5]"
-        color="amber-500"
-        multiple
-        chip
       >
       </AppFormFile>
     </CardComponentPreview>

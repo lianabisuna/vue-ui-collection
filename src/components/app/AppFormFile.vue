@@ -4,6 +4,7 @@ import { PropType, computed, ref, useSlots } from 'vue'
 import AppFormContainer from './AppFormContainer.vue';
 import type { TailwindColor, InputVariant } from './types'
 import AppChip from './AppChip.vue';
+import { fileHelper } from '@/helpers'
 
 // Types
 export type HTMLInputType = 'email'|'number'|'password'|'reset'|'search'|'submit'|'tel'|'text'|'url'
@@ -20,6 +21,8 @@ const props = defineProps({
   multiple: { type: Boolean as PropType<boolean>, default: false },
   dropzone: { type: Boolean as PropType<boolean>, default: false },
   accept: { type: String as PropType<string>, default: '' },
+  maxSize: { type: Number as PropType<number>, default: 0 },
+  showSize: { type: Boolean as PropType<boolean>, default: false },
   /** Form Container */
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
   error: { type: Boolean as PropType<boolean>, default: false },
@@ -43,13 +46,28 @@ const emits = defineEmits(['update:modelValue'])
 
 /** UPDATE MODEL VALUE */
 
-const files = ref<FileList|null>()
+// Data
+const files = ref()
 
+// Function
 const updateModelValue = (event: Event) => {
   const target = event.target as HTMLInputElement
-  if (target.files !== undefined) {
-    emits('update:modelValue', target.files)
-    files.value = target.files
+  if (target && target.files) {
+    const fileList = target.files as FileList;
+    const fileArray = Array.from(fileList).map((file) => {
+      if (props.maxSize > 0 && file.size > props.maxSize) {
+        return null
+      }
+      else return {
+        lastModified: file.lastModified,
+        name: file.name,
+        size: file.size,
+        type: file.type,
+        webkitRelativePath: file.webkitRelativePath,
+      }
+    }).filter((file) => file)
+    emits('update:modelValue', fileArray)
+    files.value = fileArray
   }
 }
 
@@ -58,10 +76,10 @@ const updateModelValue = (event: Event) => {
 
 const filteredModelValue = computed(() => {
   if (files.value?.length) {
-    const fileNames = Array.from(files.value).map(file => {
-      return file.name
+    return files.value.map((file: any) => {
+      const formattedSize = fileHelper.formatBytes(file.size)
+      return props.showSize ? `${file.name} (${formattedSize})` : file.name
     })
-    return props.chip ? fileNames : fileNames.join(', ')
   }
 })
 
