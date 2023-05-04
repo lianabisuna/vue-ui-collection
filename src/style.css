@@ -22,6 +22,10 @@
   text-align: center;
 } */
 
+.path-stroke-2 > path {
+  stroke-width: 2;
+}
+
 .path-stroke-3 > path {
   stroke-width: 3;
 }
