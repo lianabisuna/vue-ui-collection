@@ -86,7 +86,7 @@ const formatFileList = (fileList: FileList) => {
 // Data
 const files = ref()
 
-// Update model value
+// Function: Update model value
 const updateModelValue = (event: Event) => {
   const target = event.target as HTMLInputElement
   if (target && target.files) {
@@ -96,7 +96,7 @@ const updateModelValue = (event: Event) => {
   }
 }
 
-// Remove file from list
+// Function: Remove file from list
 const removeFile = (index: number) => {
   files.value = [ ...files.value ].filter((file, key) => key !== index)
 }
@@ -122,8 +122,10 @@ const filteredModelValue = computed(() => {
 
 /** HANDLE DRAG AND DROP FILES */
 
+// Data
 const isDragging = ref(false)
 
+// Function
 const onFileDrop = (event: DragEvent) => {
   event.stopPropagation()
   const target = event.dataTransfer
