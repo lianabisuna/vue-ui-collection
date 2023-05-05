@@ -63,6 +63,24 @@ const onInputClick = (event: Event) => {
 }
 
 
+/** CONVERT FILE LIST TO ARRAY */
+const formatFileList = (fileList: FileList) => {
+  const fileArray = Array.from(fileList).map((file) => {
+    if (props.maxSize > 0 && file.size > props.maxSize) {
+      return null
+    }
+    else return {
+      lastModified: file.lastModified,
+      name: file.name,
+      size: file.size,
+      type: file.type,
+      webkitRelativePath: file.webkitRelativePath,
+    }
+  }).filter((file) => file)
+  return fileArray
+}
+
+
 /** UPDATE MODEL VALUE */
 
 // Data
@@ -72,19 +90,7 @@ const files = ref()
 const updateModelValue = (event: Event) => {
   const target = event.target as HTMLInputElement
   if (target && target.files) {
-    const fileList = target.files as FileList;
-    const fileArray = Array.from(fileList).map((file) => {
-      if (props.maxSize > 0 && file.size > props.maxSize) {
-        return null
-      }
-      else return {
-        lastModified: file.lastModified,
-        name: file.name,
-        size: file.size,
-        type: file.type,
-        webkitRelativePath: file.webkitRelativePath,
-      }
-    }).filter((file) => file)
+    const fileArray = formatFileList(target.files)
     emits('update:modelValue', fileArray)
     files.value = fileArray
   }
@@ -112,6 +118,21 @@ const filteredModelValue = computed(() => {
     })
   }
 })
+
+
+/** HANDLE DRAG AND DROP FILES */
+
+const isDragging = ref(false)
+
+const onFileDrop = (event: DragEvent) => {
+  event.stopPropagation()
+  const target = event.dataTransfer
+  if (target && target.files) {
+    const fileArray = formatFileList(target.files)
+    emits('update:modelValue', fileArray)
+    files.value = fileArray
+  }
+}
 </script>
 
 <template>
@@ -124,9 +145,18 @@ const filteredModelValue = computed(() => {
     <div
       class="flex flex-col h-[200px] border-dashed border-2 rounded-lg cursor-pointer"
       :class="[
-        dark ? 'bg-gray-600 border-gray-500 hover:bg-gray-600/80 text-gray-300' : 'bg-gray-100 border-gray-300 hover:bg-gray-200/70 text-gray-500'
+        dark ? 'bg-gray-600 border-gray-500 hover:bg-gray-600/80 text-gray-300' : 'bg-gray-100 border-gray-300 hover:bg-gray-200/70 text-gray-500',
+        isDragging
+          ? dark
+            ? 'bg-gray-600/80'
+            : 'bg-gray-200/70'
+          : ''
       ]"
       @click="onInputClick"
+      @dragenter.prevent = "isDragging = true"
+      @dragover.prevent = "isDragging = true"
+      @dragleave.prevent = "isDragging = false"
+      @drop.prevent="onFileDrop"
     >
       <input
         ref="inputRef"
