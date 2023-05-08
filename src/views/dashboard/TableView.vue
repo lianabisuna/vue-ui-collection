@@ -58,6 +58,7 @@ items.value[2] = [
         color="emerald-500"
         :headers="headers[0]"
         :items="items[0]"
+        class="table-fixed"
       >
       </AppTable>
     </CardComponentPreview>
@@ -70,6 +71,7 @@ items.value[2] = [
         color="emerald-500"
         :headers="headers[1]"
         :items="items[1]"
+        class="table-fixed"
       >
         <template #name="{ data, item }">
           <div>
@@ -88,12 +90,13 @@ items.value[2] = [
         color="emerald-500"
         :headers="headers[2]"
         :items="items[2]"
+        class="table-fixed"
       >
       </AppTable>
     </CardComponentPreview>
     <CardComponentPreview
       v-model:dark="components[3]"
-      title="Sortable"
+      title="Loading"
     >
       <AppTable
         :dark="components[3]"
@@ -101,6 +104,7 @@ items.value[2] = [
         :headers="headers[0]"
         :items="items[0]"
         loading
+        class="table-fixed"
       >
       </AppTable>
     </CardComponentPreview>

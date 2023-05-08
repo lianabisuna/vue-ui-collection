@@ -1,12 +1,11 @@
 <script lang="ts" setup>
 // Imports
 import { PropType } from 'vue'
-import type { ClassBinding } from './types'
 import { ArrowLongDownIcon, ArrowLongUpIcon } from '@heroicons/vue/24/outline'
 import AppFormCheckbox from './AppFormCheckbox.vue'
 import AppLoading from './AppLoading.vue'
 import AppSkeleton from './AppSkeleton.vue'
-import type { TailwindColor } from './types'
+import type { TailwindColor, ClassBinding } from './types'
 
 // Types
 interface HeadersProp {
@@ -72,6 +71,7 @@ const handleSort = (header: HeadersProp) => {
       :class="[
         dark ? 'text-gray-100' : 'text-gray-800'
       ]"
+      v-bind="$attrs"
     >
       <!-- Header -->
       <thead
