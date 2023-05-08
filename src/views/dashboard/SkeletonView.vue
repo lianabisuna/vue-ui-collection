@@ -4,6 +4,18 @@ import { CardComponentPreview } from '@/components/cards';
 import { ref } from 'vue';
 
 const components: any = ref([])
+
+const sizes = [
+  'h-4 w-2/4 mb-1',
+  'h-3 w-full',
+  'h-3 w-full',
+  'h-3 w-4/5',
+  'h-3 w-11/12',
+  'h-3 w-full',
+  'h-3 w-full',
+  'h-3 w-full',
+  'h-3 w-4/5',
+]
 </script>
 
 <template>
@@ -14,6 +26,7 @@ const components: any = ref([])
     >
       <AppSkeleton
         :dark="components[0]"
+        :sizes="sizes"
       >
       </AppSkeleton>
     </CardComponentPreview>

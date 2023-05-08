@@ -55,6 +55,7 @@ items.value[2] = [
     >
       <AppTable
         :dark="components[0]"
+        color="emerald-500"
         :headers="headers[0]"
         :items="items[0]"
       >
@@ -66,6 +67,7 @@ items.value[2] = [
     >
       <AppTable
         :dark="components[1]"
+        color="emerald-500"
         :headers="headers[1]"
         :items="items[1]"
       >
@@ -83,8 +85,22 @@ items.value[2] = [
     >
       <AppTable
         :dark="components[2]"
+        color="emerald-500"
         :headers="headers[2]"
         :items="items[2]"
+      >
+      </AppTable>
+    </CardComponentPreview>
+    <CardComponentPreview
+      v-model:dark="components[3]"
+      title="Sortable"
+    >
+      <AppTable
+        :dark="components[3]"
+        color="emerald-500"
+        :headers="headers[0]"
+        :items="items[0]"
+        loading
       >
       </AppTable>
     </CardComponentPreview>

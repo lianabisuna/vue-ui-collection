@@ -4,6 +4,8 @@ import { PropType } from 'vue'
 import type { ClassBinding } from './types'
 import { ArrowLongDownIcon, ArrowLongUpIcon } from '@heroicons/vue/24/outline'
 import AppFormCheckbox from './AppFormCheckbox.vue'
+import AppLoading from './AppLoading.vue'
+import AppSkeleton from './AppSkeleton.vue'
 import type { TailwindColor } from './types'
 
 // Types
@@ -55,12 +57,15 @@ const handleSort = (header: HeadersProp) => {
 <template>
   <div class="relative w-full">
     <!-- Loading -->
-    <div
+    <AppLoading
       v-if="loading"
-      class="absolute h-full w-full cursor-wait pointer-events-none"
+      :color="color"
+      class="absolute h-full w-full"
+      :class="[
+        dark ? 'bg-opacity-30 bg-gray-100' : 'bg-opacity-10 bg-gray-800'
+      ]"
     >
-      Loading
-    </div>
+    </AppLoading>
     <!-- Table -->
     <table
       class="w-full"
@@ -123,8 +128,8 @@ const handleSort = (header: HeadersProp) => {
       <!-- Body -->
       <tbody>
         <tr
-          v-for="(item,key) in items"
-          :key="key"
+          v-for="(item,itemKey) in items"
+          :key="itemKey"
           class="border-b last:border-none"
           :class="[
             dark ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'
@@ -141,17 +146,35 @@ const handleSort = (header: HeadersProp) => {
             </AppFormCheckbox>
           </td>
           <td
-            v-for="(header,key) in headers"
-            :key="key"
+            v-for="(header,headerKey) in headers"
+            :key="headerKey"
             class="px-5 py-4"
           >
-            <slot
-              :name="header.key"
-              :item="item[header.key]"
-              :data="item"
-            >
-              {{ item[header.key] }}
-            </slot>
+            <div v-if="loading">
+              <AppSkeleton
+                hide-animation
+                :dark="dark"
+                :sizes="
+                  itemKey % 2
+                    ? headerKey % 2
+                      ? ['h-3 w-1/3']
+                      : ['h-3 w-2/3']
+                    : headerKey % 2
+                      ? ['h-3 w-2/3']
+                      : ['h-3 w-1/3']
+                "
+              >
+              </AppSkeleton>
+            </div>
+            <div v-else>
+              <slot
+                :name="header.key"
+                :item="item[header.key]"
+                :data="item"
+              >
+                {{ item[header.key] }}
+              </slot>
+            </div>
           </td>
         </tr>
       </tbody>
