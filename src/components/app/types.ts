@@ -9,3 +9,5 @@ export type ColorTone = 'dark'|'light'
 export type InputVariant = 'outlined'|'filled'|'underlined'
 
 export type DialogPosition = 'center'|'top'|'right'|'bottom'|'left'|'top-left'|'top-right'|'bottom-right'|'bottom-left'
+
+export type ClassBinding = string|string[]
