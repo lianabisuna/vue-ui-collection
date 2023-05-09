@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports
-import { PropType } from 'vue'
+import { PropType, computed, ref } from 'vue'
 import { ArrowLongDownIcon, ArrowLongUpIcon } from '@heroicons/vue/24/outline'
 import AppFormCheckbox from './AppFormCheckbox.vue'
 import AppLoading from './AppLoading.vue'
@@ -8,7 +8,7 @@ import AppSkeleton from './AppSkeleton.vue'
 import type { TailwindColor, ClassBinding } from './types'
 
 // Types
-interface HeadersProp {
+interface FieldsProp {
   text: string
   key: string
   sortable?: boolean
@@ -17,23 +17,26 @@ interface HeadersProp {
 interface OptionsProp {
   page: number
   perPage: number
-  sortBy: string
-  sortDesc: boolean
+  sortField: string
+  sortOrder: boolean
 }
 
+type SortDirection = 'asc'|'desc'|''
+
 // Props
-defineProps({
-  headers: { type: Array as PropType<HeadersProp[]>, default: [] },
+const props = defineProps({
+  fields: { type: Array as PropType<FieldsProp[]>, default: [] },
   options: { type: Array as PropType<OptionsProp[]>, default: [] },
   items: { type: Array as PropType<Record<string, any>[]>, default: [] },
   loading: { type: Boolean as PropType<boolean>, default: false },
-  perPage: { type: Number as PropType<number>, default: 10 },
-  page: { type: Number as PropType<number>, default: 1 },
-  sortBy: { type: Array as PropType<string[]>, default: [] },
-  sortDesc: { type: Boolean as PropType<boolean>, default: false },
-  showSelect: { type: Boolean as PropType<boolean>, default: false },
   dark: { type: Boolean as PropType<boolean>, default: false },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
+  // Options
+  // perPage: { type: Number as PropType<number>, default: 10 },
+  // page: { type: Number as PropType<number>, default: 1 },
+  // sortField: { type: Array as PropType<string[]>, default: [] },
+  // sortOrder: { type: Boolean as PropType<boolean>, default: false },
+  // showSelect: { type: Boolean as PropType<boolean>, default: false },
 })
 
 // Emits
@@ -46,10 +49,88 @@ const emits = defineEmits([
 ])
 
 
-/** EXTERNAL SORT */
+/** HANDLE SORT ON CLICK */
 
-const handleSort = (header: HeadersProp) => {
-  if (!header.sortable) return
+// Data
+const sortField = ref('')
+const sortOrder = ref('')
+
+// Function
+const handleSort = (field: FieldsProp) => {
+  if (!field.sortable) return
+
+  if (sortField.value === field.key) {
+    // REFACTOR
+    switch (sortOrder.value) {
+      case 'asc':
+        sortOrder.value = 'desc'
+        break
+      case 'desc':
+        sortOrder.value = ''
+        break
+      default:
+        sortOrder.value = 'asc'
+        break
+    }
+  } else {
+    sortField.value = field.key
+    sortOrder.value = 'asc'
+  }
+}
+
+
+/** SORT BY DIRECTION */
+
+const sortByAsc = (a: any, b: any, key: string) => {
+  if(a[key] < b[key]) return -1
+  if(a[key] > b[key]) return 1
+  return 0
+}
+
+const sortByDesc = (a: any, b: any, key: string) => {
+  if(a[key] < b[key]) return 1
+  if(a[key] > b[key]) return -1
+  return 0
+}
+
+
+/** INTERNAL SORT */
+
+function internalSort(_items: Record<string, any>[]) {
+  if (!sortOrder.value) return _items
+  
+  const key = sortField.value
+  return _items.sort((a,b) => {
+    return sortOrder.value === 'asc'
+      ? sortByAsc(a, b, key)
+      : sortByDesc(a, b, key)
+  })
+}
+
+
+/** FILTERED ITEMS */
+
+const filteredItems = computed(() => {
+  if (!sortField.value) return props.items
+  
+  const _items = [ ...props.items ]
+  return internalSort(_items)
+})
+
+
+/** CLASSES */
+
+const sortOrderClass = (field: any, order: SortDirection) => {
+  if ( !(field === sortField.value && order === sortOrder.value) ) {
+    return props.dark ? 'text-gray-500' : 'text-gray-400'
+  } else {
+    switch (order) {
+      case 'asc': case 'desc':
+        return `text-${props.color}`
+      case '':
+        return props.dark ? 'text-gray-500' : 'text-gray-400'
+    } 
+  }
 }
 </script>
 
@@ -80,6 +161,7 @@ const handleSort = (header: HeadersProp) => {
         ]"
       >
         <tr>
+          <!-- Select All -->
           <th
             v-if="false"
             scope="col"
@@ -90,34 +172,37 @@ const handleSort = (header: HeadersProp) => {
             >
             </AppFormCheckbox>
           </th>
+          <!-- Header Content -->
           <th
-            v-for="(header,key) in headers"
+            v-for="(field,key) in fields"
             :key="key"
             scope="col"
             class="px-5 py-3"
             :class="[
-              { 'cursor-pointer': header.sortable }
+              { 'cursor-pointer': field.sortable }
             ]"
-            @click="() => handleSort(header)"
+            @click="() => handleSort(field)"
           >
             <div class="flex items-center">
-              <span>{{ header.text }}</span>
+              <!-- Header Text -->
+              <span>{{ field.text }}</span>
               <!-- Sort Icon -->
-              <span v-if="header.sortable" class="relative flex ml-2">
+              <span
+                v-if="field.sortable"
+                class="relative flex ml-2"
+              >
+                <!-- Ascending -->
                 <ArrowLongDownIcon
                   class="absolute top-1/2 left-0 -translate-y-1/2 h-3.5 w-3.5 path-stroke-2"
                   :class="[
-                    true
-                      ? dark ? 'text-gray-100' : 'text-gray-800'
-                      : dark ? 'text-gray-500' : 'text-gray-400'
+                    sortOrderClass(field.key, 'asc')
                   ]"
                 />
+                <!-- Descending -->
                 <ArrowLongUpIcon
                   class="absolute top-1/2 left-2.5 -translate-y-1/2 h-3.5 w-3.5 path-stroke-2"
                   :class="[
-                    false
-                      ? dark ? 'text-gray-100' : 'text-gray-500'
-                      : dark ? 'text-gray-500' : 'text-gray-400'
+                    sortOrderClass(field.key, 'desc')
                   ]"
                 />
               </span>
@@ -128,13 +213,14 @@ const handleSort = (header: HeadersProp) => {
       <!-- Body -->
       <tbody>
         <tr
-          v-for="(item,itemKey) in items"
+          v-for="(item,itemKey) in filteredItems"
           :key="itemKey"
           class="border-b last:border-none"
           :class="[
             dark ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'
           ]"
         >
+          <!-- Select Row -->
           <td
             v-if="false"
             scope="col"
@@ -146,8 +232,8 @@ const handleSort = (header: HeadersProp) => {
             </AppFormCheckbox>
           </td>
           <td
-            v-for="(header,headerKey) in headers"
-            :key="headerKey"
+            v-for="(field,fieldKey) in fields"
+            :key="fieldKey"
             class="px-5 py-4"
           >
             <div v-if="loading">
@@ -156,10 +242,10 @@ const handleSort = (header: HeadersProp) => {
                 :dark="dark"
                 :sizes="
                   itemKey % 2
-                    ? headerKey % 2
+                    ? fieldKey % 2
                       ? ['h-3 w-1/3']
                       : ['h-3 w-2/3']
-                    : headerKey % 2
+                    : fieldKey % 2
                       ? ['h-3 w-2/3']
                       : ['h-3 w-1/3']
                 "
@@ -168,11 +254,11 @@ const handleSort = (header: HeadersProp) => {
             </div>
             <div v-else>
               <slot
-                :name="header.key"
-                :item="item[header.key]"
+                :name="field.key"
+                :item="item[field.key]"
                 :data="item"
               >
-                {{ item[header.key] }}
+                {{ item[field.key] }}
               </slot>
             </div>
           </td>

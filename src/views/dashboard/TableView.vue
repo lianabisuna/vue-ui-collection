@@ -4,46 +4,49 @@ import { CardComponentPreview } from '@/components/cards';
 import { ref } from 'vue';
 
 const components: any = ref([])
-const headers: any = ref([])
+const fields: any = ref([])
 const items: any = ref([])
 
-headers.value[0] = [
+fields.value[0] = [
   { text: 'Name', key: 'name', sortable: false },
   { text: 'Code', key: 'code', sortable: false },
   { text: 'Price', key: 'price', sortable: false },
 ]
 
 items.value[0] = [
-  { name: 'Octagon A', code: 'A', price: '1' },
-  { name: 'Octagon B', code: 'B', price: '2' },
-  { name: 'Octagon C', code: 'C', price: '3' },
-  { name: 'Octagon D', code: 'D', price: '4' },
+  { name: 'SKRUTT', code: 'N035645235', price: 6990 },
+  { name: 'LAGKAPTEN / ALEX', code: 'K26438645T8', price: 250 },
+  { name: 'LINNMON ADILS', code: '0456S35734', price: 649 },
+  { name: 'MALM', code: '40G66772H5', price: 780 },
+  { name: 'KULLEN', code: '04B462DG52', price: 599 },
 ]
 
-headers.value[1] = [
+fields.value[1] = [
   { text: 'Name', key: 'name', sortable: false },
   { text: 'Code', key: 'code', sortable: false },
   { text: 'Price', key: 'price', sortable: false },
 ]
 
 items.value[1] = [
-  { name: 'BoConcept A', code: 'A', price: '1', inventory: 2 },
-  { name: 'BoConcept B', code: 'B', price: '2', inventory: 10 },
-  { name: 'BoConcept C', code: 'C', price: '3', inventory: 3 },
-  { name: 'BoConcept D', code: 'D', price: '4', inventory: 0 },
+  { name: 'BLAVINGAD', code: 'N035645235', price: 2490, inventory: 10 },
+  { name: 'OMSESIDIG', code: 'K26438645T8', price: 3990, inventory: 0 },
+  { name: 'TORPARO', code: '0456S35734', price: 300, inventory: 2 },
+  { name: 'TUMHOLMEN', code: '40G66772H5', price: 90, inventory: 3 },
+  { name: 'SOMMARFLOX', code: '04B462DG52', price: 110, inventory: 3 },
 ]
 
-headers.value[2] = [
+fields.value[2] = [
   { text: 'Name', key: 'name', sortable: true, desc: false },
   { text: 'Code', key: 'code', sortable: true, desc: false },
   { text: 'Price', key: 'price', sortable: true, desc: false },
 ]
 
 items.value[2] = [
-  { name: 'IKEA A', code: 'A', price: '1' },
-  { name: 'IKEA B', code: 'B', price: '2' },
-  { name: 'IKEA C', code: 'C', price: '3' },
-  { name: 'IKEA D', code: 'D', price: '4' },
+  { name: 'SOMMARLANKE', code: 'N035645235', price: 2900 },
+  { name: 'FLODBJORK', code: 'K26438645T8', price: 690 },
+  { name: 'RAVUNGE', code: '0456S35734', price: 690 },
+  { name: 'TIGERFINK', code: '40G66772H5', price: 1100 },
+  { name: 'LOBERGET / SIBBEN', code: '04B462DG52', price: 1290 },
 ]
 </script>
 
@@ -56,7 +59,7 @@ items.value[2] = [
       <AppTable
         :dark="components[0]"
         color="emerald-500"
-        :headers="headers[0]"
+        :fields="fields[0]"
         :items="items[0]"
         class="table-fixed"
       >
@@ -69,7 +72,7 @@ items.value[2] = [
       <AppTable
         :dark="components[1]"
         color="emerald-500"
-        :headers="headers[1]"
+        :fields="fields[1]"
         :items="items[1]"
         class="table-fixed"
       >
@@ -88,7 +91,7 @@ items.value[2] = [
       <AppTable
         :dark="components[2]"
         color="emerald-500"
-        :headers="headers[2]"
+        :fields="fields[2]"
         :items="items[2]"
         class="table-fixed"
       >
@@ -101,7 +104,7 @@ items.value[2] = [
       <AppTable
         :dark="components[3]"
         color="emerald-500"
-        :headers="headers[0]"
+        :fields="fields[0]"
         :items="items[0]"
         loading
         class="table-fixed"
