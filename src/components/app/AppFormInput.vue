@@ -102,9 +102,9 @@ const variantClass = computed(() => {
         {
           'ml-2': slots.prepend,
           'mr-2': slots.append,
-          'placeholder-gray-400 placeholder-opacity-0': float
+          'placeholder-gray-400 placeholder-opacity-0': float,
+          'w-full': block
         },
-        block ? 'w-full' : 'w-fit'
       ]"
       class="peer flex flex-1 bg-transparent outline-none"
       v-bind="$attrs"

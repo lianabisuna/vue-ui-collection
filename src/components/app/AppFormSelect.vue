@@ -5,13 +5,13 @@ import { ChevronDownIcon } from '@heroicons/vue/24/outline'
 import { vOnClickOutside } from '@vueuse/components'
 import { AppChip } from '@/components/app'
 import AppFormContainer from './AppFormContainer.vue'
-import type { TailwindColor, InputVariant } from './types'
+import type { TailwindColor, InputVariant, ClassBinding } from './types'
 
 // Types
 export type SelectSize = 'xs'|'sm'|'md'|'lg'|'xl'
 
 interface ItemsProp {
-  text: any
+  text: string
   value: any
 }
 
@@ -23,6 +23,7 @@ const props = defineProps({
   multiple: { type: Boolean as PropType<boolean>, default: false },
   chip: { type: Boolean as PropType<boolean>, default: false },
   emptyText: { type: String as PropType<string>, default: 'No data available' },
+  inputClass: { type: [Array,String] as PropType<ClassBinding>, default: '' },
   /** Form Container */
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
   error: { type: Boolean as PropType<boolean>, default: false },
@@ -186,7 +187,8 @@ const active = ref(false)
         :value="filteredModelValue"
         class="outline-none bg-transparent"
         :class="[
-          block ? 'w-full' : 'w-fit'
+          inputClass,
+          { 'w-full': block }
         ]"
         :placeholder="placeholder"
         readonly
@@ -214,7 +216,7 @@ const active = ref(false)
     >
       <ul
         v-if="filteredItems.length"
-        class="max-h-[175px] overflow-y-auto"
+        class="max-h-[176px]"
       >
         <li
           v-for="(item,key) in filteredItems"

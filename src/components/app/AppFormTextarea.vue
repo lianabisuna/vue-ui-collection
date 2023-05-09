@@ -67,7 +67,7 @@ const updateModelValue = (event: Event) => {
       class="bg-transparent outline-none w-full"
       :class="[
         { 'opacity-75': disabled },
-        block ? 'w-full' : 'w-fit'
+        { 'w-full': block }
       ]"
     >
     </textarea>

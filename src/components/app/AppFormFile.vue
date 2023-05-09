@@ -143,7 +143,7 @@ const onFileDrop = (event: DragEvent) => {
     v-if="dropzone"
     class="flex flex-col w-full"
     :class="[
-      block ? 'w-full' : 'w-fit'
+      { 'w-full': block }
     ]"
   >
     <!-- Box -->
@@ -292,9 +292,9 @@ const onFileDrop = (event: DragEvent) => {
         {
           'ml-2': slots.prepend,
           'mr-2': slots.append,
-          'placeholder-gray-400 placeholder-opacity-0': float
+          'placeholder-gray-400 placeholder-opacity-0': float,
+          'w-full': block
         },
-        block ? 'w-full' : 'w-fit'
       ]"
       class="bg-transparent outline-none cursor-text"
     >

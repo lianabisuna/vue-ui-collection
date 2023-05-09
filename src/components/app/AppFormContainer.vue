@@ -130,7 +130,7 @@ const onClickContainer = () => {
     ref="containerRef"
     class="group flex flex-col"
     :class="[
-      block ? 'w-full' : 'w-fit'
+      { 'w-full': block }
     ]"
     @click="onClickContainer"
   >
@@ -157,7 +157,7 @@ const onClickContainer = () => {
         textClass,
         { 'rounded': variant !== 'underlined' },
         { 'opacity-75 pointer-events-none': disabled },
-        block ? 'w-full' : 'w-fit'
+        { 'w-full': block }
       ]"
       class="relative flex items-center cursor-text justify-between"
     >
