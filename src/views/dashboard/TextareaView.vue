@@ -18,6 +18,7 @@ const textareas: any = ref([])
           :dark="components[0]"
           v-model="textareas[0]"
           placeholder="Default"
+          block
         >
         </AppFormTextarea>
       </div>
@@ -32,6 +33,7 @@ const textareas: any = ref([])
           v-model="textareas[1]"
           disabled
           placeholder="Disabled"
+          block
         >
         </AppFormTextarea>
       </div>

@@ -16,6 +16,7 @@ const components: any = ref([])
       <AppFormInput
         :dark="components[0]"
         color="fuchsia-500"
+        block
       >
       </AppFormInput>
     </CardComponentPreview>
@@ -29,6 +30,7 @@ const components: any = ref([])
         color="fuchsia-500"
         type="number"
         class="group"
+        block
       >
         <template #prepend>
           <span
@@ -52,6 +54,7 @@ const components: any = ref([])
         color="fuchsia-500"
         type="number"
         class="group"
+        block
       >
         <template #append>
           <span
@@ -74,6 +77,7 @@ const components: any = ref([])
         :dark="components[3]"
         color="fuchsia-500"
         disabled
+        block
       >
       </AppFormInput>
     </CardComponentPreview>
@@ -86,6 +90,7 @@ const components: any = ref([])
         :dark="components[4]"
         color="fuchsia-500"
         placeholder="Placeholder"
+        block
       >
       </AppFormInput>
     </CardComponentPreview>
@@ -99,6 +104,7 @@ const components: any = ref([])
         color="fuchsia-500"
         type="password"
         value="123456789"
+        block
       >
       </AppFormInput>
     </CardComponentPreview>
@@ -113,6 +119,7 @@ const components: any = ref([])
         label="Product"
         value="MT-4500"
         readonly
+        block
       >
       </AppFormInput>
     </CardComponentPreview>
@@ -125,6 +132,7 @@ const components: any = ref([])
         :dark="components[7]"
         color="fuchsia-500"
         label="Name"
+        block
       >
       </AppFormInput>
     </CardComponentPreview>
@@ -139,6 +147,7 @@ const components: any = ref([])
         label="Email"
         type="email"
         required
+        block
       >
       </AppFormInput>
     </CardComponentPreview>
@@ -154,6 +163,7 @@ const components: any = ref([])
         message="It looks like this username is already taken."
         value="Steve"
         :error="true"
+        block
       >
       </AppFormInput>
     </CardComponentPreview>
@@ -169,6 +179,7 @@ const components: any = ref([])
         message="Tracking ID is valid!"
         value="CA123654389US"
         :success="true"
+        block
       >
       </AppFormInput>
     </CardComponentPreview>
@@ -183,6 +194,7 @@ const components: any = ref([])
         label="Duration"
         message="How many days are you going to stay?"
         type="number"
+        block
       >
       </AppFormInput>
     </CardComponentPreview>
@@ -196,6 +208,7 @@ const components: any = ref([])
         color="fuchsia-500"
         size="xs"
         placeholder="Enter"
+        block
       >
       </AppFormInput>
     </CardComponentPreview>
@@ -209,6 +222,7 @@ const components: any = ref([])
         color="fuchsia-500"
         size="sm"
         placeholder="Enter"
+        block
       >
       </AppFormInput>
     </CardComponentPreview>
@@ -222,6 +236,7 @@ const components: any = ref([])
         color="fuchsia-500"
         size="lg"
         placeholder="Enter"
+        block
       >
       </AppFormInput>
     </CardComponentPreview>
@@ -235,6 +250,7 @@ const components: any = ref([])
         color="fuchsia-500"
         size="xl"
         placeholder="Enter"
+        block
       >
       </AppFormInput>
     </CardComponentPreview>

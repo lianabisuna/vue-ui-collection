@@ -16,6 +16,7 @@ const components: any = ref([])
       <AppFormFile
         :dark="components[0]"
         color="amber-500"
+        block
       >
       </AppFormFile>
     </CardComponentPreview>
@@ -28,6 +29,7 @@ const components: any = ref([])
         :dark="components[1]"
         color="amber-500"
         chip
+        block
       >
       </AppFormFile>
     </CardComponentPreview>
@@ -41,6 +43,7 @@ const components: any = ref([])
         color="amber-500"
         multiple
         chip
+        block
       >
       </AppFormFile>
     </CardComponentPreview>
@@ -54,6 +57,7 @@ const components: any = ref([])
         color="amber-500"
         placeholder="Image"
         accept="image/*"
+        block
       >
       </AppFormFile>
     </CardComponentPreview>
@@ -68,6 +72,7 @@ const components: any = ref([])
         placeholder="3 MB"
         :max-size="3000000"
         show-size
+        block
       >
       </AppFormFile>
     </CardComponentPreview>
@@ -80,6 +85,7 @@ const components: any = ref([])
         :dark="components[5]"
         color="amber-500"
         disabled
+        block
       >
       </AppFormFile>
     </CardComponentPreview>
@@ -95,6 +101,7 @@ const components: any = ref([])
         color="amber-500"
         dropzone
         multiple
+        block
       >
       </AppFormFile>
     </CardComponentPreview>

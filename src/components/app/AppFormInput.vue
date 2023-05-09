@@ -12,7 +12,6 @@ export type InputSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'
 const props = defineProps({
   modelValue: { type: String as PropType<string>, default: '' },
   autofocus: { type: Boolean as PropType<boolean>, default: false },
-  block: { type: Boolean as PropType<boolean>, default: false },
   readonly: { type: Boolean as PropType<boolean>, default: false },
   name: { type: String as PropType<string>, default: '' },
   placeholder: { type: String as PropType<string>, default: '' },
@@ -29,6 +28,7 @@ const props = defineProps({
   size: { type: String as PropType<InputSize>, default: '' },
   variant: { type: String as PropType<InputVariant>, default: '' },
   float: { type: Boolean as PropType<boolean>, default: false },
+  block: { type: Boolean as PropType<boolean>, default: false },
 })
 
 // Slots
@@ -83,6 +83,7 @@ const variantClass = computed(() => {
     :size="size"
     :variant="variant"
     :float="float"
+    :block="block"
   >
     <!-- Prepend -->
     <slot name="prepend"></slot>
@@ -102,9 +103,10 @@ const variantClass = computed(() => {
           'ml-2': slots.prepend,
           'mr-2': slots.append,
           'placeholder-gray-400 placeholder-opacity-0': float
-        }
+        },
+        block ? 'w-full' : 'w-fit'
       ]"
-      class="peer flex flex-1 bg-transparent outline-none w-auto"
+      class="peer flex flex-1 bg-transparent outline-none"
       v-bind="$attrs"
     />
     <!-- Append -->

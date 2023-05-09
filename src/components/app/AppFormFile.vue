@@ -18,7 +18,6 @@ export type InputSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'
 // Props
 const props = defineProps({
   modelValue: { type: String as PropType<string>, default: '' },
-  block: { type: Boolean as PropType<boolean>, default: false },
   name: { type: String as PropType<string>, default: '' },
   placeholder: { type: String as PropType<string>, default: 'No file selected' },
   chip: { type: Boolean as PropType<boolean>, default: false },
@@ -40,6 +39,7 @@ const props = defineProps({
   size: { type: String as PropType<InputSize>, default: '' },
   variant: { type: String as PropType<InputVariant>, default: '' },
   float: { type: Boolean as PropType<boolean>, default: false },
+  block: { type: Boolean as PropType<boolean>, default: false },
 })
 
 // Slots
@@ -142,6 +142,9 @@ const onFileDrop = (event: DragEvent) => {
   <div
     v-if="dropzone"
     class="flex flex-col w-full"
+    :class="[
+      block ? 'w-full' : 'w-fit'
+    ]"
   >
     <!-- Box -->
     <div
@@ -227,6 +230,7 @@ const onFileDrop = (event: DragEvent) => {
     :size="size"
     :variant="variant"
     :float="float"
+    :block="block"
     @click="onInputClick"
   >
     <!-- Prepend -->
@@ -289,9 +293,10 @@ const onFileDrop = (event: DragEvent) => {
           'ml-2': slots.prepend,
           'mr-2': slots.append,
           'placeholder-gray-400 placeholder-opacity-0': float
-        }
+        },
+        block ? 'w-full' : 'w-fit'
       ]"
-      class="w-full bg-transparent outline-none cursor-text"
+      class="bg-transparent outline-none cursor-text"
     >
     <!-- Append -->
     <slot name="append"></slot>

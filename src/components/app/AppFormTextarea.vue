@@ -25,6 +25,7 @@ const props = defineProps({
   size: { type: String as PropType<InputSize>, default: '' },
   variant: { type: String as PropType<InputVariant>, default: '' },
   float: { type: Boolean as PropType<boolean>, default: false },
+  block: { type: Boolean as PropType<boolean>, default: false },
 })
 
 // Emits
@@ -54,6 +55,7 @@ const updateModelValue = (event: Event) => {
     :size="size"
     :variant="variant"
     :float="float"
+    :block="block"
   >
     <textarea
       :value="modelValue"
@@ -63,9 +65,10 @@ const updateModelValue = (event: Event) => {
       :disabled="disabled"
       :autofocus="autofocus"
       class="bg-transparent outline-none w-full"
-      :class="[{
-        'opacity-75': disabled,
-      }]"
+      :class="[
+        { 'opacity-75': disabled },
+        block ? 'w-full' : 'w-fit'
+      ]"
     >
     </textarea>
   </AppFormContainer>

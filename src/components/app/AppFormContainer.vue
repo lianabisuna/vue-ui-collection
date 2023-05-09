@@ -24,6 +24,7 @@ const props = defineProps({
   size: { type: String as PropType<ContainerSize>, default: '' },
   variant: { type: String as PropType<InputVariant>, default: '' },
   float: { type: Boolean as PropType<boolean>, default: false },
+  block: { type: Boolean as PropType<boolean>, default: false },
 })
 
 
@@ -127,7 +128,10 @@ const onClickContainer = () => {
 <template>
   <div
     ref="containerRef"
-    class="group flex flex-col w-full"
+    class="group flex flex-col"
+    :class="[
+      block ? 'w-full' : 'w-fit'
+    ]"
     @click="onClickContainer"
   >
     <!-- Label -->
@@ -153,8 +157,9 @@ const onClickContainer = () => {
         textClass,
         { 'rounded': variant !== 'underlined' },
         { 'opacity-75 pointer-events-none': disabled },
+        block ? 'w-full' : 'w-fit'
       ]"
-      class="relative flex items-center cursor-text justify-between w-full"
+      class="relative flex items-center cursor-text justify-between"
     >
       <slot></slot>
       <!-- Floating Label -->
