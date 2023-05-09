@@ -2,7 +2,7 @@
 // Imports
 import { PropType, useSlots, computed } from 'vue'
 import AppFormContainer from './AppFormContainer.vue';
-import type { TailwindColor, InputVariant } from './types'
+import type { TailwindColor, InputVariant, ClassBinding } from './types'
 
 // Types
 export type HTMLInputType = 'email'|'number'|'password'|'reset'|'search'|'submit'|'tel'|'text'|'url'
@@ -16,6 +16,7 @@ const props = defineProps({
   name: { type: String as PropType<string>, default: '' },
   placeholder: { type: String as PropType<string>, default: '' },
   type: { type: String as PropType<HTMLInputType>, default: 'text' },
+  inputClass: { type: [Array,String] as PropType<ClassBinding>, default: '' },
   /** Form Container */
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
   error: { type: Boolean as PropType<boolean>, default: false },
@@ -98,7 +99,7 @@ const variantClass = computed(() => {
       :autofocus="autofocus"
       :readonly="readonly"
       :class="[
-        sizeClass, variantClass,
+        sizeClass, variantClass, inputClass,
         {
           'ml-2': slots.prepend,
           'mr-2': slots.append,

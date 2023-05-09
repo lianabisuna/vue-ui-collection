@@ -75,6 +75,7 @@ items.value[2] = [
         :fields="fields[1]"
         :items="items[1]"
         class="table-fixed"
+        hide-footer
       >
         <template #name="{ data, item }">
           <div>
@@ -94,6 +95,7 @@ items.value[2] = [
         :fields="fields[2]"
         :items="items[2]"
         class="table-fixed"
+        hide-footer
       >
       </AppTable>
     </CardComponentPreview>
@@ -108,6 +110,8 @@ items.value[2] = [
         :items="items[0]"
         loading
         class="table-fixed"
+        hide-footer
+        
       >
       </AppTable>
     </CardComponentPreview>

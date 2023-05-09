@@ -1,10 +1,18 @@
 <script lang="ts" setup>
 // Imports
 import { PropType, computed, ref } from 'vue'
-import { ArrowLongDownIcon, ArrowLongUpIcon } from '@heroicons/vue/24/outline'
+import {
+  ArrowLongDownIcon,
+  ArrowLongUpIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon
+} from '@heroicons/vue/24/outline'
 import AppFormCheckbox from './AppFormCheckbox.vue'
 import AppLoading from './AppLoading.vue'
 import AppSkeleton from './AppSkeleton.vue'
+import AppPagination from './AppPagination.vue'
+import AppFormSelect from './AppFormSelect.vue'
+import AppFormInput from './AppFormInput.vue'
 import type { TailwindColor, ClassBinding } from './types'
 
 // Types
@@ -31,6 +39,7 @@ const props = defineProps({
   loading: { type: Boolean as PropType<boolean>, default: false },
   dark: { type: Boolean as PropType<boolean>, default: false },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
+  hideFooter: { type: Boolean as PropType<boolean>, default: false },
   // Options
   // perPage: { type: Number as PropType<number>, default: 10 },
   // page: { type: Number as PropType<number>, default: 1 },
@@ -116,6 +125,12 @@ const filteredItems = computed(() => {
   const _items = [ ...props.items ]
   return internalSort(_items)
 })
+
+
+/** HANGLE PAGINATION */
+
+const perPageOptions = ['10', '30', '50', '100']
+const perPage = ref('10')
 
 
 /** CLASSES */
@@ -271,7 +286,51 @@ const sortOrderClass = (field: any, order: SortDirection) => {
         </tr>
       </tfoot>
     </table>
-    <!-- Pagination -->
+    <!-- Footer -->
+    <div
+      v-if="!hideFooter"
+      class="mt-3 flex justify-between items-center relative"
+      :class="[
+        dark ? 'text-gray-100' : 'text-gray-800'
+      ]"
+    >
+      <!-- Per Page -->
+      <div class="flex items-center gap-3">
+        <AppFormSelect
+          v-model="perPage"
+          :items="perPageOptions"
+          :dark="dark"
+          input-class="w-7"
+        >
+        </AppFormSelect>
+        <span>per page</span>
+      </div>
+      <!-- Page Input -->
+      <div class="flex items-center gap-5">
+        <button>
+          <ChevronLeftIcon class="h-5 w-5" />
+        </button>
+        <div class="flex items-center gap-3">
+          <span>Page</span>
+          <AppFormInput
+            v-model="perPage"
+            :dark="dark"
+            input-class="w-7 text-center"
+          >
+          </AppFormInput>
+          <span>of 500</span>
+        </div>
+        <button>
+          <ChevronRightIcon class="h-5 w-5" />
+        </button>
+      </div>
+      <!-- Pagination -->
+      <AppPagination
+        v-if="items.length && false"
+        :color="color"
+      >
+      </AppPagination>
+    </div>
   </div>
 </template>
 
