@@ -5,11 +5,15 @@ import AppButton from './AppButton.vue'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/outline'
 import type { TailwindColor } from './types'
 
+// Types
+export type ButtonSize = 'xs'|'sm'|'lg'|'xl'
+
 // Props
 defineProps({
   modelValue: { type: Number as PropType<number>, default: 1 },
   length: { type: Number as PropType<number>, default: 1 },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
+  size: { type: String as PropType<ButtonSize>, default: '' },
 })
 
 // Slots
@@ -26,13 +30,17 @@ const updateModelValue = (value: number) => {
 </script>
 
 <template>
-  <div class="flex flex-wrap items-center gap-2">
+  <div
+    class="flex flex-wrap items-center gap-2"
+    v-bind="$attrs"
+  >
     <AppButton
       :icon="!slots.previous"
       color="white"
       text-color="gray-800"
       :disabled="modelValue === 1"
       tone="light"
+      :size="size"
       @click="updateModelValue(modelValue - 1)"
     >
       <slot name="previous">
@@ -45,6 +53,7 @@ const updateModelValue = (value: number) => {
       icon
       :color="modelValue === item ? color : 'white'"
       :tone="modelValue === item ? 'dark' : 'light'"
+      :size="size"
       @click="updateModelValue(item)"
     >
       <div class="h-5 w-5 flex items-center justify-center relative">
@@ -57,6 +66,7 @@ const updateModelValue = (value: number) => {
       text-color="gray-800"
       :disabled="modelValue === length"
       tone="light"
+      :size="size"
       @click="updateModelValue(modelValue + 1)"
     >
       <slot name="next">
