@@ -50,6 +50,7 @@ const values: any = ref([])
         :items="options[0]"
         placeholder="Select an option"
         color="indigo-500"
+        block
       >
       </AppFormSelect>
     </CardComponentPreview>
@@ -65,6 +66,7 @@ const values: any = ref([])
         placeholder="Select an option"
         multiple
         color="indigo-500"
+        block
       >
       </AppFormSelect>
     </CardComponentPreview>
@@ -81,6 +83,7 @@ const values: any = ref([])
         color="indigo-500"
         multiple
         chip
+        block
       >
       </AppFormSelect>
     </CardComponentPreview>
@@ -96,6 +99,7 @@ const values: any = ref([])
         placeholder="Select an option"
         color="indigo-500"
         chip
+        block
       >
       </AppFormSelect>
     </CardComponentPreview>
@@ -110,6 +114,7 @@ const values: any = ref([])
         :items="options[4]"
         placeholder="Select an option"
         color="indigo-500"
+        block
       >
       </AppFormSelect>
     </CardComponentPreview>

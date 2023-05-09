@@ -11,7 +11,7 @@ import type { TailwindColor, InputVariant } from './types'
 export type SelectSize = 'xs'|'sm'|'md'|'lg'|'xl'
 
 interface ItemsProp {
-  text: string
+  text: any
   value: any
 }
 
@@ -19,7 +19,7 @@ interface ItemsProp {
 const props = defineProps({
   modelValue: { type: [String,Array] as PropType<string|string[]>, default: [] },
   placeholder: { type: String as PropType<string>, default: '' },
-  items: { type: Array as PropType<ItemsProp[]>, default: [] },
+  items: { type: Array as PropType<ItemsProp[]|string[]>, default: [] },
   multiple: { type: Boolean as PropType<boolean>, default: false },
   chip: { type: Boolean as PropType<boolean>, default: false },
   emptyText: { type: String as PropType<string>, default: 'No data available' },
@@ -35,26 +35,42 @@ const props = defineProps({
   size: { type: String as PropType<SelectSize>, default: '' },
   variant: { type: String as PropType<InputVariant>, default: '' },
   float: { type: Boolean as PropType<boolean>, default: false },
+  block: { type: Boolean as PropType<boolean>, default: false },
 })
 
 // Emits
 const emits = defineEmits(['update:modelValue'])
 
 
+/** FILTERED ITEMS */
+
+const filteredItems = computed<ItemsProp[]>(() => {
+  let _items = [ ...props.items ] as ItemsProp[]
+  return _items.map((item: ItemsProp) => {
+    if (typeof item === 'string')
+      return { text: item, value: item }
+    else
+      return item
+  })
+})
+
+
 /** FILTER MODEL VALUE */
 
 const filteredModelValue = computed(() => {
   if (!props.modelValue) return ''
+  
+  let _items = [ ...filteredItems.value ] as ItemsProp[]
   if (!props.multiple) {
-    var index = props.items.findIndex(e => e.value === props.modelValue);
+    var index = _items.findIndex(e => e.value === props.modelValue);
     if (index >= 0) {
-      return props.items[index].text
+      return _items[index].text
     }
   }
   else {
     if (Array.isArray(props.modelValue)) {
       let modelValueArr: string[] = []
-      props.items.map((e) => {
+      _items.map((e: any) => {
         if (props.modelValue.includes(e.value)) {
           modelValueArr.push(e.text)
         }
@@ -103,6 +119,8 @@ const isSelected = (value: string) => {
   }
 }
 
+
+/** SELECTED ITEM */
 const active = ref(false)
 </script>
 
@@ -120,8 +138,10 @@ const active = ref(false)
     :size="size"
     :variant="variant"
     :float="float"
+    :block="block"
     v-on-click-outside="() => active = false"
     @click="() => active = !active"
+    v-bind="$attrs"
   >
     <!-- Input -->
     <div class="flex-grow flex items-center">
@@ -164,7 +184,10 @@ const active = ref(false)
       <input
         v-else
         :value="filteredModelValue"
-        class="outline-none bg-transparent w-full"
+        class="outline-none bg-transparent"
+        :class="[
+          block ? 'w-full' : 'w-fit'
+        ]"
         :placeholder="placeholder"
         readonly
       >
@@ -190,11 +213,11 @@ const active = ref(false)
       ]"
     >
       <ul
-        v-if="items.length"
+        v-if="filteredItems.length"
         class="max-h-[175px] overflow-y-auto"
       >
         <li
-          v-for="(item,key) in items"
+          v-for="(item,key) in filteredItems"
           :key="key"
           class="px-3 py-2.5 text-base w-full text-start cursor-pointer border-transparent first:rounded-t last:rounded-b"
           :class="[
