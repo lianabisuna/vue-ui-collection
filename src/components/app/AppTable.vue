@@ -120,30 +120,37 @@ function internalSort(_items: Record<string, any>[]) {
 /** INTERNAL PAGINATE */
 
 // Data
-const perPageOptions = ['10', '30', '50', '100']
-const perPage = ref('10')
-const currentPage = ref(1)
+const pageActive = ref(1)
+const itemsPerPageOptions = ['10', '30', '50', '100']
+const itemsPerPage = ref('10')
 
-const pageLength = computed(() => {
-  return Math.ceil(props.items.length / +perPage.value)
+const pageEnd = computed(() => {
+  return Math.ceil(props.items.length / +itemsPerPage.value)
 })
 
 // Function
 function internalPaginate(_items: Record<string, any>[]) {
-  const startIndex = +perPage.value * (currentPage.value - 1)
-  const endIndex = +perPage.value + startIndex
+  const startIndex = +itemsPerPage.value * (pageActive.value - 1)
+  const endIndex = +itemsPerPage.value + startIndex
   return _items.slice(startIndex, endIndex)
 }
 
 
 /** HANDLE PAGE CHANGE */
 
+// Data
+const isStartPage = computed(()=>pageActive.value===1)
+const isEndPage = computed(()=>pageActive.value===pageEnd.value)
+
+// Function
 function prevPage() {
-  if (currentPage.value > 1) currentPage.value--
+  const greaterThanStart = pageActive.value > 1
+  if (greaterThanStart) pageActive.value--
 }
 
 function nextPage() {
-  if (currentPage.value < filteredItems.value.length-1) currentPage.value++
+  const greaterThanEnd = pageActive.value < filteredItems.value.length-1
+  if (greaterThanEnd) pageActive.value++
 }
 
 
@@ -310,51 +317,69 @@ const sortOrderClass = (field: any, order: SortDirection) => {
       </tfoot>
     </table>
     <!-- Footer -->
-    <div
-      v-if="!hideFooter"
-      class="mt-3 flex justify-between items-center relative"
-      :class="[
-        dark ? 'text-gray-100' : 'text-gray-800'
-      ]"
-    >
-      <!-- Per Page -->
-      <div class="flex items-center gap-3">
-        <AppFormSelect
-          v-model="perPage"
-          :items="perPageOptions"
-          :dark="dark"
-          input-class="w-7"
-        >
-        </AppFormSelect>
-        <span>per page</span>
-      </div>
-      <!-- Page Input -->
-      <div class="flex items-center gap-5">
-        <button @click="prevPage">
-          <ChevronLeftIcon class="h-5 w-5" />
-        </button>
-        <div class="flex items-center gap-3">
-          <span>Page</span>
-          <AppFormInput
-            v-model="currentPage"
-            type="number"
-            :dark="dark"
-            input-class="w-7 text-center"
-          >
-          </AppFormInput>
-          <span>of {{ pageLength }}</span>
-        </div>
-        <button @click="nextPage">
-          <ChevronRightIcon class="h-5 w-5" />
-        </button>
-      </div>
-      <!-- Pagination -->
-      <AppPagination
-        v-if="items.length && false"
-        :color="color"
+    <slot name="footer">
+      <div
+        v-if="!hideFooter"
+        class="mt-3 flex justify-between items-center relative"
+        :class="[
+          dark ? 'text-gray-100' : 'text-gray-800'
+        ]"
       >
-      </AppPagination>
-    </div>
+        <!-- Per Page -->
+        <slot name="per-page">
+          <div class="flex items-center gap-3">
+            <AppFormSelect
+              v-model="itemsPerPage"
+              :items="itemsPerPageOptions"
+              input-class="w-7"
+              :dark="dark"
+            >
+            </AppFormSelect>
+            <span>per page</span>
+          </div>
+        </slot>
+        <!-- Pagination -->
+        <slot name="pagination">
+          <div
+            v-if="items.length > +itemsPerPage"
+            class="flex items-center gap-5"
+          >
+            <!-- Previous -->
+            <button
+              :disabled="isStartPage"
+              :class="[
+                { 'opacity-50': isStartPage }
+              ]"
+              @click="prevPage"
+            >
+              <ChevronLeftIcon class="h-5 w-5" />
+            </button>
+            <!-- Current Page -->
+            <div class="flex items-center gap-3">
+              <div>Page</div>
+              <AppFormInput
+                v-model="pageActive"
+                type="number"
+                :dark="dark"
+                input-class="w-7 text-center"
+              >
+              </AppFormInput>
+              <div>of {{ pageEnd }}</div>
+            </div>
+            <!-- Next -->
+            <button
+              :disabled="isEndPage"
+              :class="[
+                { 'opacity-50': isEndPage }
+              ]"
+              @click="nextPage"
+            >
+              <ChevronRightIcon class="h-5 w-5" />
+            </button>
+          </div>
+        </slot>
+      </div>
+    </slot>
   </div>
 </template>
 
