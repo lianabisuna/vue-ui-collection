@@ -33,7 +33,7 @@ type SortDirection = 'asc'|'desc'|''
 
 // Props
 const props = defineProps({
-  fields: { type: Array as PropType<FieldsProp[]>, default: [] },
+  fields: { type: Array as PropType<FieldsProp[]|string[]>, default: [] },
   options: { type: Array as PropType<OptionsProp[]>, default: [] },
   items: { type: Array as PropType<Record<string, any>[]>, default: [] },
   loading: { type: Boolean as PropType<boolean>, default: false },
@@ -144,13 +144,13 @@ const isEndPage = computed(()=>pageActive.value===pageEnd.value)
 
 // Function
 function prevPage() {
-  const greaterThanStart = pageActive.value > 1
-  if (greaterThanStart) pageActive.value--
+  const isPageGreaterThanStart = pageActive.value > 1
+  if (isPageGreaterThanStart) pageActive.value--
 }
 
 function nextPage() {
-  const greaterThanEnd = pageActive.value < filteredItems.value.length-1
-  if (greaterThanEnd) pageActive.value++
+  const isPageLesserThanEnd = pageActive.value < filteredItems.value.length-1
+  if (isPageLesserThanEnd) pageActive.value++
 }
 
 
@@ -176,6 +176,42 @@ const sortOrderClass = (field: any, order: SortDirection) => {
         return props.dark ? 'text-gray-500' : 'text-gray-400'
     } 
   }
+}
+
+
+/** FILTERED FIELDS */
+// TO DO: Add boolean value "visible" and "fixed" key to handle responsiveness
+
+const filteredFields = computed<FieldsProp[]>(() => {
+  let _fields = [ ...props.fields ] as FieldsProp[]
+  return _fields.map((field: FieldsProp, key: any) => {
+    if (typeof field === 'string')
+      return { text: field, key: key }
+    else
+      return field
+  })
+})
+
+/** HANDLE ACTIVE FIELD CHANGE */
+
+const activeFieldKey = ref(filteredFields.value[0].key)
+
+function isActiveField(key: string) {
+  return activeFieldKey.value === key
+}
+
+function prevField(key: any) {
+  const isKeyMoreThanFirst = key > 0
+  if (!isKeyMoreThanFirst) return
+
+  activeFieldKey.value = filteredFields.value[key-1].key
+}
+
+function nextField(key: any) {
+  const isKeyLessThanLast = key < filteredFields.value.length - 1
+  if (!isKeyLessThanLast) return
+  
+  activeFieldKey.value = filteredFields.value[key+1].key
 }
 </script>
 
@@ -219,38 +255,66 @@ const sortOrderClass = (field: any, order: SortDirection) => {
           </th>
           <!-- Header Content -->
           <th
-            v-for="(field,key) in fields"
+            v-for="(field,key) in filteredFields"
             :key="key"
             scope="col"
             class="px-5 py-3"
             :class="[
-              { 'cursor-pointer': field.sortable }
+              { 'cursor-pointer': field.sortable },
+              { 'hidden md:table-cell': !isActiveField(field.key) }
             ]"
             @click="() => handleSort(field)"
           >
-            <div class="flex items-center">
-              <!-- Header Text -->
-              <span>{{ field.text }}</span>
-              <!-- Sort Icon -->
-              <span
-                v-if="field.sortable"
-                class="relative flex ml-2"
+            <div class="flex items-center gap-3">
+              <!-- Previous Field -->
+              <button
+                v-if="isActiveField(field.key)"
+                :disabled="key===0"
+                class="md:hidden"
+                :class="[
+                  { 'opacity-50': key===0 },
+                ]"
+                @click="prevField(key)"
               >
-                <!-- Ascending -->
-                <ArrowLongDownIcon
-                  class="absolute top-1/2 left-0 -translate-y-1/2 h-3.5 w-3.5 path-stroke-2"
-                  :class="[
-                    sortOrderClass(field.key, 'asc')
-                  ]"
-                />
-                <!-- Descending -->
-                <ArrowLongUpIcon
-                  class="absolute top-1/2 left-2.5 -translate-y-1/2 h-3.5 w-3.5 path-stroke-2"
-                  :class="[
-                    sortOrderClass(field.key, 'desc')
-                  ]"
-                />
-              </span>
+                <ChevronLeftIcon class="h-5 w-5" />
+              </button>
+              <!-- Header Title -->
+              <div class="flex items-center">
+                <!-- Field Text -->
+                <span>{{ field.text }}</span>
+                <!-- Sort Icon -->
+                <span
+                  v-if="field.sortable"
+                  class="relative flex ml-2"
+                >
+                  <!-- Ascending -->
+                  <ArrowLongDownIcon
+                    class="absolute top-1/2 left-0 -translate-y-1/2 h-3.5 w-3.5 path-stroke-2"
+                    :class="[
+                      sortOrderClass(field.key, 'asc')
+                    ]"
+                  />
+                  <!-- Descending -->
+                  <ArrowLongUpIcon
+                    class="absolute top-1/2 left-2.5 -translate-y-1/2 h-3.5 w-3.5 path-stroke-2"
+                    :class="[
+                      sortOrderClass(field.key, 'desc')
+                    ]"
+                  />
+                </span>
+              </div>
+              <!-- Next Field -->
+              <button
+                v-if="isActiveField(field.key)"
+                :disabled="key===filteredFields.length-1"
+                class="ml-auto md:hidden"
+                :class="[
+                  { 'opacity-50': key===filteredFields.length-1 },
+                ]"
+                @click="nextField(key)"
+              >
+                <ChevronRightIcon class="h-5 w-5" />
+              </button>
             </div>
           </th>
         </tr>
@@ -262,7 +326,7 @@ const sortOrderClass = (field: any, order: SortDirection) => {
           :key="itemKey"
           class="border-b last:border-none"
           :class="[
-            dark ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'
+            dark ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300',
           ]"
         >
           <!-- Select Row -->
@@ -277,9 +341,12 @@ const sortOrderClass = (field: any, order: SortDirection) => {
             </AppFormCheckbox>
           </td>
           <td
-            v-for="(field,fieldKey) in fields"
+            v-for="(field,fieldKey) in filteredFields"
             :key="fieldKey"
             class="px-5 py-4"
+            :class="[
+              { 'hidden md:table-cell': !isActiveField(field.key) }
+            ]"
           >
             <div v-if="loading">
               <AppSkeleton
@@ -313,7 +380,7 @@ const sortOrderClass = (field: any, order: SortDirection) => {
       <tr v-else>
         <td
           class="px-5 py-4 text-center"
-          :colspan="fields.length"
+          :colspan="filteredFields.length"
         >
           <slot name="empty">
             <div>No data available</div>
