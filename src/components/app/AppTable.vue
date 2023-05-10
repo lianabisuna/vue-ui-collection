@@ -117,20 +117,43 @@ function internalSort(_items: Record<string, any>[]) {
 }
 
 
+/** INTERNAL PAGINATE */
+
+// Data
+const perPageOptions = ['10', '30', '50', '100']
+const perPage = ref('10')
+const currentPage = ref(1)
+
+const pageLength = computed(() => {
+  return Math.ceil(props.items.length / +perPage.value)
+})
+
+// Function
+function internalPaginate(_items: Record<string, any>[]) {
+  const startIndex = +perPage.value * (currentPage.value - 1)
+  const endIndex = +perPage.value + startIndex
+  return _items.slice(startIndex, endIndex)
+}
+
+
+/** HANDLE PAGE CHANGE */
+
+function prevPage() {
+  if (currentPage.value > 1) currentPage.value--
+}
+
+function nextPage() {
+  if (currentPage.value < filteredItems.value.length-1) currentPage.value++
+}
+
+
 /** FILTERED ITEMS */
 
 const filteredItems = computed(() => {
-  if (!sortField.value) return props.items
-  
   const _items = [ ...props.items ]
-  return internalSort(_items)
+  if (!sortField.value) return internalPaginate(_items)
+  return internalPaginate(internalSort(_items))
 })
-
-
-/** HANGLE PAGINATION */
-
-const perPageOptions = ['10', '30', '50', '100']
-const perPage = ref('10')
 
 
 /** CLASSES */
@@ -307,20 +330,21 @@ const sortOrderClass = (field: any, order: SortDirection) => {
       </div>
       <!-- Page Input -->
       <div class="flex items-center gap-5">
-        <button>
+        <button @click="prevPage">
           <ChevronLeftIcon class="h-5 w-5" />
         </button>
         <div class="flex items-center gap-3">
           <span>Page</span>
           <AppFormInput
-            v-model="perPage"
+            v-model="currentPage"
+            type="number"
             :dark="dark"
             input-class="w-7 text-center"
           >
           </AppFormInput>
-          <span>of 500</span>
+          <span>of {{ pageLength }}</span>
         </div>
-        <button>
+        <button @click="nextPage">
           <ChevronRightIcon class="h-5 w-5" />
         </button>
       </div>

@@ -10,7 +10,7 @@ export type InputSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'
 
 // Props
 const props = defineProps({
-  modelValue: { type: String as PropType<string>, default: '' },
+  modelValue: { type: [String,Number] as PropType<string|number>, default: '' },
   autofocus: { type: Boolean as PropType<boolean>, default: false },
   readonly: { type: Boolean as PropType<boolean>, default: false },
   name: { type: String as PropType<string>, default: '' },
