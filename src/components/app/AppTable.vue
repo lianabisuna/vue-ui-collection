@@ -256,7 +256,7 @@ const sortOrderClass = (field: any, order: SortDirection) => {
         </tr>
       </thead>
       <!-- Body -->
-      <tbody>
+      <tbody v-if="filteredItems.length">
         <tr
           v-for="(item,itemKey) in filteredItems"
           :key="itemKey"
@@ -309,6 +309,17 @@ const sortOrderClass = (field: any, order: SortDirection) => {
           </td>
         </tr>
       </tbody>
+      <!-- Body (Empty) -->
+      <tr v-else>
+        <td
+          class="px-5 py-4 text-center"
+          :colspan="fields.length"
+        >
+          <slot name="empty">
+            <div>No data available</div>
+          </slot>
+        </td>
+      </tr>
       <!-- Footer -->
       <tfoot>
         <tr>
