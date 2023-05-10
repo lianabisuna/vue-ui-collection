@@ -263,7 +263,7 @@ function nextField(key: any) {
               { 'cursor-pointer': field.sortable },
               { 'hidden md:table-cell': !isActiveField(field.key) }
             ]"
-            @click="() => handleSort(field)"
+            @click.self="() => handleSort(field)"
           >
             <div class="flex items-center gap-3">
               <!-- Previous Field -->
@@ -274,7 +274,7 @@ function nextField(key: any) {
                 :class="[
                   { 'opacity-50': key===0 },
                 ]"
-                @click="prevField(key)"
+                @click.stop="() => prevField(key)"
               >
                 <ChevronLeftIcon class="h-5 w-5" />
               </button>
@@ -311,7 +311,7 @@ function nextField(key: any) {
                 :class="[
                   { 'opacity-50': key===filteredFields.length-1 },
                 ]"
-                @click="nextField(key)"
+                @click.stop="() => nextField(key)"
               >
                 <ChevronRightIcon class="h-5 w-5" />
               </button>
