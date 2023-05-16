@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { AppTable } from '@/components/app';
 import { CardComponentPreview } from '@/components/cards';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import { productService } from '@/services';
 
 const components: any = ref([])
 const fields: any = ref([])
@@ -120,6 +121,35 @@ items.value[2] = [
   { name: 'TIGERFINK', code: '40G66772H5', price: 1100 },
   { name: 'LOBERGET / SIBBEN', code: '04B462DG52', price: 1290 },
 ]
+
+async function listProduct(params?: object) {
+  const res = await productService.list(params)
+  console.log('res', res)
+}
+
+async function showProduct(id: number) {
+  const res = await productService.show(id)
+  console.log('res', res)
+}
+
+async function createProduct() {
+  const params = {
+    code: 'test',
+    name: 'atest',
+    description: 'btest',
+    photo: 'ctest',
+    price: 900,
+    product_category: 1,
+  }
+  const res = await productService.create(params)
+  console.log('res', res)
+}
+
+onMounted(async () => {
+  // await listProduct();
+  // await showProduct(5);
+  // await createProduct();
+})
 </script>
 
 <template>
