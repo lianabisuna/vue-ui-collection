@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 // Imports
-import { PropType, computed } from 'vue'
+import { type PropType, computed } from 'vue'
 import AppSpinner from './AppSpinner.vue'
 import type {
   TailwindColor,
   ThemeColor,
   ColorTone
 } from './types'
+import type { RouteLocationRaw } from 'vue-router'
 
 // Types
 export type ButtonSize = 'xs'|'sm'|'lg'|'xl'
@@ -17,7 +18,7 @@ export type ButtonType = 'button'|'submit'|'reset'
 const props = defineProps({
   disabled: { type: Boolean as PropType<boolean>, default: false },
   size: { type: String as PropType<ButtonSize>, default: '' },
-  to: { type: [String,Object] as PropType<string|object>, default: '' },
+  to: { type: [String,Object] as PropType<RouteLocationRaw>, default: '' },
   type: { type: String as PropType<ButtonType>, default: 'button' },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
   icon: { type: Boolean as PropType<boolean>, default: false },
@@ -92,6 +93,7 @@ const borderClass = computed(() => {
     ]"
     :type="type"
     :disabled="disabled"
+    :to="to"
     v-bind="$attrs"
   >
     <AppSpinner
