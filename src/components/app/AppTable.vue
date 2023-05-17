@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports
-import { PropType, computed, ref } from 'vue'
+import { type PropType, computed, ref } from 'vue'
 import {
   ArrowLongDownIcon,
   ArrowLongUpIcon,
@@ -10,10 +10,9 @@ import {
 import AppFormCheckbox from './AppFormCheckbox.vue'
 import AppLoading from './AppLoading.vue'
 import AppSkeleton from './AppSkeleton.vue'
-import AppPagination from './AppPagination.vue'
 import AppFormSelect from './AppFormSelect.vue'
 import AppFormInput from './AppFormInput.vue'
-import type { TailwindColor, ClassBinding } from './types'
+import type { TailwindColor } from './types'
 
 // Types
 interface FieldsProp {
@@ -33,9 +32,9 @@ type SortDirection = 'asc'|'desc'|''
 
 // Props
 const props = defineProps({
-  fields: { type: Array as PropType<FieldsProp[]|string[]>, default: [] },
-  options: { type: Array as PropType<OptionsProp[]>, default: [] },
-  items: { type: Array as PropType<Record<string, any>[]>, default: [] },
+  fields: { type: Array as PropType<FieldsProp[]|string[]>, default: ()=>[] },
+  options: { type: Array as PropType<OptionsProp[]>, default: ()=>[] },
+  items: { type: Array as PropType<Record<string, any>[]>, default: ()=>[] },
   loading: { type: Boolean as PropType<boolean>, default: false },
   dark: { type: Boolean as PropType<boolean>, default: false },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
@@ -43,13 +42,13 @@ const props = defineProps({
   // Options
   // perPage: { type: Number as PropType<number>, default: 10 },
   // page: { type: Number as PropType<number>, default: 1 },
-  // sortField: { type: Array as PropType<string[]>, default: [] },
+  // sortField: { type: Array as PropType<string[]>, default: ()=>[] },
   // sortOrder: { type: Boolean as PropType<boolean>, default: false },
   // showSelect: { type: Boolean as PropType<boolean>, default: false },
 })
 
 // Emits
-const emits = defineEmits([
+defineEmits([
   'rowClick',
   'rowSelect',
   'toggleSelectAll',

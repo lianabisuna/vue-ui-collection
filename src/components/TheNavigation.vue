@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 // Imports
-import { PropType } from 'vue'
-import { RouteLocationRaw } from 'vue-router'
+import { type PropType } from 'vue'
+import { type RouteLocationRaw } from 'vue-router'
 
 // Types
 export type TailwindColor = `${string}-${number}`|'black'|'white'
@@ -15,7 +15,7 @@ interface Component {
 
 // Props
 defineProps({
-  items: { type: Array as PropType<Component[]>, default: [] },
+  items: { type: Array as PropType<Component[]>, default: ()=>[] },
 })
 </script>
 
@@ -25,7 +25,6 @@ defineProps({
       <router-link
         v-for="(item, key) in items"
         :key="key"
-        tag="li"
         class="px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600 flex items-center h-10"
         active-class="font-bold bg-gray-100 dark:bg-gray-600"
         :to="item.to"

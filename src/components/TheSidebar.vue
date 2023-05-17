@@ -5,7 +5,7 @@ import { AppLogo, AppFormInput, AppButton } from '@/components/app'
 import { computed, inject, ref, toRef } from 'vue'
 import { ArrowLeftOnRectangleIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 import type { SidebarProvider } from '@/layouts/TheLayoutDashboard.vue'
-import { RouteLocationRaw } from 'vue-router'
+import { type RouteLocationRaw } from 'vue-router'
 import { vOnClickOutside } from '@vueuse/components'
 import { useDark } from '@vueuse/core'
 

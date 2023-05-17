@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports
-import { PropType, computed, ref } from 'vue'
+import { type PropType, computed, ref } from 'vue'
 import AppFormLabel from './AppFormLabel.vue'
 import AppFormMessage from './AppFormMessage.vue'
 import type { TailwindColor, InputVariant } from './types'

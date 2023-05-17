@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 // Imports
-import { PropType } from 'vue'
-import { RouteLocationRaw } from 'vue-router'
+import { type PropType } from 'vue'
+import { type RouteLocationRaw } from 'vue-router'
 import type { TailwindColor } from './types'
 
 // Types
@@ -13,7 +13,7 @@ interface BreadcrumbProp {
 
 // Props
 defineProps({
-  items: { type: Array as PropType<BreadcrumbProp[]>, default: [] },
+  items: { type: Array as PropType<BreadcrumbProp[]>, default: ()=>[] },
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
 })
 </script>

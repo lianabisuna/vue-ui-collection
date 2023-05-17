@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports
-import { PropType, computed, ref, useSlots } from 'vue'
+import { type PropType, computed, ref, useSlots } from 'vue'
 import AppFormContainer from './AppFormContainer.vue';
 import type { TailwindColor, InputVariant } from './types'
 import AppChip from './AppChip.vue'
@@ -105,18 +105,17 @@ const removeFile = (index: number) => {
 /** FILTER MODEL VALUE */
 
 const filteredModelValue = computed(() => {
-  if (files.value?.length) {
-    if (props.dropzone) return files.value.map((file: any) => {
-      return {
-        ...file,
-        formattedSize: fileHelper.formatBytes(file.size)
-      }
-    })
-    else return files.value.map((file: any) => {
-      const formattedSize = fileHelper.formatBytes(file.size)
-      return props.showSize ? `${file.name} (${formattedSize})` : file.name
-    })
-  }
+  if (!files.value?.length) return
+  if (props.dropzone) return files.value.map((file: any) => {
+    return {
+      ...file,
+      formattedSize: fileHelper.formatBytes(file.size)
+    }
+  })
+  else return files.value.map((file: any) => {
+    const formattedSize = fileHelper.formatBytes(file.size)
+    return props.showSize ? `${file.name} (${formattedSize})` : file.name
+  })
 })
 
 

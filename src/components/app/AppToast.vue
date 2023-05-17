@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports
-import { PropType, watch } from 'vue'
+import { type PropType, watch } from 'vue'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
 import type { TailwindColor, DialogPosition } from './types'
 

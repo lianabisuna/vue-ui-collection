@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports
-import { PropType, useSlots } from 'vue'
+import { type PropType, useSlots } from 'vue'
 import AppButton from './AppButton.vue'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/outline'
 import type { TailwindColor } from './types'

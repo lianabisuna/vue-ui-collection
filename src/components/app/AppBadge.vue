@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports
-import { PropType, computed } from 'vue'
+import { type PropType, computed } from 'vue'
 import type {
   TailwindColor,
   RoundedSize,
@@ -55,7 +55,8 @@ const roundedClass = computed(() => {
 })
 
 const borderClass = computed(() => {
-  if (props.outlined) return `border border-${props.color}`
+  if (!props.outlined) return
+  return `border border-${props.color}`
 })
 </script>
 

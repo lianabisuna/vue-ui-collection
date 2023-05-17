@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports
-import { PropType } from 'vue'
+import { type PropType } from 'vue'
 
 // Types
 interface AccordionProp {
@@ -10,7 +10,7 @@ interface AccordionProp {
 
 // Props
 defineProps({
-  items: { type: Array as PropType<AccordionProp[]>, default: '' },
+  items: { type: Array as PropType<AccordionProp[]>, default: ()=>[] },
   dark: { type: Boolean as PropType<boolean>, default: false },
 })
 </script>

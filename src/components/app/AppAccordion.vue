@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports
-import { PropType, ref } from 'vue'
+import { type PropType, ref } from 'vue'
 import { ChevronDownIcon } from '@heroicons/vue/24/outline'
 
 // Types
@@ -11,7 +11,7 @@ interface AccordionProp {
 
 // Props
 defineProps({
-  items: { type: Array as PropType<AccordionProp[]>, default: '' },
+  items: { type: Array as PropType<AccordionProp[]>, default: ()=>[] },
   dark: { type: Boolean as PropType<boolean>, default: false },
 })
 

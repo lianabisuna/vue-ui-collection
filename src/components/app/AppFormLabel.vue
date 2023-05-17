@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports
-import { PropType, computed } from 'vue'
+import { type PropType, computed } from 'vue'
 import type { TailwindColor, InputVariant } from './types'
 
 // Types
@@ -41,22 +41,20 @@ const sizeClass = computed(() => {
 })
 
 const positionClass = computed(() => {
-  if (props.float) {
-    switch (props.variant) {
-      case 'outlined': return 'top-0 -translate-y-1/2 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-0 px-1.5 peer-placeholder-shown:px-0 peer-focus:px-1.5'
-      case 'underlined': return 'bottom-full translate-y-full peer-placeholder-shown:bottom-1 peer-placeholder-shown:translate-y-0 peer-focus:bottom-full peer-focus:translate-y-full'
-      case 'filled': default: return 'top-0.5 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-0.5 peer-focus:translate-y-0'
-      
-    }
+  if (!props.float) return
+  switch (props.variant) {
+    case 'outlined': return 'top-0 -translate-y-1/2 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-0 px-1.5 peer-placeholder-shown:px-0 peer-focus:px-1.5'
+    case 'underlined': return 'bottom-full translate-y-full peer-placeholder-shown:bottom-1 peer-placeholder-shown:translate-y-0 peer-focus:bottom-full peer-focus:translate-y-full'
+    case 'filled': default: return 'top-0.5 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-0.5 peer-focus:translate-y-0'
+    
   }
 })
 
 const bgClass = computed(() => {
-  if (props.float) {
-    switch (props.variant) {
-      case 'outlined': return props.dark ? 'bg-gray-900 peer-placeholder-shown:bg-transparent peer-focus:bg-gray-900' : 'bg-white peer-placeholder-shown:bg-transparent peer-focus:bg-white'
-      case 'filled': case 'underlined': default: return ''
-    }
+  if (!props.float) return
+  switch (props.variant) {
+    case 'outlined': return props.dark ? 'bg-gray-900 peer-placeholder-shown:bg-transparent peer-focus:bg-gray-900' : 'bg-white peer-placeholder-shown:bg-transparent peer-focus:bg-white'
+    case 'filled': case 'underlined': default: return ''
   }
 })
 </script>

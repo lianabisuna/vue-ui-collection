@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports
-import { PropType, computed } from 'vue'
+import { type PropType, computed } from 'vue'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
 import { AppButton } from '@/components/app'
 import type { DialogPosition } from './types'

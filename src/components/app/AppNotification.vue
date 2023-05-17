@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports
-import { PropType, computed, useSlots } from 'vue'
+import { type PropType, computed, useSlots } from 'vue'
 import type { TailwindColor, DialogPosition } from './types'
 
 // Types
@@ -31,9 +31,9 @@ const positionClass = computed(() => {
     case 'bottom': return 'top-auto right-auto left-1/2 bottom-0 translate-y-1/2 -translate-x-2/4'
     case 'left': return 'top-1/2 right-auto left-0 -translate-y-1/2 -translate-x-2/4'
     case 'top-left': return 'bottom-auto right-auto left-0 top-0 -translate-y-1/2 -translate-x-2/4'
-    case 'top-right': return 'bottom-auto left-auto right-0 top-0 -translate-y-1/2 translate-x-2/4'
     case 'bottom-right': return 'top-auto left-auto right-0 bottom-0 translate-y-1/2 translate-x-2/4'
     case 'bottom-left': return 'top-auto right-auto left-0 bottom-0 translate-y-1/2 -translate-x-2/4'
+    case 'top-right': default: return 'bottom-auto left-auto right-0 top-0 -translate-y-1/2 translate-x-2/4'
   }
 })
 
@@ -49,15 +49,18 @@ const sizeClass = computed(() => {
 })
 
 const iconClass = computed(() => {
-  if (props.icon) return 'aspect-square flex items-center justify-center leading-none'
+  if (!props.icon) return
+  return 'aspect-square flex items-center justify-center leading-none'
 })
 
 const contentClass = computed(() => {
   if ((props.content || slots.content) && !props.icon) return 'leading-none px-2.5 py-1 whitespace-nowrap'
+  else return ''
 })
 
 const borderClass = computed(() => {
-  if (props.bordered) return 'border-2 border-gray-100'
+  if (!props.bordered) return
+  return 'border-2 border-gray-100'
 })
 
 const bgClass = computed(() => {

@@ -2,7 +2,7 @@
 // Imports
 import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline'
 import { useDark } from '@vueuse/core'
-import { PropType, watch } from 'vue'
+import { type PropType, watch } from 'vue'
 
 // Props
 defineProps({

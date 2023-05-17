@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports
-import { PropType, computed, ref } from 'vue'
+import { type PropType, computed, ref } from 'vue'
 import { ChevronDownIcon } from '@heroicons/vue/24/outline'
 import { vOnClickOutside } from '@vueuse/components'
 import { AppChip } from '@/components/app'
@@ -17,9 +17,9 @@ interface ItemsProp {
 
 // Props
 const props = defineProps({
-  modelValue: { type: [String,Array] as PropType<string|string[]>, default: [] },
+  modelValue: { type: [String,Array] as PropType<string|string[]>, default: ()=>[] },
   placeholder: { type: String as PropType<string>, default: '' },
-  items: { type: Array as PropType<ItemsProp[]|string[]>, default: [] },
+  items: { type: Array as PropType<ItemsProp[]|string[]>, default: ()=>[] },
   multiple: { type: Boolean as PropType<boolean>, default: false },
   chip: { type: Boolean as PropType<boolean>, default: false },
   emptyText: { type: String as PropType<string>, default: 'No data available' },
@@ -64,20 +64,18 @@ const filteredModelValue = computed(() => {
   let _items = [ ...filteredItems.value ] as ItemsProp[]
   if (!props.multiple) {
     var index = _items.findIndex(e => e.value === props.modelValue);
-    if (index >= 0) {
-      return _items[index].text
-    }
+    if (index < 0) return
+    return _items[index].text
   }
   else {
-    if (Array.isArray(props.modelValue)) {
-      let modelValueArr: string[] = []
-      _items.map((e: any) => {
-        if (props.modelValue.includes(e.value)) {
-          modelValueArr.push(e.text)
-        }
-      })
-      return props.chip ? modelValueArr : modelValueArr.join(', ')
-    }
+    if (!Array.isArray(props.modelValue)) return
+    let modelValueArr: string[] = []
+    _items.map((e: any) => {
+      if (props.modelValue.includes(e.value)) {
+        modelValueArr.push(e.text)
+      }
+    })
+    return props.chip ? modelValueArr : modelValueArr.join(', ')
   }
 })
 

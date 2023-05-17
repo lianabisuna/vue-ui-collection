@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports
-import { PropType } from 'vue'
+import { type PropType } from 'vue'
 import AppFormContainer from './AppFormContainer.vue';
 import type { TailwindColor, InputVariant } from './types'
 

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports
-import { PropType } from 'vue'
+import { type PropType } from 'vue'
 import type { TailwindColor } from './types'
 import AppSpinner from './AppSpinner.vue'
 
@@ -8,7 +8,7 @@ import AppSpinner from './AppSpinner.vue'
 export type SpinerSize = 'xs'|'sm'|'lg'|'xl'
 
 // Props
-const props = defineProps({
+defineProps({
   color: { type: String as PropType<TailwindColor>, default: 'blue-500' },
 })
 </script>

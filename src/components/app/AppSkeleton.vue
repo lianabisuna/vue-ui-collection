@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports
-import { PropType } from 'vue';
+import { type PropType } from 'vue';
 
 // Types
 type SkeletonVariant = 'table-row'|'card'
@@ -8,7 +8,7 @@ type SkeletonVariant = 'table-row'|'card'
 // Props
 defineProps({
   dark: { type: Boolean as PropType<boolean>, default: false },
-  sizes: { type: Array as PropType<string[]>, default: ['h-3 w-full'] },
+  sizes: { type: Array as PropType<string[]>, default: ()=>['h-3 w-full'] },
   variant: { type: String as PropType<SkeletonVariant>, default: '' }, // TO DO
   hideAnimation: { type: Boolean as PropType<boolean>, default: false },
 })

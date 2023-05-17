@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports
-import { PropType, computed } from 'vue'
+import { type PropType, computed } from 'vue'
 import type { TailwindColor } from './types'
 
 // Types
@@ -18,21 +18,21 @@ const props = defineProps({
 
 const positionClass = computed(() => {
   switch (props.position) {
-    case 'top': return 'mb-3 bottom-full left-1/2 -translate-x-1/2'
     case 'right': return 'ml-3 left-full top-1/2 -translate-y-1/2'
     case 'bottom': return 'mt-3 top-full left-1/2 -translate-x-1/2'
     case 'left': return 'mr-3 right-full top-1/2 -translate-y-1/2'
+    case 'top': default: return 'mb-3 bottom-full left-1/2 -translate-x-1/2'
   }
 })
 
 const arrowClass = computed(() => {
-  if (!props.hideArrow) {
-    switch (props.position) {
-      case 'top': return ''
-      case 'right': return ''
-      case 'bottom': return ''
-      case 'left': return ''
-    }
+  if (props.hideArrow) return
+  switch (props.position) {
+    case 'top': return ''
+    case 'right': return ''
+    case 'bottom': return ''
+    case 'left': return ''
+    default: return ''
   }
 })
 </script>
