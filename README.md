@@ -1,4 +1,9 @@
-# Vue3-Typescript-Tailwind-Toolbox-V2
+# Web UI Collection
+
+## Tools
+- Vue.js 3
+- TypeScript
+- Tailwind
 
 This template should help get you started developing with Vue 3 in Vite.
 
